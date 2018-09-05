@@ -1,13 +1,9 @@
 from enum import Enum
-from typing import Dict, NewType, Tuple, Union
+from typing import Dict, Tuple, Optional
 
 from sandbox.pathfinder.sizes import Size
-from sandbox.pathfinder.units import DistanceFeet, WeightLbs
+from sandbox.pathfinder.types import AbilityScore, AbilityModifier, DistanceFeet, WeightLbs
 from sandbox.pathfinder.util import scalar_multiply
-
-# Define 2 types to be sure no confusion occurs for functions that accept numbers
-AbilityScore = NewType('AbilityScore', int)
-AbilityModifier = NewType('AbilityModifier', int)
 
 # The defined costs for point buy calculation
 ABILITY_SCORE_COSTS: Dict[AbilityScore, int] = {
@@ -34,7 +30,7 @@ CAMPAIGN_TYPES: Dict[str, int] = {
 }
 
 
-def get_single_point_buy_cost(base_ability_score: AbilityScore) -> Union[int, None]:
+def get_single_point_buy_cost(base_ability_score: AbilityScore) -> Optional[int]:
     """
     :param base_ability_score: an ability score value
     :return: The point buy value for that ability score or None if undefined
@@ -47,7 +43,7 @@ def get_single_point_buy_cost(base_ability_score: AbilityScore) -> Union[int, No
 
 def get_point_buy_cost(base_strength: AbilityScore, base_constitution: AbilityScore, base_dexterity: AbilityScore,
                        base_intelligence: AbilityScore, base_wisdom: AbilityScore, base_charisma: AbilityScore)\
-        -> Union[int, None]:
+        -> Optional[int]:
     """
     :return: The sum of the point buy costs for all these ability scores of None if any is undefined
     """

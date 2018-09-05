@@ -1,14 +1,4 @@
-from typing import NewType
-
-# Units of distance (are sometimes used as speed, if so the speed is that distance per round unless otherwise specified)
-DistanceFeet = NewType('DistanceFeet', float)
-DistanceMile = NewType('DistanceMile', float)
-DistanceInch = NewType('DistanceInch', float)
-DistanceMeter = NewType('DistanceMeter', float)
-
-# Units of weight
-WeightLbs = NewType('WeightLbs', float)
-WeightKg = NewType('WeightKg', float)
+from sandbox.pathfinder.types import DistanceFeet, DistanceInch, DistanceMeter, DistanceMile, WeightKg, WeightLbs
 
 
 def feet_to_meters(feet: DistanceFeet) -> DistanceMeter:
@@ -35,7 +25,7 @@ def mile_to_meters(mile: DistanceMile) -> DistanceMeter:
     :param mile: A distance in miles
     :return: That distance in meters
     """
-    return DistanceMeter(mile * 1609.34)
+    return DistanceMeter(mile * 1609.344)
 
 
 def pounds_to_kilograms(pounds: WeightLbs) -> WeightKg:
@@ -43,4 +33,4 @@ def pounds_to_kilograms(pounds: WeightLbs) -> WeightKg:
     :param pounds: A weight in pounds (lbs.)
     :return: That weight in kilograms
     """
-    return WeightKg(pounds * 0.453592)
+    return WeightKg(pounds * 0.45359237)

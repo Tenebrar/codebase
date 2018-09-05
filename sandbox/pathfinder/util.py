@@ -1,10 +1,10 @@
-from typing import Tuple, TypeVar
+from typing import TypeVar
 
-X = TypeVar('X')
+X = TypeVar('Tuple[float, ...]')
 
 
-def scalar_multiply(tuple: Tuple[X,...], multiplier: int) -> Tuple[X,...]:
+def scalar_multiply(t: X, multiplier: float) -> X:
     """
-    Multiply a tuple with a scalar while maintaining types
+    Multiply a tuple with a scalar
     """
-    return (X(c) * multiplier for c in tuple)
+    return tuple(c * multiplier for c in t)
