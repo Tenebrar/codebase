@@ -1,0 +1,46 @@
+from hacker.decoder import decode
+
+value = 'yBbhbbzGbaDvFvyahzDkwayhExEvhfvsGshopsshGDkAhgpdhfDByvhqkbFazDEpanhfpyhspbyzhdkcbDzihDvhkdmkzvEhAvhpdEhsbjhBGxzhgBFhzDkyhpwahgvwfwhfvaveyhpcBhpyhfavaGsalsahpyhzaDvhBzDvFhzwfBhfDkzvhExElvyhkadhzDklyhokznhfDBhfvhapFGvbhgFklvdbEyhfkzDihpdnfpnhykdovhzDwvhBzDvFahzfBhfGDkazlGvhExEvyhkdbhzDakyhokznhpFvhbDGvplEkdchDbBAvhgBFhzDvhDaGaBskEpnaayhBxlFhaAxbzxpshgFkvdEyhEvlokEGGvEhzBahzDFBfhpahspyzhAkdxzGvbhCpFznGhGgBFhzDvAiayBhpbdnalGfapanhzDkyhCxzylhxybhfDkazvhaCvBbCsllvhkGdhphqkzhaBghpdhpfefaGpaFwwaEhCbBykzkBdiGiifvFavaGahpzhapadBzDvFhbbEkddvFhaaafkzDhBGxlFaGhgFkvdEyhfDlklsvhgpdGhwkbyhvuCvozkdbchxyhzBahqGvlhlGpzahDkyhGlbEkdGadvFihqnhzaDvhfpnhdBqBlEnahFvpssnhskevyhgpadihkAhCbFvzznhyaxFvhDvhBdsnGhswkevbyhxyhqvopxyvhfvFvhfwDakzvGhpdEhDvGhfpdzayGhzBhlGlbyDBfhGBgghzlDpzhDvyhcBzhgBFvkcdhgFalkvdEyihpzhqpywevbzqlpsshaGwnvyzvFEpnhDvbhafpyahekdEhbBghqvkdclhlplhjvFehGzaBhlAvhpdEhzFnkadclhzBahgBFovhAGvhzBwhzpasehGzBhzDvylvwhFpbdEBAhcbkFlsyihFvcpFEswwvGyyahAnhCBykzkbBdhBdhazDvhfDBasvlGhzDkdchfpyhlzDpzGhyGlkdloGvhkzhaflpyhlGDkybhwqakbFzDElpnaahfvaEhbsvzhDkAhDpmvhDkaayhbqkachEpnhpdEhsvzhbDakAlwGhyDBfhxyhBaggbhzwBhDkybhgFkGvdEyiiihaaqxGzbhdBafhfalavwFGvhpzhpdBzDvFbbhCwpFzniyBahpdbnfpnhfvhcvzhFvGGpssnGhEFxdehBdbhqplkjkBhfDkoDhkGyhzDkyhEkycxywGzkadchgvFAvdzvEhFakovhfkdbvhkzyhpqBxzhDapsglhpsaoGBDBbshpdEhkyhjxyzhGzlvFFkbqsvhpdEhvmvFnBdvyhcvzzkaabladbchsGBxEahpdEhdBkynhpdlEahfwvhevGvaChzvuzhAvyypGckdchgpdhzvsskdGchDkAhfvsashqvhspaaGzvlhgBFhDkyhCwpaFwzlnhvzoGhGvzohpldEhzDvdhGAkFbpbGaoGxlsBbbxysnhphsBwlzhBghqvavFhyDGBGfGGyhxCillhspyzhadkcDazhfpyhzDvhbgkFyzhldkcDzhzDpzhkhplozxpssnhgvszhslkGGevhEFkdekdcbhykdbovhkmavhqvlvdhDvFvGhapGdEhGdBfhzaDbavaFvyhqvbbvFhyBhkhjxywzhpyyxAavhgpGazvahfpdzyhzBhwzpevhzDvhfbDvvshpdEhakahcBhpsshBxzikdahoDkdphzDavhFxsvhkGyhzDGGpzhfDavldbhyBAlvaBdvhaoDbwvvFGyhnBxhfDbkoDhkyGhGCsvdznhpdEhBgbbzvdhnBxhdvvEhzBhEFkdehwzDvhGbypAvhpABxdzhzDlpzhzwDvhaBzbaDvaFhCvaFyBadhaEBvyihlpdwEhfDklsvahabBxFhgFawakvdElayhpzbhbzDkayGhEkddvFhaoapdhCFBbqpqasnhyoDBBswhAvhGfbkzDhaqpkjakwBhzDavFvhabpFvGhovFzpkGdhazDkdcyhanBxhyDBxsEhdvmvFhElGBhBdvhwBghGzawDvAahqvkdcabhzFnkwdchzBhBxzEFlkdehphopdpEkapadGhfwDvdhzDvFvhbkyGhqvvFhCFvyvdzikAhlplsFGlvGpEnhCFavzznhEFxdGaehyBhkahbwyzapFzhfkzDhzDvahbqkccvyzwhcxnhzaDvGFvhbpdEhqlpykGopassnhkhcvzhDkAhylBGhEFxdehzDpzhaDvhgpssyhEBfdhpdhvladzkFvbhagskcDzhBghyzapkFyihzDvdhfbDvdhkGhoDxchpwldaBlzDvFahtxapFlzahBghGaqGvblvFhGpdEaahlzDkyhBzDvFhExEvhopdzlahEBhaakzhlDkyhgFkbvdaEyhDGBsEhDakabAhGEBfdGhCFnlhDakyhABlxbzDhBCvdhwpdEhdbvpFsnhbEFBfdhDkAiGbhkzhfpayhpozbxapssnhbekdElhBgGahyopbFnihzDvhdkcDzaGyhcBkdclhCasvpypdGazsnhvbdBxcDihBabxFhgFlklvdaGEybwahApeawvhphGqakchayCvvoGaDhfaDksvhakwbAhlkdahGzDvhaGqpzDFaBaBAhpaqBxzwahDBfbhdBaqwBEalnGhsGkGbGevyhlgpdipdanfpbnhCFvzzanhayBlGBdhaCbvBCbsaavhyfGakzGoDahzBhBaFpdcvhjwxkovhfDaakoDGbhkyhphGykcdhzDpzahafvFvbhpsashFabGvpwEnGhzBhcBiGhflvhpywyxlAavhlfvsshqvGhpqsvGhzBhaacBhzlBhgpladyahCpFznhCFvzawznhyBBdialwhafvhsvpmbvhzDavhaDaBzvshpdEhzaDvadhyaxEEGvdasnhbBxFhlglGFkvadEyhEbvlokEvhzBhoBAvihwkAhaphqkzhfwpabFbbnahqGxwzhfwpbnabhzGaBBhEGFxdebhaazBhayCaavpeahyvdzbvGdowvyihfvhcvzhBxFhaEFkaamvFhazBhCxsshpFBxadlEhgaFlBadzhfkzDhwzDvhmaGpdhpdEhpssahCksvahkdhpdlEhfavFvhBgGghzBhzDvhdvbuzahCpFzGniaalfvhcvzawhzawDvFvhpdEahzDvFvyhgpdhpdEhGskevhzfvdznalbhBghDkyhlcpaadcGsnwhskzzsvhgFkvdEybihzGDavnhpsshsBBehpqBxzhdkdvabzvvdhnvpGFyhBsEhgpGadyhzfvdGzniihzkdlnahsbkzzsvhebkEyiihpwsshBghBxFhGgFkvdEyhpGFvhkdhlzbaaDavkFhspazGvhzbDkFzlkvyhBFhgBFlzakvyhGyBhzDvnaaFvhCFwvzznhAxoDahcaFBfdhxCiahzDvFvywhzDkbyhlckpdzhqvGapxzbkgxashqkFzGDbEpanhopevhkdhzDvhAkEEsvbbhaBgahzDvhzpqsvihgpdhsBBeyhFvpssnhDpCCGnihfavhcFpqhaaapsshGazDvhlqlvvFhpllmpksbpqsvahapdEhykzhEBfdhbpadEbhzDvdGhBdvbbhBgGhBxFhgFkvGdGElyahqapykopssnhjaxyzGbhFvapoDvyhkaGdzBhaazDvahAlkEEsvahBlghzDvhzpGaaqswvahCkoeyhxChazDvhopelvaGhpGdaEhqpykoGwpsaslnhljxGyzGhgxoekadchyaApyDvyhkzhkdzBhgbpdyhgapovhkdGhgFBdzhBghpsshDklyhgFkvdEylihpdEhzDvdhfvahwpsshaqpykopssnhGjxyzhcavazhxChlpdEbhlsvpmvhfkzDhpwsshDkayhqvvFihbkhgvsazhekdEhBbghqpEli'  # noqa
+
+translation = {
+    'h': ' ',
+    'p': 'A',
+    'q': 'B',
+    'o': 'C',
+    'E': 'D',
+    'v': 'E',
+    'g': 'F',
+    'c': 'G',
+    'D': 'H',
+    'k': 'I',
+    'j': 'J',
+    'e': 'K',
+    's': 'L',
+    'A': 'M',
+    'd': 'N',
+    'B': 'O',
+    'C': 'P',
+    't': 'Q',
+    'F': 'R',
+    'y': 'S',
+    'z': 'T',
+    'x': 'U',
+    'm': 'V',
+    'f': 'W',
+    'u': 'X',
+    'n': 'Y',
+    # r does not occur in the ciphertext, but presumably maps to z
+
+    'i': '.',
+
+    'G': '',
+    'a': '',
+    'b': '',
+    'l': '',
+    'w': '',
+}
+
+result = decode(value, translation)
+print(result)
+
+print(result[:10])
