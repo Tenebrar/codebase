@@ -1,0 +1,22 @@
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<h1>{{ character.name }}</h1>
+STR {{ character.base_strength }}<br>
+CON {{ character.base_constitution }}<br>
+DEX {{ character.base_dexterity }}<br>
+INT {{ character.base_intelligence }}<br>
+WIS {{ character.base_wisdom }}<br>
+CHA {{ character.base_charisma }}<br>
+<ul>
+{% for roll in character.roll_set.all %}
+    <li>{{ roll.result }}/{{ roll.die_size }}: {{ roll.reason }}</li>
+{% endfor %}
+</ul>
+
+<form action="{% url 'charsheet:add_roll' character.id %}" method="post">
+{% csrf_token %}
+    reason: <input type="text" name="reason" id="reason"/>
+    die size: <input type="text" name="die_size" id="die_size"/>
+    result: <input type="text" name="result" id="result"/>
+<input type="submit" value="Add roll" />
+</form>

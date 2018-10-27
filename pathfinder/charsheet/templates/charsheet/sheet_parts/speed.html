@@ -1,0 +1,30 @@
+<table>
+    <tr>
+        <td class="sheet-statlabel-big" style="width: 70px;">
+            SPEED<br>
+            <div style="font-size: 0.65em;">Land</div>
+        </td>
+        <td>
+            <input class="sheet-inputbox" type="text" style="height: 24px; width: 95px;" disabled="true" value="{{ character.base_speed }}"><br>
+            <div style="font-size: 0.5em;">Base speed</div>
+        </td>
+        <td>
+            <input class="sheet-inputbox" type="text" style="height: 24px; width: 85px;" disabled="true" value="{{ character.speed_with_armor }}"><br>
+            <div style="font-size: 0.5em;">With Armor</div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div>
+                <input class="sheet-inputbox" type="text" style="height: 24px; width: 110px;" disabled="true" value="{{ character.fly_speed|default:"/" }} {{ character.fly_maneuverability }}">&nbsp;&nbsp;<input class="sheet-inputbox" type="text" style="height: 24px; width: 50px;" disabled="true" value="{{ character.swim_speed|default:"/" }}"><br>
+                <div style="font-size: 0.5em;">Fly&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Maneuverability&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Swim</div>
+            </div>
+        </td>
+        <td >
+            <div>
+                <input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.climb_speed|default:"/" }}">&nbsp;<input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.burrow_speed|default:"/" }}"><br>
+                <div style="font-size: 0.5em;">Climb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Burrow</div>
+            </div>
+        </td>
+    </tr>
+</table>

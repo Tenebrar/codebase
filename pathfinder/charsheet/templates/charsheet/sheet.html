@@ -1,0 +1,74 @@
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'charsheet/pathfinder.css' %}">
+        <link rel="shortcut icon" href="{% static 'charsheet/images/favicon.ico' %}" type="image/x-icon">
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td style="vertical-align: top">
+                    <img src="{% static 'charsheet/images/PathfinderRPGLogo_500.jpeg' %}" style="width: 300px;"/>
+                    <div style="text-align: center; font-size: 2em;">Character Sheet</div>
+                </td>
+                <td style="vertical-align: top">
+                    {% include "charsheet/sheet_parts/description.html" %}
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td style="vertical-align: top">
+                    <table>
+                        <tr>
+                            <td style="vertical-align: top">
+                                {% include "charsheet/sheet_parts/abilities.html" %}
+                            </td>
+                            <td style="vertical-align: top">
+                                {% include "charsheet/sheet_parts/hp.html" %}
+                                {% include "charsheet/sheet_parts/initiative.html" %}
+                            </td>
+                        </tr>
+                    </table>
+                    {% include "charsheet/sheet_parts/AC.html" %}
+                    {% include "charsheet/sheet_parts/saves.html" %}
+                    {% include "charsheet/sheet_parts/attack.html" %}
+                    {% include "charsheet/sheet_parts/weapons.html" %}
+                </td>
+                <td style="vertical-align: top">
+                    {% include "charsheet/sheet_parts/speed.html" %}
+                    {% include "charsheet/sheet_parts/skills.html" %}
+                    {% include "charsheet/sheet_parts/languages.html" %}
+                </td>
+            </tr>
+        </table>
+        <!-- TODO find a way to add a pagebreak in printing if possible -->
+        <hr/>
+        <table>
+            <tr>
+                <td style="vertical-align: top">
+                    {% include "charsheet/sheet_parts/AC_items.html" %}
+                    <table>
+                        <tr>
+                            <td style="vertical-align: top">
+                                {% include "charsheet/sheet_parts/gear.html" %}
+                                {% include "charsheet/sheet_parts/load.html" %}
+                                {% include "charsheet/sheet_parts/money.html" %}
+                            </td>
+                            <td style="vertical-align: top">
+                                {% include "charsheet/sheet_parts/feats.html" %}
+                                {% include "charsheet/sheet_parts/special_abilities.html" %}
+                                {% include "charsheet/sheet_parts/experience.html" %}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="vertical-align: top">
+                    {% include "charsheet/sheet_parts/spells.html" %}
+                    {% include "charsheet/sheet_parts/spells_known.html" %}
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
