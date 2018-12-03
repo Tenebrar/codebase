@@ -1,5 +1,5 @@
 from pytest import mark, param
-from typing import NoReturn, Tuple
+from typing import Tuple
 
 from sandbox.pathfinder.util import scalar_multiply
 
@@ -13,7 +13,7 @@ from sandbox.pathfinder.util import scalar_multiply
     param((-1.2, -3.4, -5.0), 2.0, (-2.4, -6.8, -10.0), id='negative values'),
     param((), 123.456, (), id='empty tuple'),
 ))
-def test_scalar_multiply(values: Tuple[float, ...], scalar: float, expected: Tuple[float, ...]) -> NoReturn:
+def test_scalar_multiply(values: Tuple[float, ...], scalar: float, expected: Tuple[float, ...]) -> None:
     result = scalar_multiply(values, scalar)
 
     assert result == expected
