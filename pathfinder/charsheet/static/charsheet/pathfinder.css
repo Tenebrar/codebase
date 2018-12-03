@@ -1,0 +1,13 @@
+.sheet-statlabel, .sheet-statlabel-big {
+    color: white;
+    background-color: black;
+    text-align: center;
+}
+
+.description-label {
+    font-size: 0.7em;
+}
+
+input {
+    font-size: 1em;
+}
