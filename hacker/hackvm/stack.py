@@ -1,48 +1,123 @@
+from typing import Callable
+
 from hacker.hackvm.integers import verify_integer
 
 
 class OperandStack(object):
-    stack = []
+    """
+    Operand stack for the hack vm that allows the operations specified for that.
+    Though it is called a stack, it allows for several non-stack operations (accessing elements other than the last
+    pushed element).
+    """
 
-    def push(self, v):
+    def __init__(self) -> None:
+        self._stack = []  # Create an empty stack, as a list since we need access to all elements
+
+    def push(self, v: int) -> None:
+        """
+        :param v: an integer
+        :raises ValueError: if the input is outside the allowed integer range
+        """
         verify_integer(v)
-        self.stack.append(v)
+        self._stack.append(v)
 
-    def pop(self):
-        if len(self.stack) == 0:
+    def pop(self) -> int:
+        """
+        Pops the last value from the stack
+        :return: the popped value
+        :raises RuntimeError: If the stack is empty
+        """
+        try:
+            return self._stack.pop()
+        except IndexError:
             raise RuntimeError('Stack underflow')
-        return self.stack.pop()
 
-    def do_pick(self):
-        where = self._pop_index()
-        self.push(self.stack[-1 - where])
+    def pick(self) -> None:
+        """
+        Push a copy of S<S0+1> (ex: 0^ duplicates S0)
+        :raises RuntimeError: if there are not enough elements on the stack
+        """
+        index = self._pop_index()
+        value = self._stack[index]
+        self.push(value)
 
-    def do_roll(self):
-        where = self._pop_index()
-        v = self.stack[-1 - where]
-        del self.stack[-1 - where]
-        self.push(v)
+    def roll(self) -> None:
+        """
+        Remove S<S0+1> from the stack and push it on top (ex: 1v swaps S0 and S1)
+        :raises RuntimeError: if there are not enough elements on the stack
+        """
+        index = self._pop_index()
+        value = self._stack.pop(index)
+        self.push(value)
 
-    def _pop_index(self):
+    def _pop_index(self) -> int:
+        """
+        Pops an element from the stack to be used as an index, verifies that this index is inside the stack bounds
+        :raises RuntimeError: If the popped index does not fit inside the stack
+        :return: A negative value that can be used as an index in the stack (as a distance from the end)
+        """
         where = self.pop()
-        if where < 0 or where >= len(self.stack):
-            raise RuntimeError('out of stack bounds @' + str(where))
-        return where
+        # These checks are necessary since python might interpret a negative value as a correct index
+        if where < 0 or where >= len(self._stack):
+            raise RuntimeError(f'Out of bounds. '
+                               f'Accessing index {where} in stack {self._stack} (indices start at the end)')
+        # Convert to index from end
+        return -1 - where
+
+    def add_two_operands(self) -> None:
+        """
+        Remove the first two elements from the stack and push their sum
+        :raises RuntimeError: if there are less than 2 elements on the stack
+        """
+        self._perform_operator(lambda a, b: b + a)
+
+    def subtract_two_operands(self) -> None:
+        """
+        Remove the first two elements from the stack and push their difference
+        (The second element from the top is reduced by the first)
+        :raises RuntimeError: if there are less than 2 elements on the stack
+        """
+        self._perform_operator(lambda a, b: b - a)
+
+    def multiply_two_operands(self) -> None:
+        """
+        Remove the first two elements from the stack and push their product
+        :raises RuntimeError: if there are less than 2 elements on the stack
+        """
+        self._perform_operator(lambda a, b: b * a)
+
+    def divide_two_operands(self) -> None:
+        """
+        Remove the first two elements from the stack and push their division
+        (The second element from the top is divided by the first)
+        :raises RuntimeError: if there are less than 2 elements on the stack
+        """
+        # This is a change from the implementation at http://www.hacker.org/hvm/hackvm.py (we use integer division)
+        self._perform_operator(lambda a, b: b // a)
+
+    def cmp_two_operands(self) -> None:
+        """
+        Remove the first two elements from the stack and push their cmp
+        (-1 if the second element from the top is smaller than the first, 0 if they are equal, or 1 otherwise)
+        :raises RuntimeError: if there are less than 2 elements on the stack
+        """
+        # replacement for cmp suggested at: https://docs.python.org/3.0/whatsnew/3.0.html
+        self._perform_operator(lambda a, b: (b > a) - (b < a))
+
+    def _perform_operator(self, op: Callable[[int, int], int]) -> None:
+        """
+        Remove the first two elements from the stack and push the result of an operation on them
+        (The operation is called with the first element on the stack first, and then the second)
+        :param op: A function mapping 2 operands to a result
+        :raises RuntimeError: if there are less than 2 elements on the stack
+        """
+        a = self.pop()
+        b = self.pop()
+        result = op(a,b)
+        self.push(result)
 
     def __str__(self):
-        return str(self.stack)
+        return str(self._stack)
 
     def __len__(self):
-        return len(self.stack)
-
-
-# TODO replace with tests
-s = OperandStack()
-print(s)
-s.push(4)
-s.push(5)
-s.push(6)
-print(s)
-print(s.pop())
-print(s)
-s.pop()
+        return len(self._stack)

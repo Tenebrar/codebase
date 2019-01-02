@@ -1,208 +1,149 @@
-import re
-import sys
 from functools import partial
+from numpy import zeros
+import sys
 
-from hacker.hackvm.integers import verify_integer
 from hacker.hackvm.counter import IterationCounter
+from hacker.hackvm.stack import OperandStack
 
+# Adapted from http://www.hacker.org/hvm/hackvm.py, with explanations on http://www.hacker.org/hvm/
 
-Memory = [0] * 16384
-CallStack = []
-OperandStack = []
-ProgramCounter = 0
+MEMORY = zeros(16384, dtype=int)
+CALL_STACK = []
+OPERAND_STACK = OperandStack()
+PROGRAM_COUNTER = 0
 
-
-def push(v):
-    verify_integer(v)
-    OperandStack.append(v)
-
-
-def pop():
-    if len(OperandStack) == 0:
-        raise RuntimeError('Stack underflow')
-    return OperandStack.pop()
+OUT = sys.stdout
 
 
 def do_print_char():
-    sys.stdout.write(chr(pop() & 0x7F))
+    value = OPERAND_STACK.pop()
+    OUT.write(chr(value & 0x7F))
 
 
 def do_print_int():
-    sys.stdout.write(str(pop()))
-
-
-def do_add():
-    push(pop() + pop())
-
-
-def do_sub():
-    a = pop()
-    b = pop()
-    push(b - a)
-
-
-def do_mul():
-    push(pop() * pop())
-
-
-def do_div():
-    a = pop()
-    b = pop()
-    push(b / a)
-
-
-def do_cmp():
-    a = pop()
-    b = pop()
-    push((b > a) - (b < a))  # replacement for cmp suggested at: https://docs.python.org/3.0/whatsnew/3.0.html
+    value = OPERAND_STACK.pop()
+    OUT.write(str(value))
 
 
 def do_goto():
-    global ProgramCounter
-    ProgramCounter += pop()
+    global PROGRAM_COUNTER
+    PROGRAM_COUNTER += OPERAND_STACK.pop()
 
 
 def do_goto_if_zero():
-    global ProgramCounter
-    offset = pop()
-    if pop() == 0:
-        ProgramCounter += offset
+    global PROGRAM_COUNTER
+    offset = OPERAND_STACK.pop()
+    if OPERAND_STACK.pop() == 0:
+        PROGRAM_COUNTER += offset
 
 
 def do_call():
-    global ProgramCounter
-    CallStack.append(ProgramCounter)
-    ProgramCounter = pop()
+    global PROGRAM_COUNTER
+    CALL_STACK.append(PROGRAM_COUNTER)
+    PROGRAM_COUNTER = OPERAND_STACK.pop()
 
 
 def do_return():
-    global ProgramCounter
-    ProgramCounter = CallStack.pop()
+    global PROGRAM_COUNTER
+    PROGRAM_COUNTER = CALL_STACK.pop()
 
 
 def do_peek():
-    addr = pop()
-    if addr < 0 or addr >= len(Memory):
+    addr = OPERAND_STACK.pop()
+    if addr < 0 or addr >= len(MEMORY):
         raise RuntimeError('memory read access violation @' + str(addr))
-    push(Memory[addr])
+    OPERAND_STACK.push(MEMORY[addr])
 
 
 def do_poke():
-    addr = pop()
-    if addr < 0 or addr >= len(Memory):
+    addr = OPERAND_STACK.pop()
+    if addr < 0 or addr >= len(MEMORY):
         raise RuntimeError('memory write access violation @' + str(addr))
-    Memory[addr] = pop()
-
-
-def do_pick():
-    where = pop()
-    if where < 0 or where >= len(OperandStack):
-        raise RuntimeError('out of stack bounds @' + str(where))
-    push(OperandStack[-1 - where])
-
-
-def do_roll():
-    where = pop()
-    if where < 0 or where >= len(OperandStack):
-        raise RuntimeError('out of stack @' + str(where))
-    v = OperandStack[-1 - where]
-    del OperandStack[-1 - where]
-    push(v)
-
-
-def do_drop():
-    pop()
+    MEMORY[addr] = OPERAND_STACK.pop()
 
 
 def do_end():
-    global ProgramCounter
-    ProgramCounter = len(Code)
+    global PROGRAM_COUNTER
+    PROGRAM_COUNTER = len(Code)
 
 
-def do_nothing():
-    pass
-
-
-OPS = {
-    ' ': do_nothing,
-    '\n': do_nothing,
+OPERATIONS = {
+    ' ': lambda: None,  # NO_OP
+    '\n': lambda: None,  # NO_OP
     'p': do_print_int,
     'P': do_print_char,
-    '0': partial(push, 0),
-    '1': partial(push, 1),
-    '2': partial(push, 2),
-    '3': partial(push, 3),
-    '4': partial(push, 4),
-    '5': partial(push, 5),
-    '6': partial(push, 6),
-    '7': partial(push, 7),
-    '8': partial(push, 8),
-    '9': partial(push, 9),
-    '+': do_add,
-    '-': do_sub,
-    '*': do_mul,
-    '/': do_div,
-    ':': do_cmp,
+    '0': partial(OPERAND_STACK.push, 0),
+    '1': partial(OPERAND_STACK.push, 1),
+    '2': partial(OPERAND_STACK.push, 2),
+    '3': partial(OPERAND_STACK.push, 3),
+    '4': partial(OPERAND_STACK.push, 4),
+    '5': partial(OPERAND_STACK.push, 5),
+    '6': partial(OPERAND_STACK.push, 6),
+    '7': partial(OPERAND_STACK.push, 7),
+    '8': partial(OPERAND_STACK.push, 8),
+    '9': partial(OPERAND_STACK.push, 9),
+    '+': OPERAND_STACK.add_two_operands,
+    '-': OPERAND_STACK.subtract_two_operands,
+    '*': OPERAND_STACK.multiply_two_operands,
+    '/': OPERAND_STACK.divide_two_operands,
+    ':': OPERAND_STACK.cmp_two_operands,
     'g': do_goto,
     '?': do_goto_if_zero,
     'c': do_call,
     '$': do_return,
     '<': do_peek,
     '>': do_poke,
-    '^': do_pick,
-    'v': do_roll,
-    'd': do_drop,
+    '^': OPERAND_STACK.pick,
+    'v': OPERAND_STACK.roll,
+    'd': OPERAND_STACK.pop,
     '!': do_end
 }
 
 
 def run(verbose=False):
-    global ProgramCounter
+    global PROGRAM_COUNTER
 
     iteration_counter = IterationCounter(max_iterations=10000)
     op_code = ' '
     try:
-        while ProgramCounter != len(Code):
-            op_code = Code[ProgramCounter]
+        while PROGRAM_COUNTER != len(Code):
+            op_code = Code[PROGRAM_COUNTER]
             if verbose:
-                sys.stderr.write('@' + str(ProgramCounter) + ' ' + op_code + ' ')
-            ProgramCounter += 1
+                sys.stderr.write('@' + str(PROGRAM_COUNTER) + ' ' + op_code + ' ')
+            PROGRAM_COUNTER += 1
             iteration_counter.increment()
-            OPS[op_code]()
-            if not 0 <= ProgramCounter <= len(Code):
+            OPERATIONS[op_code]()
+            if not 0 <= PROGRAM_COUNTER <= len(Code):
                 raise RuntimeError('out of code bounds')
             if verbose:
-                sys.stderr.write(str(OperandStack) + '\n')
-    except BaseException:
-        sys.stderr.write('!ERROR: exception while executing I=' + str(op_code) + ' PC=' + str(ProgramCounter - 1) +
-                         ' STACK_SIZE=' + str(len(OperandStack)) + '\n')
-        sys.stderr.write(str(sys.exc_info()[1]) + '\n')
-        sys.exit(1)
+                sys.stderr.write(str(OPERAND_STACK) + '\n')
 
-    print()
+        OUT.write('\n')
+    except BaseException as e:
+        OUT.write('\n')
+        OUT.write('!ERROR: exception while executing I=' + str(op_code) + ' PC=' + str(PROGRAM_COUNTER - 1) +
+                  ' STACK_SIZE=' + str(len(OPERAND_STACK)) + '\n')
+        OUT.write(e)
 
 
-# Parse the command line
 if len(sys.argv) < 2:
-    print('hackvm.py [--init <init-mem-filename>] [--trace] <code-filename>')
-    print('The format for the initial memory file is: cell0,cell1,...')
-    sys.exit(0)
+    OUT.write('hackvm.py [--init <init-mem-filename>] [--trace] <code-filename>')
+    OUT.write('The format for the initial memory file is: cell0,cell1,...')
+else:
+    verbose = False
+    args = sys.argv
+    args.reverse()
+    args.pop()
+    while len(args):
+        arg = args.pop()
+        if len(args) == 0:  # The last argument is always the code
+            Code = open(arg).read()
+        elif arg == '--trace':
+            verbose = True
+        elif arg == '--init':
+            initial_memory = open(args.pop()).read().split(',')
+            MEMORY[:len(initial_memory)] = [int(val) for val in initial_memory]
+        else:
+            raise ValueError('invalid argument ' + arg)
 
-trace = False
-args = sys.argv
-args.reverse()
-args.pop()
-while len(args):
-    arg = args.pop()
-    if len(args) == 0:
-        Code = open(arg).read()
-    elif arg == '--trace':
-        trace = True
-    elif arg == '--init':
-        initial_memory = re.compile('\s*,\s*').split(open(args.pop()).read())
-        for i in range(0, len(initial_memory)):
-            Memory[i] = int(initial_memory[i].strip())
-    else:
-        raise ValueError('invalid argument ' + arg)
-
-run(trace)
+    run(verbose)

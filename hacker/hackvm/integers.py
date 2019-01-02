@@ -4,7 +4,7 @@ MIN_INT = -(1 << 63)
 MAX_INT = (1 << 63) - 1
 
 
-def verify_integer(i):
+def verify_integer(i: int) -> None:
     """
     Verifies an integer falls within the allowed limits
     :param i: an integer value
