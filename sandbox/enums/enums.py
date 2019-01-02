@@ -14,7 +14,7 @@ def comparison_method(original_function):
 
 class OrderedEnum(Enum):
     """
-    Enum allowing comparison methodes based on their occurrence in the Enum.
+    Enum allowing comparison methods based on their occurrence in the Enum.
     Usage of @unique is strongly suggested.
     """
     def __new__(cls, *args):

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import Attack, Bonus, Character, CharacterClass, CharacterClassLevel, ClassSkill, ConditionalModifier, \
-    Immunity, Language, Note, Race, Rank, Roll, Skill, SpecificWeapon, Speed, Weapon, WeaponProperty
+    FullAttack, Immunity, Language, Note, Race, Rank, Roll, Skill, SpecificWeapon, Speed, Weapon, WeaponProperty
 
 
 class RollInline(admin.TabularInline):
@@ -59,6 +59,11 @@ class AttackInline(admin.TabularInline):
     extra=0
 
 
+class FullAttackInline(admin.TabularInline):
+    model=FullAttack
+    extra=0
+
+
 class CharacterAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Description', {'fields': ['name', 'alignment_law_axis', 'alignment_good_axis', 'player',
@@ -72,7 +77,7 @@ class CharacterAdmin(admin.ModelAdmin):
     ]
     inlines = [RollInline, BonusInline, CharacterClassLevelInline, NoteInline, ImmunityInline,
                ConditionalModifierInline, SpeedInline, RankInline, ClassSkillInline, SpecificWeaponInline,
-               AttackInline, ]
+               AttackInline, FullAttackInline, ]
     list_display = ('name', )
     list_filter = ['name']
     search_fields = ['name']

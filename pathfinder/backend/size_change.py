@@ -1,88 +1,77 @@
-from typing import Dict, NewType, Tuple
+from typing import Dict
 
-from charsheet.constants import Size
+from pathfinder.backend.dice import Dice, DieType
+from pathfinder.charsheet.constants import Size
 
-Damage = NewType('Damage', Tuple[int, int])
 
-DICE_PROGRESSION_CHART: Dict[Damage, int] = {
-    (1, 1): 1,
-    (1, 2): 2,
-    (1, 3): 3,
-    (1, 4): 4,
-    (1, 6): 5,
-    (1, 8): 6,
-    (1, 10): 7,
-    (2, 6): 8,
-    (2, 8): 9,
-    (3, 6): 10,
-    (3, 8): 11,
-    (4, 6): 12,
-    (4, 8): 13,
-    (6, 6): 14,
-    (6, 8): 15,
-    (8, 6): 16,
-    (8, 8): 17,
-    (12, 6): 18,
-    (12, 8): 19,
-    (16, 6): 20
+DICE_PROGRESSION_CHART: Dict[Dice, int] = {
+    Dice(1, DieType.D1): 1,
+    Dice(1, DieType.D2): 2,
+    Dice(1, DieType.D3): 3,
+    Dice(1, DieType.D4): 4,
+    Dice(1, DieType.D6): 5,
+    Dice(1, DieType.D8): 6,
+    Dice(1, DieType.D10): 7,
+    Dice(2, DieType.D6): 8,
+    Dice(2, DieType.D8): 9,
+    Dice(3, DieType.D6): 10,
+    Dice(3, DieType.D8): 11,
+    Dice(4, DieType.D6): 12,
+    Dice(4, DieType.D8): 13,
+    Dice(6, DieType.D6): 14,
+    Dice(6, DieType.D8): 15,
+    Dice(8, DieType.D6): 16,
+    Dice(8, DieType.D8): 17,
+    Dice(12, DieType.D6): 18,
+    Dice(12, DieType.D8): 19,
+    Dice(16, DieType.D6): 20
 }
-INVERSE_DICE_PROGRESSION_CHART: Dict[int, Damage] = {v: k for k, v in DICE_PROGRESSION_CHART.items()}
-
-SMALL_OR_LOWER = [Size.FINE, Size.DIMINUTIVE, Size.TINY, Size.SMALL]
-MEDIUM_OR_LOWER = [Size.FINE, Size.DIMINUTIVE, Size.TINY, Size.SMALL, Size.MEDIUM]
+INVERSE_DICE_PROGRESSION_CHART: Dict[int, Dice] = {v: k for k, v in DICE_PROGRESSION_CHART.items()}
 
 
-def change_size(increase: bool, damage: Damage, initial_size: Size) -> Damage:
+def change_size(increase: bool, damage: Dice, initial_size: Size) -> Dice:
     """
     Change the damage of a weapon up or down one size category
 
-    :param increase: Whether the damage should be increased (True) or decreased (False)
-    :param damage: The initial Damage (as a tuple(int, int), e.g. 2d6 -> (2, 6))
+    :param increase: Whether the size should be increased (True) or decreased (False)
+    :param damage: The initial damage Dice
     :param initial_size: The effective Size of the initial damamge
-    :return: The changed Damage (as a tuple(int, int), e.g. 2d6 -> (2, 6))
+    :return: The changed damage Dice
     :raises KeyError: When the rules for increase in size are ill-defined for the requested inputs
         This can happen at the extremes (e.g reducing 1d1) or with some amounts of certain die types (e.g. 5d4)
-    :raises AssertionError: When invalid inputs are passed, e.g. 0d6 or 1d0 as Damage
     """
-    assert damage[0] > 0 and damage[1] > 0
-
     # Handle multiple d10s
-    if damage[0] >= 2 and damage[1] == 10:
-        return (damage[0] * 2, 8) if increase else (damage[0], 8)
+    if damage.dice >= 2 and damage.die_type == 10:
+        return Dice(damage.dice * 2 if increase else damage.dice, DieType.D8)
 
     # Handle multiple d4s (the rules are ill-defined for some amounts, e.g. 5d4)
-    if damage[0] % 2 == 0 and damage[1] == 4:
-        damage = (damage[0] / 2, 8)
-    elif damage[0] % 3 == 0 and damage[1] == 4:
-        damage = ((damage[0] / 3) * 2, 6)
+    if damage.dice % 2 == 0 and damage.die_type == 4:
+        damage = Dice(damage.dice / 2, DieType.D8)
+    elif damage.dice % 3 == 0 and damage.die_type == 4:
+        damage = Dice((damage.dice / 3) * 2, DieType.D6)
 
-    # Handle multiple d12s
-    if damage[1] == 12:
-        damage = (damage[0] * 2, 12)
+    # Handle d12s
+    if damage.die_type == 12:
+        damage = Dice(damage.dice * 2, DieType.D6)
 
+    original_index = 0
     try:
         original_index = DICE_PROGRESSION_CHART[damage]
     except KeyError as e:
-        if damage[1] == 6:
-            pass
-        elif damage[1] == 8:
-            pass
+        if damage.die_type == 6:
+            pass  # TODO
+        elif damage.die_type == 8:
+            pass  # TODO
         else:
             raise e
 
     if increase:
         index_change = 2
-        if initial_size in SMALL_OR_LOWER or original_index <= DICE_PROGRESSION_CHART[(1, 6)]:
+        if initial_size <= Size.SMALL or original_index <= DICE_PROGRESSION_CHART[Dice(1, DieType.D6)]:
             index_change = 1
     else:
         index_change = -2
-        if initial_size in MEDIUM_OR_LOWER or original_index <= DICE_PROGRESSION_CHART[(1, 8)]:
+        if initial_size >= Size.MEDIUM or original_index <= DICE_PROGRESSION_CHART[Dice(1, DieType.D8)]:
             index_change = -1
 
     return INVERSE_DICE_PROGRESSION_CHART[original_index + index_change]
-
-
-print(change_size(False, (1, 1), Size.MEDIUM))
-
-for i in range(10 - 1, 0, -1):
-    print(i)

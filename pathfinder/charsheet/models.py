@@ -90,7 +90,7 @@ class Character(Model):
     player = CharField(max_length=128, blank=True, default='')
     deity = CharField(max_length=128, blank=True, default='')
     homeland = CharField(max_length=128, blank=True, default='')
-    race = ForeignKey(Race, null=True, default=Race.objects.get(name='Human'), on_delete=SET_NULL)
+    race = ForeignKey(Race, null=True, default=None, on_delete=SET_NULL)
     size = CharField(max_length=16, default=Size.MEDIUM.name,
                      choices=enum_to_choices(Size))
     gender = CharField(max_length=8, default=Gender.MALE.name,
@@ -105,7 +105,6 @@ class Character(Model):
     languages = ManyToManyField(Language, blank=True)
 
     def alignment_readable(self):
-        print(f'{self.alignment_law_axis} {self.alignment_good_axis}')
         return f'{AlignmentLawAxis[self.alignment_law_axis].value} {AlignmentGoodAxis[self.alignment_good_axis].value}'
 
     def size_readable(self):
@@ -209,34 +208,37 @@ class Character(Model):
     def initiative(self):
         return get_modifier(self.dexterity()) + get_total_bonus(self, 'initiative')
 
+    def safe_race(self):
+        return self.race or Race.objects.get(name='Human')
+
     def base_speed(self):
-        return self.race.base_speed + get_total_bonus(self, 'base speed')
+        return self.safe_race().base_speed + get_total_bonus(self, 'base speed')
 
     def speed_with_armor(self):
         return self.base_speed()  # TODO check gear for armor
 
     def fly_speed(self):
         speed = self.get_best_speed('fly')
-        return max(self.race.fly_speed, speed) + get_total_bonus(self, 'fly speed')
+        return max(self.safe_race().fly_speed, speed) + get_total_bonus(self, 'fly speed')
 
     def fly_maneuverability(self):
         try:
             # TODO will not work with more than 1 fly speed present
             return self.speed_set.filter(type='fly').get().maneuverability
         except:
-            return self.race.fly_maneuverability
+            return self.safe_race().fly_maneuverability
 
     def swim_speed(self):
         speed = self.get_best_speed('swim')
-        return max(self.race.swim_speed, speed) + get_total_bonus(self, 'swim speed')
+        return max(self.safe_race().swim_speed, speed) + get_total_bonus(self, 'swim speed')
 
     def climb_speed(self):
         speed = self.get_best_speed('climb')
-        return max(self.race.climb_speed, speed) + get_total_bonus(self, 'climb speed')
+        return max(self.safe_race().climb_speed, speed) + get_total_bonus(self, 'climb speed')
 
     def burrow_speed(self):
         speed = self.get_best_speed('burrow')
-        return max(self.race.burrow_speed, speed) + get_total_bonus(self, 'burrow speed')
+        return max(self.safe_race().burrow_speed, speed) + get_total_bonus(self, 'burrow speed')
 
     def get_best_speed(self, type):
         # TODO maneuverability
@@ -361,6 +363,9 @@ class Character(Model):
     def attacks(self):
         return self.attack_set.all()
 
+    def full_attacks(self):
+        return self.fullattack_set.all()
+
     def attacks_notes(self):
         return ', '.join(note.value for note in self.note_set.filter(to='attacks'))
 
@@ -396,6 +401,27 @@ class Character(Model):
 
     #def get_total_bonus(self, ...):
     #    return calculate_bonus(self.bonus_set.filter(...))
+
+    def attack_bonus(self, specific_weapon):
+        # TODO proficiency, weapon properties (enhancement)
+        return self.base_attack_bonus() + self.strength_modifier() + get_total_bonus(self, 'attack')
+
+    def critical(self, specific_weapon):
+        return specific_weapon.critical()
+
+    def damage_type(self, specific_weapon):
+        return specific_weapon.damage_type()
+
+    def range(self, specific_weapon):
+        return specific_weapon.range()
+
+    def ammunition(self, specific_weapon):
+        return specific_weapon.ammunition
+
+    def damage(self, specific_weapon):
+        damage_bonus = self.strength_modifier() + get_total_bonus(self, 'damage')
+        damage = specific_weapon.damage()
+        return f'{damage[0]}d{damage[1]}+{damage_bonus}'
 
     def __str__(self)  -> str:
         return self.name
@@ -521,7 +547,7 @@ class ClassSkill(Model):
 
 
 class WeaponProperty(Model):
-    name = CharField(max_length=32)
+    name = CharField(max_length=32)  # e.g. 'reach', 'trip',...
 
     class Meta:
         verbose_name_plural = 'Weapon properties'
@@ -547,6 +573,21 @@ class Weapon(Model):
     weight = PositiveIntegerField()
     damage_type = CharField(max_length=16)
     properties = ManyToManyField(WeaponProperty, blank=True)
+    manufactured = BooleanField(default=True)
+    natural = BooleanField(default=False)
+
+    def damage(self):
+        return self.damage_dice, self.damage_die_type
+
+    def __str__(self) -> str:
+        return f'{self.name}'
+
+
+class MagicWeaponProperty(Model):
+    name = CharField(max_length=32)  # e.g. enlarged, frost, masterwork, enhancement,...
+
+    class Meta:
+        verbose_name_plural = 'Magic weapon properties'
 
     def __str__(self) -> str:
         return f'{self.name}'
@@ -555,10 +596,34 @@ class Weapon(Model):
 class SpecificWeapon(Model):
     weapon = ForeignKey(Weapon, on_delete=CASCADE)
     character = ForeignKey(Character, on_delete=CASCADE)  # E.g. Kyras, id 1
-    # TODO add properties (enlarged, frost, masterwork, enhancement,...)
+
+    properties = ManyToManyField(MagicWeaponProperty, blank=True)
+
+    ranged = BooleanField(default=False)  # This allows for adding a ranged attack with a dagger, as well as a melee one
+    ammunition = PositiveIntegerField(default=0)
+
+    def name(self):
+        return self.weapon.name
+
+    def critical(self):
+        crit_range = self.weapon.critical_range
+        multiplier = f'*{self.weapon.critical_multiplier}'
+
+        if crit_range == 20:
+            return multiplier
+        return f'{crit_range}-20/{multiplier}'
+
+    def damage_type(self):
+        return self.weapon.damage_type
+
+    def range(self):
+        return self.weapon.range
+
+    def damage(self):
+        return self.weapon.damage()
 
     def __str__(self) -> str:
-        return f'{self.weapon}'
+        return self.name()
 
 
 class Attack(Model):
@@ -568,3 +633,117 @@ class Attack(Model):
     weapon = ForeignKey(SpecificWeapon, on_delete=CASCADE)
 
     note = CharField(max_length=128)
+
+    def attack_bonus(self):
+        return f'+{self.character.attack_bonus(self.weapon)}'
+
+    def critical(self):
+        return self.character.critical(self.weapon)
+
+    def damage_type(self):
+        return self.character.damage_type(self.weapon)
+
+    def range(self):
+        return self.character.range(self.weapon)
+
+    def ammunition(self):
+        return self.character.ammunition(self.weapon)
+
+    def damage(self):
+        return self.character.damage(self.weapon)
+
+
+class FullAttack(Model):
+    character = ForeignKey(Character, on_delete=CASCADE)  # E.g. Kyras, id 1
+    weapons = ManyToManyField(SpecificWeapon, blank=True)
+
+    def _sorted_weapons(self):
+        return self.weapons.order_by('weapon__name')
+
+    def name(self):
+        names = '/'.join(weapon.name() for weapon in self._sorted_weapons())
+        return names
+
+    def attack_bonus(self):
+        result = []
+        iterative_attacks = self.weapons.filter(weapon__manufactured=True).count() > 0
+        if iterative_attacks:
+            raise NotImplementedError()
+
+        for weapon in self._sorted_weapons():
+            attack_bonus = self.character.attack_bonus(weapon)
+            result.append(f'+{attack_bonus}')
+
+        return '/'.join(result)
+
+    def critical(self):
+        result = []
+        iterative_attacks = self.weapons.filter(weapon__manufactured=True).count() > 0
+        if iterative_attacks:
+            raise NotImplementedError()
+
+        for weapon in self._sorted_weapons():
+            critical = self.character.critical(weapon)
+            result.append(critical)
+
+        if all(c == result[0] for c in result):
+            return result[0]
+
+        return '/'.join(result)
+
+    def damage_type(self):
+        result = []
+        iterative_attacks = self.weapons.filter(weapon__manufactured=True).count() > 0
+        if iterative_attacks:
+            raise NotImplementedError()
+
+        for weapon in self._sorted_weapons():
+            damage_type = self.character.damage_type(weapon)
+            result.append(damage_type)
+
+        if all(c == result[0] for c in result):
+            return result[0]
+
+        return '/'.join(result)
+
+    def range(self):
+        result = []
+        iterative_attacks = self.weapons.filter(weapon__manufactured=True).count() > 0
+        if iterative_attacks:
+            raise NotImplementedError()
+
+        for weapon in self._sorted_weapons():
+            range = self.character.range(weapon)
+            result.append(range)
+
+        if all(c == result[0] for c in result):
+            return result[0]
+
+        return '/'.join(result)
+
+    def ammunition(self):
+        result = []
+        iterative_attacks = self.weapons.filter(weapon__manufactured=True).count() > 0
+        if iterative_attacks:
+            raise NotImplementedError()
+
+        for weapon in self._sorted_weapons():
+            ammunition = self.character.ammunition(weapon)
+            result.append(ammunition)
+
+        if all(c == result[0] for c in result):
+            return result[0]
+
+        return '/'.join(result)
+
+    def damage(self):
+        result = []
+        iterative_attacks = self.weapons.filter(weapon__manufactured=True).count() > 0
+        if iterative_attacks:
+            raise NotImplementedError()
+
+        for weapon in self._sorted_weapons():
+            damage = self.character.damage(weapon)
+            result.append(damage)
+
+        return '/'.join(result)

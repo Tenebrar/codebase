@@ -1,6 +1,6 @@
 from typing import TypeVar
 
-X = TypeVar('Tuple[float, ...]')
+X = TypeVar('Tuple[float, ...]')  # Not sure this is correct, should it be TypeVar('X', bound=Tuple...) or similar?
 
 
 def scalar_multiply(t: X, multiplier: float) -> X:
