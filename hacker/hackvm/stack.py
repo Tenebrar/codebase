@@ -56,13 +56,13 @@ class OperandStack(object):
         :raises RuntimeError: If the popped index does not fit inside the stack
         :return: A negative value that can be used as an index in the stack (as a distance from the end)
         """
-        where = self.pop()
+        index = self.pop()
         # These checks are necessary since python might interpret a negative value as a correct index
-        if where < 0 or where >= len(self._stack):
+        if index < 0 or index >= len(self._stack):
             raise RuntimeError(f'Out of bounds. '
-                               f'Accessing index {where} in stack {self._stack} (indices start at the end)')
+                               f'Accessing index {index} in stack {self._stack} (indices start at the end)')
         # Convert to index from end
-        return -1 - where
+        return -1 - index
 
     def add_two_operands(self) -> None:
         """

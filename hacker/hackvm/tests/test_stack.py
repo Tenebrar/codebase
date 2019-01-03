@@ -92,7 +92,7 @@ def test_roll_fail(stack: OperandStack, values: List[int]) -> None:
 ))
 def test_add_two_operands(stack: OperandStack, values: List[int], expected: List[int]) -> None:
     make(stack, values)
-    stack.roll()
+    stack.add_two_operands()
     assert to_list(stack) == expected
 
 
