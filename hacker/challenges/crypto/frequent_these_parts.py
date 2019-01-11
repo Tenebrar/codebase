@@ -19,7 +19,7 @@ def kasiski_test(ciphertext, alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ'):
                len([i for i in range(0, len(ciphertext) - shift) if ciphertext[i] == ciphertext[i + shift]]))
 
 # Source: https://en.wikipedia.org/wiki/Letter_frequency#Relative_frequencies_of_letters_in_the_English_language
-# Frequency table for the English language as a numpy array with the frequency of the letter 'A' at index 0 and so on.
+# Frequency table for the English language as a numpy array with the frequency of the letter 'a' at index 0 and so on.
 # The sum is not exactly 1, presumably through rounding errors
 ENGLISH_FREQUENCIES = np.array([0.08167, 0.01492, 0.02782, 0.04253, 0.12702,
                                 0.02228, 0.02015, 0.06094, 0.06966, 0.00153,
@@ -30,14 +30,14 @@ ENGLISH_FREQUENCIES = np.array([0.08167, 0.01492, 0.02782, 0.04253, 0.12702,
 
 def calculate_frequency_table(ciphertext):
     """
-    Calculate a frequency table for a string. Returns a numpy array with the frequency of the letter 'A' at index 0
+    Calculate a frequency table for a string. Returns a numpy array with the frequency of the letter 'a' at index 0
     and so on.
-    :param ciphertext: A string only containing uppercase characters
-    :return: A frequency table as a numpy array
+    :param ciphertext: a string only containing uppercase characters
+    :return: a frequency table as a numpy array
     """
     frequency_table = np.zeros(26)
     for c in ciphertext:
-        frequency_table[ord(c) - ord('A')] += 1
+        frequency_table[ord(c) - ord('a')] += 1
     frequency_table /= len(ciphertext)
     return frequency_table
 
@@ -58,7 +58,7 @@ def decrypt_vigenere(ciphertext, alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ'):
         # We take as key the letter whose shifted frequency table most closely matches that of English
         key = min(range(26), key = lambda c : sum((np.roll(frequency_table, -c) - ENGLISH_FREQUENCIES) ** 2))
 
-        full_key += chr(ord('A') + key)
+        full_key += chr(ord('a') + key)
 
     print(f'The suspected key is {full_key}')
 
@@ -87,7 +87,7 @@ def decode_vigenere_character(character, key):
     Decode a single character according to the Vigenere cipher.
     Will maintain the case of the ciphertext character
     """
-    a_value = ord('a') if character.islower() else ord('A')
+    a_value = ord('a') if character.islower() else ord('a')
     return chr((ord(character.lower()) - ord(key.lower())) % 26 + a_value)
 
 result = decrypt_vigenere(value)

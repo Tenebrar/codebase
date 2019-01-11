@@ -6,7 +6,7 @@ def index_of_coincidence(value, alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ'):
     """
     Returns the index of coincidence for a given ciphertext string (a value used to determin whether a poly-alphabetic
     cipher was used or not)
-    :param value: A ciphertext string
+    :param value: a ciphertext string
     :param alphabet: The letters to be taken into account for the index
     :return: The index of coincidence of the string
     """

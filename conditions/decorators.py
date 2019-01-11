@@ -11,11 +11,11 @@ def precondition(parameter_selector, predicate):
     This is a factory that will create a decorator for a method based on a parameter selection and a predicate. The
     decorator will cause the method to raise an Exception (PreConditionViolatedError) if the selected parameter does not
     satisfy the predicate.
-    :param parameter_selector: A selector that indicates which parameter(s) of the method should be checked. This may
-    be an int for positional parameters or a string for keyword parameters. A list of any combination of ints and
+    :param parameter_selector: a selector that indicates which parameter(s) of the method should be checked. This may
+    be an int for positional parameters or a string for keyword parameters. a list of any combination of ints and
     strings is also allowed; in that case, each of the selected parameters must match the predicate.
-    :param predicate: A predicate that evaluates a parameter (single input function that returns True or False)
-    :return: A decorator based on the passed parameter selector and predicate
+    :param predicate: a predicate that evaluates a parameter (single input function that returns True or False)
+    :return: a decorator based on the passed parameter selector and predicate
     """
     def decorator(decorated_function):
         """
@@ -32,7 +32,7 @@ def precondition(parameter_selector, predicate):
         @wraps(decorated_function)
         def condition(*args, **kwargs):
             """
-            A decorated function that checks a parameter value of the original matches a given predicate.
+            a decorated function that checks a parameter value of the original matches a given predicate.
             If the parameter does not match, the original function is never called.
             :param args: The regular arguments for the original function
             :param kwargs: The keyword arguments for the original function
@@ -86,9 +86,9 @@ def postcondition(predicate):
     This is a factory that will create a decorator for a method based on a predicate. The decorator will cause the
     method to raise an Exception (PostConditionViolatedError) if the return value of the method does not satisfy the
     predicate
-    :param predicate: A predicate that evaluates a method's return value (single input function that returns True or
+    :param predicate: a predicate that evaluates a method's return value (single input function that returns True or
     False)
-    :return: A decorator based on the passed predicate
+    :return: a decorator based on the passed predicate
     """
     def decorator(decorated_function):
         """
@@ -99,7 +99,7 @@ def postcondition(predicate):
         @wraps(decorated_function)
         def condition(*args, **kwargs):
             """
-            A decorated function that checks the returned value of the original matches a given predicate
+            a decorated function that checks the returned value of the original matches a given predicate
             :param args: The regular arguments for the original function
             :param kwargs: The keyword arguments for the original function
             :return: The result of the function if it matches the predicate

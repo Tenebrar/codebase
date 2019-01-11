@@ -5,7 +5,7 @@ from typing import Tuple
 
 @unique
 class DieType(IntEnum):
-    """ A type of die used in the Pathfinder system """
+    """ a type of die used in the Pathfinder system """
 
     D1 = 1
     D2 = 2
@@ -28,7 +28,7 @@ class DieType(IntEnum):
     @classmethod
     def parse(cls, value: str) -> 'DieType':
         """
-        :param value: A string representation of a DieType, such as 'd6'
+        :param value: a string representation of a DieType, such as 'd6'
         :return: The corresponding DieType
         :raises ValueError: if the string cannot be parsed as a 'd' followed by a number, or
         if the value is not one of the available dice in the system
@@ -80,7 +80,7 @@ class Dice(object):
     @classmethod
     def parse(cls, value: str) -> 'Dice':
         """
-        :param value: A string representation of a Dice object, such as '4d6'
+        :param value: a string representation of a Dice object, such as '4d6'
         :return: The corresponding Dice object
         :raises ValueError: if something in the parsing goes wrong
         """

@@ -4,8 +4,8 @@ from PIL import Image
 def pixels(imagefile):
     """
     Generates a stream of pixel values for an image file
-    :param imagefile: A filename
-    :return: A generator of pixel values (RGBA tuples)
+    :param imagefile: a filename
+    :return: a generator of pixel values (RGBA tuples)
     """
     im = Image.open(imagefile)
     pix = im.load()

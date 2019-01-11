@@ -7,7 +7,7 @@ translation = {
     'f': 'E',
     't': 'W',
     'o': 'I',
-    'z': 'C',
+    'z': 'c',
     'r': 'O',
     'w': 'F',
     'p': 'N',
@@ -15,7 +15,7 @@ translation = {
     'y': 'B',
     'a': 'L',
     'g': 'R',
-    'v': 'A',
+    'v': 'a',
     'l': 'M',
     'd': 'S',
     'h': 'V',
@@ -29,7 +29,7 @@ translation = {
 
     'm': '.',
 
-    'A': 'D'  # to make the ciphertext all in lowercase
+    'a': 'D'  # to make the ciphertext all in lowercase
 }
 
 value = 'xqfBprtAodflyrAofABhozxoldBdriadBtqozqBqiyyvgABzvaafABxqfxvpdBtfgfByartpBopxrBxqfBvogByjBxqfByavdxmBxqfjBtfgfBzvnxigfAByjBcfpidBwrgzfdBidopkBvpBfafzxgrpozBgoyyrpBvpABdizsfABopxrBhvziilBurpfdBvgripABxqfBtrgaAmBxqfBqipAgfAdBrwByoaaorpdBrwBzvnxigfABxqfxvpdBtfgfBxvsfpBxrBvBxjnfBrwBzopflvBtqfgfBxqfjBtfgfBwrgzfABxrBtvxzqBvBxqgffABdinfgBzrarddvaBlrxorpBnozxigfBwrgBxqogxjdocBAvjdmBxqodBolnavpxfABtqvxBqiyyvgABxfglfABhvgoridBlodafvAopkBAvxvBopxrBxqfBlflrgofdBrwBxqfBqvnafddBxqfxvpdBtqozqBqvdBxrBArBtoxqBkrABxqfBAfhoaBdnvzfBrnfgvBfxBzfxfgvmBxqodBopzaiAfABvaaBtrgaABgfaokorpdBtoxqBqiyyvgABdnfzowozvaajBvxxgoyixopkBgrlvpBzvxqraozodlBvpABxqfBolvkfBrwBxqfBzgizowocorpBxrBxqfBopwaifpzfBrwBcfpimBxqfBxtrBolnavpxBdxvxorpdBzoxfAByjBqiyyvgABtfgfBdvoABxrBqvhfByffpBarzvxfABrpBqvtvooBvpABavdBnvalvdBopBxqfBzvpvgjBodavpAdmBopBvAAoxorpBxrBolnavpxopkBpftByfaofwdBopBxqfBxqfxvpdBxqfBolvkfdBAfngohfABxqflBrwBxqfogBdfpdfBrwBnfgdrpvaBoAfpxoxjmBtqfpBxqfBxqfxvpdBafwxBxqfBngrefzxorpBvgfvdBxqfjBdxvgxfABxrBzaidxfgBxrkfxqfgBopBkgrindBrwBvBwftBxqridvpABqvhopkBardxBxqfBvyoaoxjBxrBAowwfgfpxovxfByfxtffpBfvzqBrxqfgmBfvzqBzaidxfgBrwBxqfxvpdBkvxqfgfABopxrBrpfBrwBxqfBwftBgflvopopkByrAofdBxqvxBdighohfABxqfBfcnardorpmBxqfdfByfzvlfBtqvxBvgfBsprtpBvdByrAjBxqfxvpdBtqozqBvgfBdvoABxrByfBdxoaaBzaopkopkBxrBvpABvAhfgdfajBvwwfzxopkBfhfgjrpfBfczfnxBxqrdfBdzofpxrarkodxdBtqrBqvhfBnfgwrglfABxqfBpfzfddvgjBdxfndBxrBgflrhfBxqflm'  # noqa

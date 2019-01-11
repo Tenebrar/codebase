@@ -171,7 +171,7 @@ def get_carrying_capacity(strength_score: AbilityScore, size: Size=Size.MEDIUM, 
     :param strength_score: The strength score of the character
     :param size: The Size of the character
     :param pedalism: The Pedalism of the character
-    :return: A tuple holding the max weights for light, medium and heavy load
+    :return: a tuple holding the max weights for light, medium and heavy load
     """
     if strength_score < 0:
         raise ValueError(f'Strength score must be positive: {strength_score}')
@@ -224,7 +224,7 @@ def get_push_or_drag_weight(strength_score: AbilityScore, size: Size=Size.MEDIUM
 
 def get_reduced_speed(speed: DistanceFeet) -> DistanceFeet:
     """
-    :param speed: A character's original speed
+    :param speed: a character's original speed
     :return: The new speed when reduced by either weight or armor
     """
     if speed < 0:

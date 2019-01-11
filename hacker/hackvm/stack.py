@@ -54,7 +54,7 @@ class OperandStack(object):
         """
         Pops an element from the stack to be used as an index, verifies that this index is inside the stack bounds
         :raises RuntimeError: If the popped index does not fit inside the stack
-        :return: A negative value that can be used as an index in the stack (as a distance from the end)
+        :return: a negative value that can be used as an index in the stack (as a distance from the end)
         """
         index = self.pop()
         # These checks are necessary since python might interpret a negative value as a correct index
@@ -108,7 +108,7 @@ class OperandStack(object):
         """
         Remove the first two elements from the stack and push the result of an operation on them
         (The operation is called with the first element on the stack first, and then the second)
-        :param op: A function mapping 2 operands to a result
+        :param op: a function mapping 2 operands to a result
         :raises RuntimeError: if there are less than 2 elements on the stack
         """
         a = self.pop()
