@@ -102,7 +102,8 @@ class OperandStack:
         :raises RuntimeError: if there are less than 2 elements on the stack
         """
         # replacement for cmp suggested at: https://docs.python.org/3.0/whatsnew/3.0.html
-        self._perform_operator(lambda a, b: (b > a) - (b < a))
+        # int casts added because for some reason numpy complained about subtracting booleans
+        self._perform_operator(lambda a, b: int(b > a) - int(b < a))
 
     def _perform_operator(self, operator: Callable[[int, int], int]) -> None:
         """
