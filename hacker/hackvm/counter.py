@@ -1,4 +1,4 @@
-class IterationCounter(object):
+class IterationCounter:
     """
     Class to keep track of an iteration count
     """

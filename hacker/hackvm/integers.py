@@ -4,12 +4,12 @@ MIN_INT = -(1 << 63)
 MAX_INT = (1 << 63) - 1
 
 
-def verify_integer(i: int) -> None:
+def verify_integer(value: int) -> None:
     """
     Verifies an integer falls within the allowed limits
-    :param i: an integer value
+    :param value: an integer value
     :return: None
     :raises: ValueError if the passed value is too small or too large
     """
-    if i < MIN_INT or i > MAX_INT:
-        raise ValueError('Integer overflow: {}'.format(i))
+    if value < MIN_INT or value > MAX_INT:
+        raise ValueError(f'Integer overflow: {value}')

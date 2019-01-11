@@ -44,7 +44,7 @@ class DieType(IntEnum):
         return DieType(int(value[1:]))
 
 
-class Dice(object):
+class Dice:
     """ Object representing multiple dice of the same type, e.g. used to indicate the damage a weapon deals """
 
     def __init__(self, dice: int, die_type: DieType) -> None:

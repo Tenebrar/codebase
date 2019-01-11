@@ -38,7 +38,7 @@ class DamageType(Enum):
         return self.label
 
 
-class PartialDamage(object):
+class PartialDamage:
     """
     An object representing partial damage from which full damage is built.
     E.g. A dagger can deal its regular damage, sneak attack damage and fire damage because of the flaming property.
@@ -107,7 +107,7 @@ class PartialDamage(object):
         return f'{self.__class__.__name__}({self.__dict__})'
 
 
-class Damage(object):
+class Damage:
     """ An object representing the damage that may be done (e.g. by a weapon) """
     def __init__(self, partials: List[PartialDamage]) -> None:
         if not partials:

@@ -16,6 +16,7 @@ def recalc(depth):
         cc = cc + (i % 7) + (1 if (((cc ^ i) % 4) == 0) else 0)
     return cc
 
+
 for i in range(10, 20):
     assert calc(i) == recalc(i)
 
