@@ -10,10 +10,10 @@ def cluster(inputs: Dict[Any, Tuple], amount_of_clusters: int, iterations: int=1
     This is Lloyd's algorithm, may be improved by using k-means++ for better initialization.
     Repeated samplings (and returning the best) were already added, which is a standard improvement.
 
-    :param inputs: A mapping of objects to be clustered (any object) to their vector representation (a tuple)
+    :param inputs: a mapping of objects to be clustered (any object) to their vector representation (a tuple)
     :param amount_of_clusters: The amount of desired output clusters
     :param iterations: The number of times to run the basic algorithm, to improve the results
-    :return: A mapping of center vectors (tuples) to a list of objects (same type as the input objects) that
+    :return: a mapping of center vectors (tuples) to a list of objects (same type as the input objects) that
     are in the cluster defined by that vector
     """
     best_clusters = None
@@ -44,9 +44,9 @@ def _cluster_points(inputs: Dict[Any, Tuple], centers: List[Tuple]) -> Dict[Tupl
     """
     Determine for each input which center is closest to it
 
-    :param inputs: A mapping of objects to be clustered (any object) to their vector representation (a tuple)
-    :param centers: A list of center vectors (tuples)
-    :return: A mapping of center vectors (tuples) to a list of objects (same type as the input objects) that
+    :param inputs: a mapping of objects to be clustered (any object) to their vector representation (a tuple)
+    :param centers: a list of center vectors (tuples)
+    :return: a mapping of center vectors (tuples) to a list of objects (same type as the input objects) that
     are in the cluster defined by that vector
     """
     clusters = {}  # type: Dict[Tuple, Any]
@@ -66,10 +66,10 @@ def _reevaluate_centers(clusters: Dict[Tuple, List[Any]], inputs: Dict[Any, Tupl
     """
     Finds the new centers based on the current clustering (take the average of each cluster)
 
-    :param clusters: A mapping of center vectors (tuples) to a list of objects (same type as the input objects)
+    :param clusters: a mapping of center vectors (tuples) to a list of objects (same type as the input objects)
      that are in the cluster defined by that vector
-    :param inputs: A mapping of objects to be clustered (any object) to their vector representation (a tuple)
-    :return: A list of center vectors (tuples)
+    :param inputs: a mapping of objects to be clustered (any object) to their vector representation (a tuple)
+    :return: a list of center vectors (tuples)
     """
     new_centers = []
     for cluster in clusters.values():
@@ -81,8 +81,8 @@ def _has_converged(centers: List[Tuple], old_centers: List[Tuple]) -> bool:
     """
     Verify that two sets of center vectors are the same
 
-    :param centers: A list of center vectors (tuples)
-    :param old_centers: A list of center vectors (tuples)
+    :param centers: a list of center vectors (tuples)
+    :param old_centers: a list of center vectors (tuples)
     :return: Whether the two sets of center vectors are the same
     """
     return set(centers) == set(old_centers)

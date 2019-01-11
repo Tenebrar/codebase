@@ -11,7 +11,7 @@ translation = {
     'X': 'f',
     'F': 'g',
     'Y': 'h',
-    'C': 'i',  # Look at the keys starting from here (will be made clear in the rest of the code)
+    'c': 'i',  # Look at the keys starting from here (will be made clear in the rest of the code)
     'O': 'j',
     'V': 'k',
     'E': 'l',
@@ -26,7 +26,7 @@ translation = {
     'U': 'u',
     'B': 'v',
     'K': 'w',
-    'A': 'x',
+    'a': 'x',
     'T': 'y',
     'D': 'z',
 }

@@ -42,7 +42,7 @@ inputs = {character: tuple([counter[character + character2] for character2 in AL
 result = cluster(inputs, amount_of_clusters=4, iterations=100)
 result = sorted([sorted(character_list) for character_list in result.values()])
 
-expected_result = [['0', '3'], ['1', '6', 'A', 'B', 'C', 'D', 'E'], ['2', '4', '5', '7', '8'], ['9', 'F']]
+expected_result = [['0', '3'], ['1', '6', 'a', 'B', 'c', 'D', 'E'], ['2', '4', '5', '7', '8'], ['9', 'F']]
 assert result == expected_result  # Making sure we're not outputting a wrong result if we get unlucky with clustering
 
 counter = Counter(value)

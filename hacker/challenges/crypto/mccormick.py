@@ -14,7 +14,7 @@ translation = {
     'mfp': 'H',
     'mpp': 'E',
     'ppf': 'O',
-    'mmm': 'A',
+    'mmm': 'a',
     'ppp': 'N',
     'fmm': 'S',
     'fpp': 'W',

@@ -24,9 +24,9 @@ def transform(stream, *args):
     Each element of the original stream is passed through all the transformations in order and then returned.
     Transformations can be either functions taking a single argument and returning a single value, or dicts, in which
     case the transformation is the retrieval of the value in the dict (defaulting to the original value if not present)
-    :param stream: A generator
+    :param stream: a generator
     :param args: Transformations (functions or dicts)
-    :return: A generator of transformed objects
+    :return: a generator of transformed objects
     """
     for value in stream:
         for transformation in args:
@@ -43,8 +43,8 @@ def decode(stream, *args):
     Each element of the original stream is passed through all the transformations in order and then joined in a string.
     Transformations can be either functions taking a single argument and returning a single value, or dicts, in which
     case the transformation is the retrieval of the value in the dict (defaulting to the original value if not present)
-    :param stream: A generator
+    :param stream: a generator
     :param args: Transformations (functions or dicts)
-    :return: A string joining the transformed objects
+    :return: a string joining the transformed objects
     """
     return ''.join(transform(stream, *args))

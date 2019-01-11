@@ -74,7 +74,7 @@ def decode_substring(s):
     Decode a substring of length 3
     The first 2 characters indicate a state, the third which letter in the state name to return
     """
-    return states.get(s[:2])[ord(s[2]) - ord('A')]
+    return states.get(s[:2])[ord(s[2]) - ord('a')]
 
 result = decode(substrings(value, 3), decode_substring)
 print(result)

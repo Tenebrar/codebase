@@ -8,7 +8,7 @@ from pathfinder.backend.dice import Dice
 class DamageType(Enum):
     """
     The types of damage possible in the Pathfinder system.
-    A distinction is made between weapon damage (susceptible to Damage Reduction) and energy damage (susceptible to
+    a distinction is made between weapon damage (susceptible to Damage Reduction) and energy damage (susceptible to
     energy resistance)
     """
     # Weapon damage
@@ -29,7 +29,7 @@ class DamageType(Enum):
     def __init__(self, energy: bool, label: str) -> None:
         """
         :param energy: Whether the damage type is energy damage (susceptible to energy resistance)
-        :param label: A str to represent the damage type
+        :param label: a str to represent the damage type
         """
         self.energy = energy
         self.label = label
@@ -41,7 +41,7 @@ class DamageType(Enum):
 class PartialDamage:
     """
     An object representing partial damage from which full damage is built.
-    E.g. A dagger can deal its regular damage, sneak attack damage and fire damage because of the flaming property.
+    E.g. a dagger can deal its regular damage, sneak attack damage and fire damage because of the flaming property.
     These are 3 separate PartialDamage instances
     """
     def __init__(self, dice: Optional[Dice]=None, fixed=0, types: Optional[List[List[DamageType]]]=None,
@@ -53,7 +53,7 @@ class PartialDamage:
         This is given as a List of options, where each option is a List of DamageTypes.
         E.g. a dagger can deal piercing OR slashing damage, so it would have types:
         [[DamageType.PIERCING], [DamageType.SLASHING]]
-        A morningstar deals bludgeoning AND piercing damage, so it would have types:
+        a morningstar deals bludgeoning AND piercing damage, so it would have types:
         [[DamageType.BLUDGEONING, DamageType.PIERCING]]
         :param lethal: whether the damage is lethal (default=True)
         :param precision: whether the damage is precision damage (default=False)

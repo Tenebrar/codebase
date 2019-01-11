@@ -6,9 +6,9 @@ value = 'ABCDEAFGDCDHIFJKLDAFMCNOIBCAKMPQ'
 # This is the dancing men cipher, from sherlock holmes. Men holding flags indicate the end of the word, but otherwise
 # the same letter. The key can be found with google
 translation = {
-    'A': 'a',
+    'a': 'a',
     'B': 's ',
-    'C': 'w',
+    'c': 'w',
     'D': 'e ',
     'E': 'd',
     'F': 'n',

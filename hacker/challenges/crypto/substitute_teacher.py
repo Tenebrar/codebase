@@ -5,8 +5,8 @@ value = 'ISS NVVK DIPXYWA PIT AVSUY QIAOP PWZEHVNWIEDZ. CDYT ZVM LOTK HDY AVSMHO
 translation = {
     'I': 'a',
     'T': 'n',
-    'A': 's',
-    'C': 'w',
+    'a': 's',
+    'c': 'w',
     'Y': 'e',
     'W': 'r',
     'S': 'l',
