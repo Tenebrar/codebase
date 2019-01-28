@@ -11,7 +11,7 @@ print(Counter(value))
 
 def overlapping_substrings(string, size):
     """ Yields all substrings of a given length from a string """
-    for i in range(len(string) - size):
+    for i in range(len(string) + 1 - size):
         v = string[i:i+size]
         if 'k' not in v:
             yield v
