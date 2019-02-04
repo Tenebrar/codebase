@@ -32,7 +32,7 @@ PLAINTEXT_DECREASING = 'xyzw'
 
 def overlapping_substrings(string, size):
     """ Yields all substrings of a given length from a string """
-    for i in range(len(string) - size):
+    for i in range(len(string) + 1 - size):
         yield string[i:i+size]
 
 counter = Counter(overlapping_substrings(value, 2))
