@@ -7,18 +7,18 @@ from sandbox.pathfinder.util import scalar_multiply
 
 # The defined costs for point buy calculation
 ABILITY_SCORE_COSTS: Dict[AbilityScore, int] = {
-    7: -4,
-    8: -2,
-    9: -1,
-    10: 0,
-    11: 1,
-    12: 2,
-    13: 3,
-    14: 5,
-    15: 7,
-    16: 10,
-    17: 13,
-    18: 17,
+    AbilityScore(7): -4,
+    AbilityScore(8): -2,
+    AbilityScore(9): -1,
+    AbilityScore(10): 0,
+    AbilityScore(11): 1,
+    AbilityScore(12): 2,
+    AbilityScore(13): 3,
+    AbilityScore(14): 5,
+    AbilityScore(15): 7,
+    AbilityScore(16): 10,
+    AbilityScore(17): 13,
+    AbilityScore(18): 17,
 }
 
 # The defined campaign types and their corresponding allotment of points for point buy
@@ -93,36 +93,36 @@ def get_bonus_spells(casting_ability_modifier: AbilityModifier) \
 
 CARRYING_CAPACITY: Dict[AbilityScore, Tuple[WeightLbs, WeightLbs, WeightLbs]] = {
     # Maximum weights for light, medium, heavy load
-    0: (0, 0, 0),  # This line was not present in the official table
-    1: (3, 6, 10),
-    2: (6, 13, 20),
-    3: (10, 20, 30),
-    4: (13, 26, 40),
-    5: (16, 33, 50),
-    6: (20, 40, 60),
-    7: (23, 46, 70),
-    8: (26, 53, 80),
-    9: (30, 60, 90),
-    10: (33, 66, 100),
-    11: (38, 76, 115),
-    12: (43, 86, 130),
-    13: (50, 100, 150),
-    14: (58, 116, 175),
-    15: (66, 133, 200),
-    16: (76, 153, 230),
-    17: (86, 173, 260),
-    18: (100, 200, 300),
-    19: (116, 233, 350),
-    20: (133, 266, 400),
-    21: (153, 306, 460),
-    22: (173, 346, 520),
-    23: (200, 400, 600),
-    24: (233, 466, 700),
-    25: (266, 533, 800),
-    26: (306, 613, 920),
-    27: (346, 693, 1040),
-    28: (400, 800, 1200),
-    29: (466, 933, 1400),
+    AbilityScore(0): (WeightLbs(0), WeightLbs(0), WeightLbs(0)),  # This line was not present in the official table
+    AbilityScore(1): (WeightLbs(3), WeightLbs(6), WeightLbs(10)),
+    AbilityScore(2): (WeightLbs(6), WeightLbs(13), WeightLbs(20)),
+    AbilityScore(3): (WeightLbs(10), WeightLbs(20), WeightLbs(30)),
+    AbilityScore(4): (WeightLbs(13), WeightLbs(26), WeightLbs(40)),
+    AbilityScore(5): (WeightLbs(16), WeightLbs(33), WeightLbs(50)),
+    AbilityScore(6): (WeightLbs(20), WeightLbs(40), WeightLbs(60)),
+    AbilityScore(7): (WeightLbs(23), WeightLbs(46), WeightLbs(70)),
+    AbilityScore(8): (WeightLbs(26), WeightLbs(53), WeightLbs(80)),
+    AbilityScore(9): (WeightLbs(30), WeightLbs(60), WeightLbs(90)),
+    AbilityScore(10): (WeightLbs(33), WeightLbs(66), WeightLbs(100)),
+    AbilityScore(11): (WeightLbs(38), WeightLbs(76), WeightLbs(115)),
+    AbilityScore(12): (WeightLbs(43), WeightLbs(86), WeightLbs(130)),
+    AbilityScore(13): (WeightLbs(50), WeightLbs(100), WeightLbs(150)),
+    AbilityScore(14): (WeightLbs(58), WeightLbs(116), WeightLbs(175)),
+    AbilityScore(15): (WeightLbs(66), WeightLbs(133), WeightLbs(200)),
+    AbilityScore(16): (WeightLbs(76), WeightLbs(153), WeightLbs(230)),
+    AbilityScore(17): (WeightLbs(86), WeightLbs(173), WeightLbs(260)),
+    AbilityScore(18): (WeightLbs(100), WeightLbs(200), WeightLbs(300)),
+    AbilityScore(19): (WeightLbs(116), WeightLbs(233), WeightLbs(350)),
+    AbilityScore(20): (WeightLbs(133), WeightLbs(266), WeightLbs(400)),
+    AbilityScore(21): (WeightLbs(153), WeightLbs(306), WeightLbs(460)),
+    AbilityScore(22): (WeightLbs(173), WeightLbs(346), WeightLbs(520)),
+    AbilityScore(23): (WeightLbs(200), WeightLbs(400), WeightLbs(600)),
+    AbilityScore(24): (WeightLbs(233), WeightLbs(466), WeightLbs(700)),
+    AbilityScore(25): (WeightLbs(266), WeightLbs(533), WeightLbs(800)),
+    AbilityScore(26): (WeightLbs(306), WeightLbs(613), WeightLbs(920)),
+    AbilityScore(27): (WeightLbs(346), WeightLbs(693), WeightLbs(1040)),
+    AbilityScore(28): (WeightLbs(400), WeightLbs(800), WeightLbs(1200)),
+    AbilityScore(29): (WeightLbs(466), WeightLbs(933), WeightLbs(1400)),
 }
 
 
@@ -226,7 +226,7 @@ def get_reduced_speed(speed: DistanceFeet) -> DistanceFeet:
     if speed < 0:
         raise ValueError(f'Speed must be positive: {speed}')
 
-    speed = speed - (speed % 5)  # round down to nearest multiple of 5 (effective speed)
+    speed = DistanceFeet(speed - (speed % 5))  # round down to nearest multiple of 5 (effective speed)
 
     # Two thirds speed rounded up to nearest multiple of 5 feet
     reduced_speed = (speed * 2 // 3 + 4) // 5 * 5

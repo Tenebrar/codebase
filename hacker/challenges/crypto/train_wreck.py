@@ -15,7 +15,7 @@ print()
 print()
 
 # Does the actual decoding
-result = [None] * 96
+result = [''] * 96
 result[::4] = value[:24]
 result[1::2] = value[24:-24]
 result[2::4] = value[-24:]

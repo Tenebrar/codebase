@@ -16,8 +16,8 @@ def cluster(inputs: Dict[Any, Tuple], amount_of_clusters: int, iterations: int=1
     :return: a mapping of center vectors (tuples) to a list of objects (same type as the input objects) that
     are in the cluster defined by that vector
     """
-    best_clusters = None
-    best_score = 2**16
+    best_clusters: Dict[Tuple, List[Any]] = {}
+    best_score: float = 2**16
     for _ in range(iterations):
         # Select random samples from the input to be the initial centers
         centers = random.sample(list(inputs.values()), amount_of_clusters)
@@ -40,7 +40,7 @@ def cluster(inputs: Dict[Any, Tuple], amount_of_clusters: int, iterations: int=1
     return best_clusters
 
 
-def _cluster_points(inputs: Dict[Any, Tuple], centers: List[Tuple]) -> Dict[Tuple, List[Any]]:
+def _cluster_points(inputs: Dict[Any, Tuple], centers: List[Tuple]) -> Tuple[Dict[Tuple, List[Any]], float]:
     """
     Determine for each input which center is closest to it
 

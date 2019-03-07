@@ -1,10 +1,10 @@
-from typing import TypeVar
+from typing import Tuple, TypeVar, cast
 
-X = TypeVar('Tuple[float, ...]')  # Not sure this is correct, should it be TypeVar('X', bound=Tuple...) or similar?
+TF = TypeVar('TF', bound=Tuple[float, ...])
 
 
-def scalar_multiply(t: X, multiplier: float) -> X:
+def scalar_multiply(t: TF, multiplier: float) -> TF:
     """
     Multiply a tuple with a scalar
     """
-    return tuple(c * multiplier for c in t)
+    return cast(TF, tuple(c * multiplier for c in t))

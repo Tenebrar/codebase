@@ -35,12 +35,13 @@ def overlapping_substrings(string, size):
     for i in range(len(string) + 1 - size):
         yield string[i:i+size]
 
+
 counter = Counter(overlapping_substrings(value, 2))
 inputs = {character: tuple([counter[character + character2] for character2 in ALPHABET]) for character in ALPHABET}
 
 # It's no guarantee, but 100 iterations seems to give the same answer consistently
-result = cluster(inputs, amount_of_clusters=4, iterations=100)
-result = sorted([sorted(character_list) for character_list in result.values()])
+clusters = cluster(inputs, amount_of_clusters=4, iterations=100)
+result = sorted([sorted(character_list) for character_list in clusters.values()])
 
 expected_result = [['0', '3'], ['1', '6', 'a', 'B', 'c', 'D', 'E'], ['2', '4', '5', '7', '8'], ['9', 'F']]
 assert result == expected_result  # Making sure we're not outputting a wrong result if we get unlucky with clustering

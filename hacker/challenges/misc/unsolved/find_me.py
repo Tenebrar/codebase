@@ -2,8 +2,8 @@ from hacker.bytestreams import substrings
 
 value = '00230211913108430050286091123267001446589042407200380634902253880050113189282402'
 
-sum_lat = 0
-sum_lon = 0
+sum_lat: float = 0
+sum_lon: float = 0
 for s in substrings(value, 16):
     lat = int(s[:8]) / 1e6
     lon = int(s[8:]) / 1e6

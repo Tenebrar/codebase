@@ -30,5 +30,5 @@ from sandbox.pathfinder.types import AbilityScore
     param(21, None),
     param(22, None),
 ))
-def test_get_single_point_buy_cost(ability_score: AbilityScore, cost: int) -> NoReturn:
+def test_get_single_point_buy_cost(ability_score: AbilityScore, cost: int) -> None:
     assert get_single_point_buy_cost(ability_score) == cost

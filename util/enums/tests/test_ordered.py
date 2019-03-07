@@ -1,8 +1,8 @@
 from enum import auto, unique
-from mock import patch, Mock, call
+from mock import Mock, call
 from pytest import raises
 
-from sandbox.enums.ordered import OrderedEnum, comparison_method
+from util.enums.ordered import OrderedEnum, comparison_method
 
 
 def test_ordering():

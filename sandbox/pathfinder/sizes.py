@@ -1,4 +1,4 @@
-from sandbox.enums.enums import OrderedEnum
+from util.enums.ordered import OrderedEnum
 from enum import auto
 
 

@@ -1,7 +1,8 @@
 from functools import partial
-from logging import getLogger, StreamHandler
+from logging import StreamHandler, getLogger
+from typing import Any, Callable, Dict, List, Sequence
+
 from numpy import zeros
-from typing import List, Sequence
 
 from hacker.hackvm.counter import IterationCounter
 from hacker.hackvm.operand_stack import OperandStack
@@ -30,10 +31,10 @@ class HackVm:
         self._iteration_counter = IterationCounter(max_iterations)
 
         # These are instance variables because they need to be accessible to the operations
-        self._program = None  # Will be set in the run method
+        self._program = ''  # Will be set in the run method
         self._result: List[str] = []
 
-        self._operations = {
+        self._operations: Dict[str, Callable[[], Any]] = {
             ' ': lambda: None,  # NO_OP
             '\n': lambda: None,  # NO_OP
             'p': self._print_int,
