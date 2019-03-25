@@ -1,24 +1,22 @@
 from datetime import datetime
 from decimal import Decimal
-from typing import Any, Callable, Container, Optional, Union, Type
-
-Number = Union[int, float, Decimal]
+from typing import Any, Callable, Container, Optional, Type, Union
 
 
 # Single-args predicates
-def is_strict_positive(i: Number) -> bool:
+def is_strict_positive(i: Union[int, float, Decimal]) -> bool:
     return i > 0
 
 
-def is_positive(i: Number) -> bool:
+def is_positive(i: Union[int, float, Decimal]) -> bool:
     return i >= 0
 
 
-def is_strict_negative(i: Number) -> bool:
+def is_strict_negative(i: Union[int, float, Decimal]) -> bool:
     return i < 0
 
 
-def is_negative(i: Number) -> bool:
+def is_negative(i: Union[int, float, Decimal]) -> bool:
     return i <= 0
 
 
@@ -33,9 +31,9 @@ def is_in(allowed: Container[Any]) -> Callable[[Any], bool]:
 
 
 def is_not_in(disallowed: Container[Any]) -> Callable[[Any], bool]:
-    def _is_in(value: Any) -> bool:
+    def _is_not_in(value: Any) -> bool:
         return value not in disallowed
-    return _is_in
+    return _is_not_in
 
 
 def is_type(tipe: Type) -> Callable[[Any], bool]:
@@ -76,3 +74,7 @@ def is_less_than(a, b) -> bool:
 
 def is_less_than_or_equal(a, b) -> bool:
     return a <= b
+
+
+def is_different(a, b) -> bool:
+    return a != b

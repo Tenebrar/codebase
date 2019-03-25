@@ -1,53 +1,55 @@
 from pytest import raises
 
-from conditions.decorators import precondition, postcondition, no_value_precondition, multi_value_precondition
+from conditions.decorators import multi_value_precondition, no_value_precondition, postcondition, precondition
+from conditions.exceptions import MalformedDecoratorError, PostconditionViolatedError, PreconditionViolatedError
 from conditions.predicates import is_strict_positive
-from conditions.exceptions import PostconditionViolatedError, PreconditionViolatedError
 
 
 def test_function_success() -> None:
     @precondition('num', is_strict_positive)
+    @no_value_precondition(lambda: True)
+    @multi_value_precondition(['num', 1], lambda s, t: True)
     @postcondition(is_strict_positive)
-    def fun(num: int) -> int:
-        return num
+    def fun(num: int, num2: int) -> int:
+        return num + num2
 
-    fun(3)  # Runs without Exception
+    fun(3, 2)  # Runs without Exception
 
 
 def test_function_precondition_by_name_param_by_name_failure() -> None:
-    @precondition('num', is_strict_positive)
+    @precondition('num', is_strict_positive)  # select the parameter by name
     def fun(num: int) -> int:
         return num
 
     with raises(PreconditionViolatedError):
-        fun(num=-3)
+        fun(num=-3)  # call the function by name
 
 
 def test_function_precondition_by_name_param_by_pos_failure() -> None:
-    @precondition('num', is_strict_positive)
+    @precondition('num', is_strict_positive)  # select the parameter by name
     def fun(num: int) -> int:
         return num
 
     with raises(PreconditionViolatedError):
-        fun(-3)
+        fun(-3)  # call the function by position
 
 
 def test_function_precondition_by_pos_param_by_name_failure() -> None:
-    @precondition(0, is_strict_positive)
+    @precondition(0, is_strict_positive)  # select the parameter by position
     def fun(num: int) -> int:
         return num
 
     with raises(PreconditionViolatedError):
-        fun(num=-3)
+        fun(num=-3)  # call the function by name
 
 
 def test_function_precondition_by_pos_param_by_pos_failure() -> None:
-    @precondition(0, is_strict_positive)
+    @precondition(0, is_strict_positive)  # select the parameter by position
     def fun(num: int) -> int:
         return num
 
     with raises(PreconditionViolatedError):
-        fun(-3)
+        fun(-3)  # call the function by position
 
 
 def test_function_postcondition_failure() -> None:
@@ -93,20 +95,21 @@ def test_multi_value_precondition() -> None:
 
 
 def test_function_precondition_by_name_incorrect_name() -> None:
-    # TODO I would like to have the exception at function definition time
-    @precondition('wrong', is_strict_positive)
-    def fun(num: int) -> int:
-        return num
-
-    with raises(KeyError):
-        fun(num=-3)
+    with raises(MalformedDecoratorError):
+        @precondition('wrong', is_strict_positive)
+        def fun(num: int) -> int:
+            return num
 
 
 def test_function_precondition_by_pos_incorrect_pos() -> None:
-    # TODO I would like to have the exception at function definition time
-    @precondition(7, is_strict_positive)
-    def fun(num: int) -> int:
-        return num
+    with raises(MalformedDecoratorError):
+        @precondition(1, is_strict_positive)
+        def fun(num: int) -> int:
+            return num
 
-    with raises(IndexError):
-        fun(num=-3)
+
+def test_function_precondition_by_pos_negative_pos() -> None:
+    with raises(MalformedDecoratorError):
+        @precondition(-1, is_strict_positive)
+        def fun(num: int) -> int:
+            return num
