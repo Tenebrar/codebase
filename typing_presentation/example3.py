@@ -1,4 +1,4 @@
-from typing_presentation.classes import Mammal
+from typing_presentation.classes import *
 
 
 def fun(mammal: Mammal) -> None:
@@ -6,8 +6,8 @@ def fun(mammal: Mammal) -> None:
 
 
 # Which of these calls is ok?
-# function(Cat())
-# function(Mammal())
-# function(Animal())
-# function(Bird())
-# function(Peacock())
+# fun(Cat())
+# fun(Mammal())
+# fun(Animal())
+# fun(Bird())
+# fun(Peacock())

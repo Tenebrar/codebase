@@ -17,7 +17,7 @@ def feet_and_inches_to_meters(feet: DistanceFeet, inches: DistanceInch) -> Dista
     :param inches: An additional distance in inches
     :return: That total distance in meters
     """
-    return DistanceMeter(feet * 0.3048 + inches * 0.0254)
+    return DistanceMeter(feet_to_meters(feet) + inches * 0.0254)
 
 
 def mile_to_meters(mile: DistanceMile) -> DistanceMeter:

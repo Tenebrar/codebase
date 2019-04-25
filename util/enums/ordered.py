@@ -3,7 +3,11 @@ from functools import wraps
 
 
 def comparison_method(original_function):
-    """ Implements the default behaviour of returning NotImplemented if the classes of the 2 arguments do not match. """
+    """
+    Comparison methods should return NotImplemented if the comparison is not supported for both types.
+    This decorator implements that default behaviour assuming the comparison is only supported within the same exact
+    type.
+    """
     @wraps(original_function)
     def wrapped_function(*args, **kwargs):
         if args[0].__class__ is not args[1].__class__:
@@ -14,12 +18,12 @@ def comparison_method(original_function):
 
 class OrderedEnum(Enum):
     """
-    Enum allowing comparison methods based on their occurrence in the Enum.
-    Usage of @unique is strongly suggested.
+    Enum allowing comparison methods based on the order of their occurrence in the Enum.
+    Usage of @unique is strongly recommended.
     """
     def __new__(cls, *args):
         obj = object.__new__(cls)
-        obj.__index__ = len(cls.__members__) + 1
+        obj.__index__ = len(cls.__members__)
         return obj
 
     @comparison_method
