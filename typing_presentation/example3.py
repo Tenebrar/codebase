@@ -6,8 +6,8 @@ def fun(mammal: Mammal) -> None:
 
 
 # Which of these calls is ok?
-# fun(Cat())
-# fun(Mammal())
-# fun(Animal())
-# fun(Bird())
-# fun(Peacock())
+fun(Cat())
+fun(Mammal())
+fun(Animal())
+fun(Bird())
+fun(Peacock())

@@ -1,5 +1,5 @@
 from conditions.decorators import precondition
-from conditions.predicates import is_odd, is_positive, each, at_least, is_strict_positive
+from conditions.predicates import at_least, each, is_odd, is_positive, is_strict_positive
 
 
 @precondition(0, is_positive)
@@ -47,13 +47,19 @@ def binomial_coefficient(n: int, k: int) -> int:
     """
     Returns the binomial coefficient
 
+    Defined as: factorial(n) // (factorial(n - k) * factorial(k))
+
     :param n: The number of items
     :param k: The number of selected items
     :return: The number of ways to select k items from n options
     """
     if k > n:
         return 0
-    return factorial(n) // (factorial(n - k) * factorial(k))
+    k = min(k, n - k)  # take advantage of symmetry
+    c = 1
+    for i in range(k):
+        c = (c * (n - i)) // (i + 1)
+    return c
 
 
 combination = binomial_coefficient
@@ -80,6 +86,7 @@ def stirling_number_of_the_second_kind(n: int, k: int) -> int:
 stirling_set_number = stirling_number_of_the_second_kind
 
 
+@precondition(0, is_positive)
 def bell_number(n: int) -> int:
     """
     Returns the Bell number
@@ -129,6 +136,23 @@ def falling_factorial(x: int, n: int) -> int:
     result = 1
     for i in range(n):
         result *= x - i
+
+    return result
+
+
+@precondition('n', is_positive)
+def rising_factorial(x: int, n: int) -> int:
+    """
+    Returns the rising factorial of the given number to the given height.
+    x(x+1)...(x+(n-1))
+
+    :param x: The number to take the rising factorial of
+    :param n: The height to which to take the rising factorial
+    :return: The rising factorial of the given number to the given height
+    """
+    result = 1
+    for i in range(n):
+        result *= x + i
 
     return result
 
@@ -186,3 +210,21 @@ def polygonal_number(sides: int, n: int) -> int:
     :return: The n-th polygonal number for a given number of sides
     """
     return (sides - 2)*n*(n-1)//2 + n
+
+
+@precondition([0, 1], is_positive)
+def stirling_number_of_the_first_kind(n: int, k: int) -> int:
+    """
+    Returns one of the coefficients s(n, k) in the expansion of the falling factorial
+
+    s(3,3)=1, s(3,2)=-3, s(3,1)=2, because x(x-1)(x-2) = 1x^3 - 3x^2 + 2x
+
+    :param n: The depth of the falling factorial
+    :param k: The coefficient in the expansion
+    :return: The desired coefficient s(n, k) in the expansion of the falling factorial
+    """
+    if n == k:
+        return 1
+    if k == 0 or k > n:
+        return 0
+    return -(n - 1) * stirling_number_of_the_first_kind(n - 1, k) + stirling_number_of_the_first_kind(n - 1, k - 1)

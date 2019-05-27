@@ -1,5 +1,7 @@
+from typing import Callable, NamedTuple
+
 from util.combinatorics.functions import (
-    bell_number, binomial_coefficient, factorial, stirling_number_of_the_second_kind
+    bell_number, binomial_coefficient, factorial, falling_factorial, stirling_number_of_the_second_kind
 )
 
 
@@ -13,16 +15,33 @@ def permutations(k: int) -> int:
     return factorial(k)
 
 
-def choose_distinct_elements_unordered(elements: int, choices: int):
+class Choose:
     """
-    Returns the number of ways to select `choices` different items from `elements` options without caring about the
-    order in which they are picked
+    Class that groups the ways of choosing elements from a set:
+    - distinct or with repetition (whether the chosen elements will be unique)
+    - ordered or unordered (whether a-b and b-a are considered the same option)
 
-    :param elements: The number of items
-    :param choices: The number of selected items
-    :return: The number of ways to select k items from n options
+    E.g. Choose.distinct.ordered(5, 3)
     """
-    return binomial_coefficient(elements, choices)
+    class _Ordering(NamedTuple):
+        """Helper class"""
+        ordered: Callable[[int, int], int]
+        unordered: Callable[[int, int], int]
+
+    # Can be seen as permutations with the first 'choices' elements being chosen
+    distinct = _Ordering(
+        # Permute all elements, remove all permutations of not chosen elements
+        ordered=lambda elements, choices: falling_factorial(elements, choices),
+        # Permute all elements, remove all permutations of not chosen elements and those of chosen elements
+        unordered=lambda elements, choices: binomial_coefficient(elements, choices)
+    )
+    # Allow repeated results
+    with_repetition = _Ordering(
+        # 'Elements' options for each choice
+        ordered=lambda elements, choices: elements ** choices,
+        # Can be considered choosing elements from a set that also has (repeat element 1, repeat element 2,...)
+        unordered=lambda elements, choices: binomial_coefficient(elements + choices - 1, choices)
+    )
 
 
 def lattice_paths(a: int, b: int):
@@ -46,7 +65,7 @@ def lattice_paths(a: int, b: int):
 
 def partition_non_empty(items: int, subsets: int) -> int:
     """
-    Returns the number of ways you can partition items into non-empty subsets
+    Returns the number of ways you can partition items into a fixed amount of non-empty subsets
 
     :param items: The number of items
     :param subsets: The desired number of no-empty subsets

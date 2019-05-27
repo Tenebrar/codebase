@@ -16,7 +16,7 @@ def mammal_fun(m: Mammal) -> None:
 
 
 ANIMAL_MAPPING: Dict[Type[Mammal], Callable[[Mammal], None]] = {
-    Cat: dog_fun,
+    Cat: cat_fun,
     Dog: mammal_fun,
     Mammal: mammal_fun,
 }

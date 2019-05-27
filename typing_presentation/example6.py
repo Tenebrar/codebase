@@ -26,8 +26,8 @@ def my_function(converter: Converter[Mammal, Mammal]) -> None:
 
 
 # Which of these Converters can be passed to the function?
-c: Converter
-# c: Converter[Optional[Mammal], Mammal] = None
+# c: Converter
+c: Converter[Optional[Mammal], Mammal] = None
 # c: Converter[Animal, Mammal] = None
 # c: Converter[Cat, Mammal] = None
 # c: Converter[Mammal, Cat] = None
