@@ -23,6 +23,7 @@ class CharacterTest(TestCase):
         for k, v in expected.items():
             assert Character(base_strength=k).strength_modifier() == v
 
+
 class ViewTest(TestCase):
     def test_index(self):
         response = self.client.get(reverse('charsheet:index'))

@@ -1,8 +1,8 @@
 from pytest import raises
 
-from conditions.decorators import multi_value_precondition, no_value_precondition, postcondition, precondition
-from conditions.exceptions import MalformedDecoratorError, PostconditionViolatedError, PreconditionViolatedError
-from conditions.predicates import is_strict_positive
+from util.conditions.decorators import multi_value_precondition, no_value_precondition, postcondition, precondition
+from util.conditions.exceptions import MalformedDecoratorError, PostconditionViolatedError, PreconditionViolatedError
+from util.conditions.predicates import is_strict_positive
 
 
 def test_function_success() -> None:

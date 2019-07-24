@@ -2,7 +2,7 @@ from typing import Tuple
 
 from pytest import mark, param, raises
 
-from conditions.exceptions import PreconditionViolatedError
+from util.conditions.exceptions import PreconditionViolatedError
 from util.combinatorics.functions import (
     bell_number, binomial_coefficient, catalan_number, combination, combinatorial_number, derangement_number,
     double_factorial, factorial, falling_factorial, hyperfactorial, multinomial_coefficient, odd_factorial,
@@ -519,7 +519,7 @@ def test_hyperfactorial_positive(n: int) -> None:
     param((1, 2, 4), 105),
     param((1, 2, 4, 4), 34650),
 ))
-def test_multinomial_coefficient(n: Tuple[int,...], expected: int) -> None:
+def test_multinomial_coefficient(n: Tuple[int, ...], expected: int) -> None:
     assert multinomial_coefficient(*n) == expected
 
 
@@ -532,7 +532,7 @@ def test_multinomial_coefficient(n: Tuple[int,...], expected: int) -> None:
     param((1, -2, 3)),
     param((1, 2, -3)),
 ))
-def test_multinomial_coefficient_positive(n: Tuple[int,...]) -> None:
+def test_multinomial_coefficient_positive(n: Tuple[int, ...]) -> None:
     with raises(PreconditionViolatedError):
         multinomial_coefficient(*n)
 
@@ -643,4 +643,3 @@ def test_stirling_number_of_the_first_kind(n: int, k: int, expected: int) -> Non
 def test_stirling_number_of_the_first_kind_positive(n: int, k: int) -> None:
     with raises(PreconditionViolatedError):
         stirling_number_of_the_first_kind(n, k)
-

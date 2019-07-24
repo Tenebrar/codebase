@@ -1,9 +1,9 @@
 from collections import OrderedDict
 from functools import wraps
 from inspect import Signature, signature
-from typing import Any, Callable, List, Union
+from typing import Any, Callable, List, Union, cast
 
-from conditions.exceptions import MalformedDecoratorError, PostconditionViolatedError, PreconditionViolatedError
+from util.conditions.exceptions import MalformedDecoratorError, PostconditionViolatedError, PreconditionViolatedError
 
 
 def _verify_decorator_correctness(sig: Signature, parameter_selector: List[Union[int, str]]) -> None:
@@ -44,7 +44,7 @@ def _get_bound_arguments(sig: Signature, *args, **kwargs) -> OrderedDict:
     """
     bound = sig.bind(*args, **kwargs)
     bound.apply_defaults()
-    return bound.arguments
+    return cast(OrderedDict, bound.arguments)
 
 
 def _get_key_value_pairs(arguments: OrderedDict, parameter_selector: List[Union[int, str]]) -> OrderedDict:
@@ -56,7 +56,7 @@ def _get_key_value_pairs(arguments: OrderedDict, parameter_selector: List[Union[
     :return: An OrderedDict containing only those selected arguments (the order is determined by the parameter_selector)
     :raises MalformedDecoratorError: If one or more of the selected parameters does not exist in the method
     """
-    result = OrderedDict()
+    result: OrderedDict = OrderedDict()
 
     argument_list = list(arguments.items())
     for parameter in parameter_selector:

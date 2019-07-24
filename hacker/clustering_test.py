@@ -24,14 +24,14 @@ def test_cluster():
 
 
 def test_cluster_points():
-    """ The that _cluster_points returns the correct value """
+    """ Tests that _cluster_points returns the correct value """
     inputs = {
         'a': (4, 0, 0, 0),
         'b': (0, 4, 0, 0),
         'c': (0, 0, 4, 0),
         'd': (0, 0, 0, 4),
     }
-    # Centers are chosen so the result if unique
+    # Centers are chosen so the result is unique
     centers = [(4, 4, 0, 0), (0, 0, 4, 4)]
 
     result, score = _cluster_points(inputs, centers)

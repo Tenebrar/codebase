@@ -1,5 +1,5 @@
-from conditions.decorators import precondition
-from conditions.predicates import at_least, each, is_odd, is_positive, is_strict_positive
+from util.conditions.decorators import precondition
+from util.conditions.predicates import is_greater_than_or_equal, each, is_odd, is_positive, is_strict_positive
 
 
 @precondition(0, is_positive)
@@ -198,7 +198,7 @@ def catalan_number(k: int) -> int:
     return binomial_coefficient(2*k, k) // (k + 1)
 
 
-@precondition(0, at_least(3))
+@precondition(0, is_greater_than_or_equal(3))
 @precondition(1, is_strict_positive)
 def polygonal_number(sides: int, n: int) -> int:
     """
