@@ -46,9 +46,9 @@ def change_size(increase: bool, damage: Dice, initial_size: Size) -> Dice:
 
     # Handle multiple d4s (the rules are ill-defined for some amounts, e.g. 5d4)
     if damage.dice % 2 == 0 and damage.die_type == 4:
-        damage = Dice(damage.dice / 2, DieType.D8)
+        damage = Dice(damage.dice // 2, DieType.D8)
     elif damage.dice % 3 == 0 and damage.die_type == 4:
-        damage = Dice((damage.dice / 3) * 2, DieType.D6)
+        damage = Dice((damage.dice // 3) * 2, DieType.D6)
 
     # Handle d12s
     if damage.die_type == 12:

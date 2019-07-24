@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, List
 
 from hacker.hackvm.integers import verify_integer
 
@@ -11,7 +11,7 @@ class OperandStack:
     """
 
     def __init__(self) -> None:
-        self._stack = []  # Create an empty stack, as a list since we need access to all elements
+        self._stack: List[int] = []  # Create an empty stack, as a list since we need access to all elements
 
     def push(self, value: int) -> None:
         """

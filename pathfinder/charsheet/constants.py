@@ -1,8 +1,9 @@
 from enum import Enum
+from util.enums.ordered import OrderedEnum
 
 
 # The different sizes of characters in pathfinder
-class Size(Enum):
+class Size(OrderedEnum):
     FINE = 'Fine'
     DIMINUTIVE = 'Diminutive'
     TINY = 'Tiny'

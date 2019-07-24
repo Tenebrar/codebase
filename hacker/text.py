@@ -1,4 +1,4 @@
-def remove_punctuation(string):
+def remove_punctuation(string: str) -> str:
     """
     Removes all non-letter, non-space characters from a string
     :param string: a string

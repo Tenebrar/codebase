@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from enum import IntEnum, unique
 from random import randint
 from typing import Tuple
@@ -26,7 +28,7 @@ class DieType(IntEnum):
         return f'd{self.value}' if self.value != 100 else 'd%'
 
     @classmethod
-    def parse(cls, value: str) -> 'DieType':
+    def parse(cls, value: str) -> DieType:
         """
         :param value: a string representation of a DieType, such as 'd6'
         :return: The corresponding DieType
@@ -73,12 +75,12 @@ class Dice:
         return self.dice, self.die_type.value
 
     @classmethod
-    def from_tuple(cls, t: Tuple[int, int]) -> 'Dice':
+    def from_tuple(cls, t: Tuple[int, int]) -> Dice:
         """ Convert a tuple of (amount of dice, sides to a die) to a Dice object"""
         return Dice(t[0], DieType(t[1]))
 
     @classmethod
-    def parse(cls, value: str) -> 'Dice':
+    def parse(cls, value: str) -> Dice:
         """
         :param value: a string representation of a Dice object, such as '4d6'
         :return: The corresponding Dice object
