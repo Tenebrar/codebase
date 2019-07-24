@@ -5,6 +5,7 @@ m = {'a': 1, 'b': 2}
 test = MappingProxyType({'a': 1, 'b': 2})
 
 print(test['a'])
+test['a'] = 3
 
 for k, v in test.items():
     print(k, v)
@@ -23,3 +24,4 @@ print(s)
 
 s.add(4)
 
+# Lists have tuples
