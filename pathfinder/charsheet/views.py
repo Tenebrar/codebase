@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 
 from charsheet.models import Character, Roll, Skill
-from util.decorators import template_view
+from webserver.util.view_decorators import template_view
 
 
 @template_view('charsheet/index.html')

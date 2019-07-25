@@ -1,4 +1,4 @@
-from util.decorators import template_view
+from webserver.util.view_decorators import template_view
 
 
 @template_view('pathfinder/index.html')
