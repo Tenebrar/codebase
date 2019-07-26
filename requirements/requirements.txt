@@ -1,0 +1,12 @@
+# Conventions:
+#  - Always pin requirements exactly (using ==). This prevents unexpected upgrades breaking the code
+#  - Always include dependencies of packages. We install with --no-deps to prevent version clashes between dependencies
+#  - Put an empty line and comment line above each requirement, with the dependencies directly underneath
+
+Django==2.2.3
+
+# Work with timezones
+pytz==2019.1
+
+# Uwsgi
+uwsgi==2.0.18
