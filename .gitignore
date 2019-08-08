@@ -15,3 +15,6 @@ db.sqlite3
 
 # mypy
 .mypy_cache/
+
+# Pycharm
+.idea/*
