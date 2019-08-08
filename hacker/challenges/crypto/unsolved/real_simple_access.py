@@ -5,4 +5,4 @@ public_key_exponent = '65537'
 
 # The name obviously refers to RSA encryption
 
-# TODO: Look at http://singularityctf.blogspot.be/2014/03/backdoorctf-2014-writeup-crypto-100-eng.html
+# IDEA: Look at http://singularityctf.blogspot.be/2014/03/backdoorctf-2014-writeup-crypto-100-eng.html

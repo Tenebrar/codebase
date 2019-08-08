@@ -24,9 +24,9 @@ im.save(outputfilename, 'PNG')
 # for p in ungroup(pixels(filename)):
 #    print(p%2, end='')
 
-# TODO Look at text chunks
+# IDEA Look at text chunks
 # Source: https://github.com/ctfs/write-ups-2015/tree/master/confidence-ctf-teaser-2015/stegano/a-png-tale-200
-# TODO find out why it fails and what that means
+# IDEA find out why it fails and what that means
 from struct import unpack
 from binascii import hexlify, unhexlify
 import sys, zlib

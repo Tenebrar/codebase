@@ -4,7 +4,7 @@ from hacker.settings import USERNAME, PASSWORD
 
 url = 'http://www.hacker.org/challenge/misc/past.php'
 
-# TODO try passing a very old browser in the headers
+# IDEA try passing a very old browser in the headers
 
 user_agent = 'NCSA_Mosaic/2.0'
 response = get(url, params={'name': USERNAME, 'password': PASSWORD}, headers={'User-Agent': user_agent})

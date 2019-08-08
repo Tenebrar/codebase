@@ -1,7 +1,7 @@
 from typing import Iterable
 
-from hacker.primes import is_probable_prime
 from hacker.settings import inputfile
+from util.primes import is_probable_prime
 
 filename = inputfile('coding', 'primal_pi', 'pi1000000.txt')
 

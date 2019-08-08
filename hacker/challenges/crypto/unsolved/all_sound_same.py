@@ -2,4 +2,4 @@ value = '06 19 40 21 25 32 01 34 42 10 18 23 00 15 48 23 39 30 41 11 25 33 41 31
 
 print(len(value.split()))
 
-# TODO run the same clustering as the warmup (sounds_same_warmup)
+# IDEA run the same clustering as the warmup (sounds_same_warmup)

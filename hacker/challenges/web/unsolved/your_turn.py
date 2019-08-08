@@ -12,4 +12,4 @@ with TCPServer(("", PORT), SimpleHTTPRequestHandler) as httpd:
 # python -m http.server 8080
 # in a folder with an index.html
 
-# TODO Can I pass a url to my computer to hacker.org? Try at home
+# IDEA Can I pass a url to my computer to hacker.org? Try at home

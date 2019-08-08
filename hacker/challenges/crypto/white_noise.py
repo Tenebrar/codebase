@@ -1,7 +1,7 @@
 from PIL import Image
-import math
 
 from hacker.settings import inputfile, outputfile
+from util.primes import is_prime
 
 filename = inputfile('crypto', 'white_noise', 'whitenoise.png')
 filename_out1 = outputfile('crypto', 'white_noise', 'whitenoise_out1.png')
@@ -15,22 +15,6 @@ palette[:3] = [255, 255, 255]
 im.putpalette(palette)
 
 im.save(filename_out1, 'PNG')
-
-
-def is_prime(number):
-    """ Returns whether the passed integer is a prime number """
-    if number < 2:
-        return False
-    if number == 2:
-        return True
-    if number % 2 == 0:
-        return False
-    if number == 3:
-        return True
-    for j in range(3, int(math.sqrt(number)) + 1):
-        if number % j == 0:
-            return False
-    return True
 
 # Set the prime numbers
 palette = bytearray(256*3)

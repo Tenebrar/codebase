@@ -1,19 +1,36 @@
+from math import sqrt
 from random import randrange, getrandbits
+
+
+def is_prime(number):
+    """ Returns whether the passed integer is a prime number """
+    if number < 2:
+        return False
+    if number == 2:
+        return True
+    if number % 2 == 0:
+        return False
+    if number == 3:
+        return True
+    for j in range(3, int(sqrt(number)) + 1, 2):
+        if number % j == 0:
+            return False
+    return True
 
 
 def is_probable_prime(potential_prime, tests=100):
     """
     Perform a Miller-Rabin primality test
+
     :param potential_prime: The value to be tested
     :param tests: The amount of tests to perform
     :return: False if definitely not a prime, True if probable prime
     """
-    if potential_prime < 0:
-        raise ValueError('Positive value expected')
-
+    if potential_prime <= 1:
+        return False
     if potential_prime <= 3:
         # We need to handle some start values, since the algorithm only works after these
-        return [False, False, True, False][potential_prime]
+        return True
     if not potential_prime & 1:
         return False
 
@@ -23,7 +40,7 @@ def is_probable_prime(potential_prime, tests=100):
     for _ in range(tests):
         # Select a potential witness at random
         potential_witness = randrange(2, potential_prime - 2)
-        if is_composite(potential_witness, exponent, factor, potential_prime):
+        if _is_composite(potential_witness, exponent, factor, potential_prime):
             return False
     return True
 
@@ -45,7 +62,7 @@ def extract_power_of_two(number):
     return exponent, number
 
 
-def is_composite(potential_witness, exponent, factor, potential_prime):
+def _is_composite(potential_witness, exponent, factor, potential_prime):
     """
     Check if potential_prime is composite with regards to potential_witness
 
@@ -76,9 +93,14 @@ def is_composite(potential_witness, exponent, factor, potential_prime):
 def get_probable_prime(num_bits):
     """
     Get an n-bit probable prime
+    There is currently no guarantee that the number has any minimum value (other than 0), though that could be added;
+
     :param num_bits: The amount of bits desired
     :return: A number of num_bits bits that is probably prime
     """
+    if num_bits <= 1:  # A number of 1 bit does not have a possible solution
+        raise ValueError('Minimum number of bits is 2')
+
     while True:
         p = getrandbits(num_bits)
         if is_probable_prime(p):

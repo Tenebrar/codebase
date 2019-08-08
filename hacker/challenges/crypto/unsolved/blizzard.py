@@ -27,7 +27,7 @@ im = Image.open(filename)
 pix = im.load()
 width, height = im.size
 
-# TODO try other "shapes", skipping X bits, etc.
+# IDEA try other "shapes", skipping X bits, etc.
 def weight(indices):
     w = 0
     amount = 0
@@ -72,4 +72,4 @@ print(sum(n)/len(n))
 # print(112/(112+96))  # So the expected weight for ascii text is 0.53 (0.61 if they are represented with 7 bits)
 # print(112/(112+96-26))
 
-# TODO try averaging out each 5 by 7 section or making the pictures with the pixels 5 and 7 apart
+# IDEA try averaging out each 5 by 7 section or making the pictures with the pixels 5 and 7 apart
