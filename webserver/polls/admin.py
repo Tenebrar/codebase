@@ -1,6 +1,23 @@
 from django.contrib import admin
 
-from .models import Choice, Question
+from webserver.polls.models import Choice, Question
 
-admin.site.register(Question)
-admin.site.register(Choice)
+
+class ChoiceInline(admin.TabularInline):
+    model = Choice
+    readonly_fields = ('votes',)
+    extra = 2
+
+
+class QuestionAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None,               {'fields': ['text']}),
+        ('Date information', {'fields': ['publication_time'], 'classes': ['collapse']}),
+    ]
+    inlines = [ChoiceInline]
+    list_display = ('text', 'publication_time', 'was_published_recently')
+    list_filter = ['publication_time']
+    search_fields = ['text']
+
+
+admin.site.register(Question, QuestionAdmin)

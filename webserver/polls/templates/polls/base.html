@@ -1,0 +1,12 @@
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+    </head>
+
+    <body>
+        {% block content %}{% endblock %}
+        <a href="{% url 'polls:index' %}">Home</a>
+    </body>
+</html>

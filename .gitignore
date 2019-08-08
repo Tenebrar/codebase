@@ -11,6 +11,7 @@ db.sqlite3
 # Unit test / coverage reports
 .cache
 .pytest_cache/
+.coverage
 
 # mypy
 .mypy_cache/

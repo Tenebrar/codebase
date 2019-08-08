@@ -1,8 +1,11 @@
 from functools import wraps
+from logging import getLogger
 from typing import Any, Callable, Dict
 
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+
+logger = getLogger(__name__)
 
 
 def template_view(template_name: str) -> Callable[[Callable[..., Dict[str, Any]]], Callable[..., HttpResponse]]:
@@ -24,6 +27,26 @@ def template_view(template_name: str) -> Callable[[Callable[..., Dict[str, Any]]
             """
             request, = args
             context = decorated_function(**kwargs)
+            context.update({'request': request})
             return render(request, template_name, context)
         return renderer
+    return decorator
+
+
+def required_get_parameters(*required_args, log_function=logger.warning):
+    """Decorator that will have a view return 'Bad request' if some required GET parameters are missing."""
+    def decorator(decorated_function):
+        @wraps(decorated_function)
+        def wrapper(*args, **kwargs):
+            request = args[0]
+
+            for required_arg in required_args:
+                required = request.GET.get(required_arg)
+                if not required:  # Not present or empty string
+                    log_function(f'No {required_arg} in call to {decorated_function} with parameters {request.GET}')
+                    return HttpResponse(status=400)  # Bad request
+
+            additional_kwargs = {required_arg: request.GET[required_arg] for required_arg in required_args}
+            return decorated_function(*args, **{**kwargs, **additional_kwargs})
+        return wrapper
     return decorator
