@@ -2,23 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1142bd96-d820-4a7b-8213-0bbb155354b3" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webserver/generated_settings.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hacker/primes.py" afterPath="$PROJECT_DIR$/util/primes.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hacker/challenges/coding/unsolved/primal_pi.py" afterPath="$PROJECT_DIR$/hacker/challenges/coding/unsolved/primal_pi.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hacker/challenges/crypto/unsolved/all_sound_same.py" afterPath="$PROJECT_DIR$/hacker/challenges/crypto/unsolved/all_sound_same.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hacker/challenges/crypto/unsolved/blizzard.py" afterPath="$PROJECT_DIR$/hacker/challenges/crypto/unsolved/blizzard.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hacker/challenges/crypto/unsolved/butterfly_effect.py" afterPath="$PROJECT_DIR$/hacker/challenges/crypto/unsolved/butterfly_effect.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hacker/challenges/crypto/unsolved/filtration_residue.py" afterPath="$PROJECT_DIR$/hacker/challenges/crypto/unsolved/filtration_residue.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hacker/challenges/crypto/unsolved/hvm_cipher.py" afterPath="$PROJECT_DIR$/hacker/challenges/crypto/unsolved/hvm_cipher.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hacker/challenges/crypto/unsolved/real_simple_access.py" afterPath="$PROJECT_DIR$/hacker/challenges/crypto/unsolved/real_simple_access.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hacker/challenges/crypto/white_noise.py" afterPath="$PROJECT_DIR$/hacker/challenges/crypto/white_noise.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hacker/challenges/web/trip_to_the_past.py" afterPath="$PROJECT_DIR$/hacker/challenges/web/trip_to_the_past.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hacker/challenges/web/unsolved/one_minute_man.py" afterPath="$PROJECT_DIR$/hacker/challenges/web/unsolved/one_minute_man.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hacker/challenges/web/unsolved/your_turn.py" afterPath="$PROJECT_DIR$/hacker/challenges/web/unsolved/your_turn.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/projecteuler/problem_1_muliples_of_3_and_5.py" afterPath="$PROJECT_DIR$/projecteuler/problem_1_muliples_of_3_and_5.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/projecteuler/problem_2_even_fibonacci_numbers.py" afterPath="$PROJECT_DIR$/projecteuler/problem_2_even_fibonacci_numbers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements/requirements.txt" afterPath="$PROJECT_DIR$/requirements/requirements.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webserver/polls/static/polls/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webserver/polls/templates/polls/base.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webserver/polls/tests/test_views.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webserver/util/tests/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webserver/util/tests/test_view_decorators.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/webserver/polls/apps.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements/requirements_test.txt" afterPath="$PROJECT_DIR$/requirements/requirements_test.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/polls/admin.py" afterPath="$PROJECT_DIR$/webserver/polls/admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/polls/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/webserver/polls/migrations/0001_initial.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/polls/models.py" afterPath="$PROJECT_DIR$/webserver/polls/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/polls/templates/polls/detail.html" afterPath="$PROJECT_DIR$/webserver/polls/templates/polls/detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/polls/templates/polls/index.html" afterPath="$PROJECT_DIR$/webserver/polls/templates/polls/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/polls/templates/polls/results.html" afterPath="$PROJECT_DIR$/webserver/polls/templates/polls/results.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/polls/tests/test_models.py" afterPath="$PROJECT_DIR$/webserver/polls/tests/test_models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/polls/urls.py" afterPath="$PROJECT_DIR$/webserver/polls/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/polls/views.py" afterPath="$PROJECT_DIR$/webserver/polls/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/util/view_decorators.py" afterPath="$PROJECT_DIR$/webserver/util/view_decorators.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,7 +35,7 @@
         <entry file="file://$PROJECT_DIR$/projecteuler/problem_9_special_pythagorean_triplet.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -135,7 +137,6 @@
         <option value="$PROJECT_DIR$/hacker/challenges/misc/unsolved/looks_can_be_deceiving.py" />
         <option value="$PROJECT_DIR$/webserver/generated_settings.py" />
         <option value="$PROJECT_DIR$/requirements/requirements.txt" />
-        <option value="$PROJECT_DIR$/requirements/requirements_test.txt" />
         <option value="$PROJECT_DIR$/hacker/primes.py" />
         <option value="$PROJECT_DIR$/projecteuler/problem_4_largest_palindrom_product.py" />
         <option value="$PROJECT_DIR$/webserver/settings.py" />
@@ -166,6 +167,7 @@
         <option value="$PROJECT_DIR$/projecteuler/problem_7_10001st_prime.py" />
         <option value="$PROJECT_DIR$/projecteuler/problem_8_largest_product_in_a_series.py" />
         <option value="$PROJECT_DIR$/projecteuler/problem_9_special_pythagorean_triplet.py" />
+        <option value="$PROJECT_DIR$/requirements/requirements_test.txt" />
       </list>
     </option>
   </component>
@@ -205,6 +207,11 @@
               <item name="codebase" type="b2602c69:ProjectViewProjectNode" />
               <item name="codebase" type="462c0819:PsiDirectoryNode" />
               <item name="projecteuler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="codebase" type="b2602c69:ProjectViewProjectNode" />
+              <item name="codebase" type="462c0819:PsiDirectoryNode" />
+              <item name="requirements" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="codebase" type="b2602c69:ProjectViewProjectNode" />
@@ -642,13 +649,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hacker/challenges/crypto/unsolved/filtration_residue.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="28" column="6" lean-forward="false" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hacker/challenges/crypto/unsolved/hvm_cipher.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -902,10 +902,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/requirements/requirements_test.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/projecteuler/problem_9_special_pythagorean_triplet.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>

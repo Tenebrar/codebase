@@ -23,3 +23,7 @@ wcwidth==0.1.7
 
 # mocking (also requires six)
 mock==3.0.5
+
+python-dateutil==2.7.5
+
+freezegun==0.3.12
