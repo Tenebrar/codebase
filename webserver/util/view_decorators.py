@@ -1,9 +1,11 @@
 from functools import wraps
 from logging import getLogger
-from typing import Any, Callable, Dict
+from typing import Any, Callable, Dict, Optional, Iterable
 
-from django.http import HttpRequest, HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import render
+from django.urls import resolve, reverse
 
 logger = getLogger(__name__)
 
@@ -27,24 +29,38 @@ def template_view(template_name: str) -> Callable[[Callable[..., Dict[str, Any]]
             """
             request, = args
             context = decorated_function(**kwargs)
-            context.update({'request': request})
             return render(request, template_name, context)
         return renderer
     return decorator
 
 
-def required_get_parameters(*required_args, log_function=logger.warning):
-    """Decorator that will have a view return 'Bad request' if some required GET parameters are missing."""
-    def decorator(decorated_function):
+def required_get_parameters(*required_args: str, logging_function: Callable[[str], Any]=logger.warning) ->\
+        Callable[[Callable[..., HttpResponse]], Callable[..., HttpResponse]]:
+    """
+    :param required_args: The GET parameters required to be present for the GET call to work
+    :param logging_function: A function taking error messages in case something is missing
+    :return:
+    """
+    def decorator(decorated_function: Callable[..., HttpResponse]) -> Callable[..., HttpResponse]:
+        """
+        Decorator that will have a view return 'Bad request' if some required GET parameters are missing.
+        :param decorated_function: A function that returns an HttpResponse
+        :return: The same function prefixed with the check for required parameters (and returning a 400 if needed)
+        """
         @wraps(decorated_function)
-        def wrapper(*args, **kwargs):
-            request = args[0]
+        def wrapper(*args: HttpRequest, **kwargs: Any) -> HttpResponse:
+            """
+            :param args: The positional arguments for the view (should only be the HttpRequest)
+            :param kwargs: The keyword arguments for the view
+            :return: The HttpResponse of the view if all needed parameters are present; a 400 response otherwise
+            """
+            request, = args
 
             for required_arg in required_args:
                 required = request.GET.get(required_arg)
-                if not required:  # Not present or empty string
-                    log_function(f'No {required_arg} in call to {decorated_function} with parameters {request.GET}')
-                    return HttpResponse(status=400)  # Bad request
+                if not required:
+                    logging_function(f'No {required_arg} in call to {decorated_function} with parameters {request.GET}')
+                    return HttpResponseBadRequest()  # 400
 
             additional_kwargs = {required_arg: request.GET[required_arg] for required_arg in required_args}
             return decorated_function(*args, **{**kwargs, **additional_kwargs})

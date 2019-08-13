@@ -103,7 +103,10 @@ class PollsDetailViewTest(TestCase):
     def call_detail(self, question_key: int) -> HttpResponse:
         return self.client.get(reverse(self.DETAIL_NAME, args=(question_key,)))
 
-    # TESTS
+    def call_vote(self, question_key: int, choice_key: int) -> HttpResponse:
+        return self.client.post(reverse(self.DETAIL_NAME, args=(question_key,)), data={'choice': str(choice_key)})
+
+    # TESTS (GET)
     def test_future_question(self):
         future_question = create_question('Future question.', FUTURE)
 
@@ -132,41 +135,35 @@ class PollsDetailViewTest(TestCase):
         assert past_question.text in get_content(response)
         assert response.context['question'] == past_question
 
-
-class PollsVoteViewTest(TestCase):
-    # UTILS
-    VOTE_NAME = 'polls:vote'
-
-    def call_vote(self, question_key: int, choice_key: int) -> HttpResponse:
-        return self.client.post(reverse(self.VOTE_NAME, args=(question_key,)), data={'choice': str(choice_key)})
-
-    # TESTS
-    def test_future_question(self):
+    # TESTS (POST)
+    def test_vote_future_question(self):
         future_question = create_question('Future question.', FUTURE)
-        choice = Choice(question=future_question, text='choice 1')
+        choice = Choice.objects.create(question=future_question, text='choice 1')
 
         response = self.call_vote(future_question.pk, choice.pk)
 
         assert response.status_code == HTTPStatus.NOT_FOUND
 
+        choice.refresh_from_db()
         assert choice.votes == 0
 
-    def test_no_questions(self):
+    def test_vote_no_questions(self):
         response = self.call_vote(1, 2)
 
         assert response.status_code == HTTPStatus.NOT_FOUND
 
-    def test_wrong_question(self):
+    def test_vote_wrong_question(self):
         past_question = create_question('Past Question.', PAST)
-        choice = Choice(question=past_question, text='choice 1')
+        choice = Choice.objects.create(question=past_question, text='choice 1')
 
         response = self.call_vote(past_question.pk + 1, choice.pk)
 
         assert response.status_code == HTTPStatus.NOT_FOUND
 
+        choice.refresh_from_db()
         assert choice.votes == 0
 
-    def test_past_question_right_choice(self):
+    def test_vote_past_question_right_choice(self):
         past_question = create_question('Past Question.', PAST)
         choice = Choice.objects.create(question=past_question, text='choice 1')
 
@@ -178,7 +175,7 @@ class PollsVoteViewTest(TestCase):
         choice.refresh_from_db()
         assert choice.votes == 1
 
-    def test_past_question_wrong_choice(self):
+    def test_vote_past_question_wrong_choice(self):
         past_question = create_question('Past Question.', PAST)
         choice = Choice.objects.create(question=past_question, text='choice 1')
 
