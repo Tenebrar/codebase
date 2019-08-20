@@ -81,7 +81,7 @@ class ChoiceTest(TestCase):
         assert choice.votes == 0
 
     def test_question_cascade_delete(self):
-        choice = Choice.objects.create(question=self.question, text='test')
+        Choice.objects.create(question=self.question, text='test')
 
         assert Choice.objects.count() == 1
 

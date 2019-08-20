@@ -1,11 +1,9 @@
 from functools import wraps
 from logging import getLogger
-from typing import Any, Callable, Dict, Optional, Iterable
+from typing import Any, Callable, Dict
 
-from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpRequest, HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
+from django.http import HttpRequest, HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
-from django.urls import resolve, reverse
 
 logger = getLogger(__name__)
 
