@@ -1,3 +1,8 @@
+from operator import mul
+from enum import Enum, unique
+from functools import reduce
+from typing import Any, Iterable, List, Tuple
+
 GRID = '''08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
 81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
@@ -21,34 +26,55 @@ GRID = '''08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 
 GRID = [[int(value) for value in line.split()] for line in GRID.splitlines()]
 
+
+def grid_coordinates(grid: List[List[Any]]) -> Iterable[Tuple[int, int]]:
+    """ Given a grid (2-dimensional list), iterate over all coordinates in it """
+    height = len(grid)
+    width = len(grid[0])
+
+    for row in range(height):
+        for column in range(width):
+            yield row, column
+
+
+@unique
+class Direction(Enum):
+    UP = (-1, 0)
+    RIGHT_UP = (-1, 1)
+    RIGHT = (0, 1)
+    RIGHT_DOWN = (1, 1)
+    DOWN = (1, 0)
+    LEFT_DOWN = (1, -1)
+    LEFT = (0, -1)
+    LEFT_UP = (-1, -1)
+
+
+def product(iterable: Iterable[int]) -> int:
+    """ Multiplication equivalent of the sum function """
+    return reduce(mul, iterable, 1)
+
+
+def grid_direction_elements(start_coordinate: Tuple[int, int], direction: Tuple[int, int], distance: int) -> \
+        Iterable[int]:
+    start_row, start_column = start_coordinate
+    row_change, column_change = direction
+
+    # The if is necessary, because otherwise negative indices cause the grid to be considered circularly
+    if 0 <= start_row + distance * row_change < len(GRID) and \
+            0 <= start_column + distance * column_change < len(GRID[0]):
+        return [GRID[start_row + i * row_change][start_column + i * column_change] for i in range(distance)]
+    return []
+
+
+# The result for each direction is equivalent to its inverse, so don't check them all
+DIRECTIONS_TO_CHECK = [
+    Direction.RIGHT.value, Direction.DOWN.value, Direction.RIGHT_DOWN.value, Direction.RIGHT_UP.value
+]
+
 max_value = 0
-
-for row in range(20):
-    for col in range(20):
-        right_value = GRID[row][col]
-        down_value = GRID[row][col]
-        diagonal_value = GRID[row][col]
-        diagonal_value2 = GRID[row][col]
-
-        for i in range(1, 4):
-            try:
-                right_value *= GRID[row][col + i]
-            except IndexError:
-                right_value = 0
-            try:
-                down_value *= GRID[row + i][col]
-            except IndexError:
-                down_value = 0
-            try:
-                diagonal_value *= GRID[row + i][col + i]
-            except IndexError:
-                diagonal_value = 0
-            try:
-                diagonal_value2 *= GRID[row - i][col + i]
-            except IndexError:
-                diagonal_value2 = 0
-
-        max_value = max(max_value, right_value, down_value, diagonal_value, diagonal_value2)
-
+for coordinate in grid_coordinates(GRID):
+    for direction in DIRECTIONS_TO_CHECK:
+        max_value = max(max_value, product(grid_direction_elements(coordinate, direction, 4)))
 
 print(max_value)
+# Expected: 70600674
