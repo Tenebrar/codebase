@@ -1,4 +1,5 @@
 from functools import reduce
+from operator import mul
 from typing import Iterable
 
 NUMBER = '''
@@ -33,10 +34,10 @@ def overlapping_substrings(string: str, size: int) -> Iterable[str]:
         yield string[i:i+size]
 
 
-def product(input: str) -> int:
+def product(input: Iterable[int]) -> int:
     """ Given a string of numbers, returns the product of those numbers """
-    return reduce(lambda x, y: x * y, map(int, input))
+    return reduce(mul, input, 1)
 
 
-print(max(map(product, overlapping_substrings(NUMBER, DIGITS))))
+print(max(map(product, (map(int, input) for input in overlapping_substrings(NUMBER, DIGITS)))))
 # Expected: 23514624000

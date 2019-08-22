@@ -1,10 +1,17 @@
 from math import sqrt
 
-from util.primes import is_prime
-
-# For a number in this range, this approach is more than sufficient
-
 NUMBER = 600851475143
 
-print(next(filter(is_prime, filter(lambda x: NUMBER % x == 0, range(int(sqrt(NUMBER)) + 1, 0, -1)))))
+
+def prime_divisors(number):
+    for i in range(2, int(sqrt(number)) + 1):
+        while number % i == 0:
+            yield(i)
+            number //= i
+    # If the original number was prime
+    if number != 1:
+        yield number
+
+
+print(max(prime_divisors(NUMBER)))
 # Expected: 6857
