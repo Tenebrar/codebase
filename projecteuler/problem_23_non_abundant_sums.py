@@ -20,6 +20,7 @@ def is_abundant_number(num: int) -> bool:
     """ Returns whether the number is abundant """
     return sum(divisors(num)) > num
 
+
 abundant_numbers = [i for i in range(1, MAXIMUM + 1) if is_abundant_number(i)]
 sums = {a + b for a, b in combinations_with_replacement(abundant_numbers, 2)}
 
