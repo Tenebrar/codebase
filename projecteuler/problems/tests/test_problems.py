@@ -24,9 +24,14 @@ from projecteuler.problems.problem_0023_non_abundant_sums import problem_0023
 from projecteuler.problems.problem_0024_lexicographic_permutations import problem_0024
 from projecteuler.problems.problem_0025_1000_digit_fibonacci_number import problem_0025
 from projecteuler.problems.problem_0026_reciprocal_cycles import problem_0026
+from projecteuler.problems.problem_0027_quadratic_primes import problem_0027
+from projecteuler.problems.problem_0028_number_spiral_diagonals import problem_0028
+from projecteuler.problems.problem_0029_distinct_powers import problem_0029
+from projecteuler.problems.problem_0030_digit_fifth_powers import problem_0030
 
 
 def test_problem_0001():
+    assert problem_0001(10, 3, 5) == 23
     assert problem_0001(1000, 3, 5) == 233168
 
 
@@ -35,26 +40,53 @@ def test_problem_0002():
 
 
 def test_problem_0003():
+    assert problem_0003(13195) == 29
     assert problem_0003(600851475143) == 6857
 
 
 def test_problem_0004():
+    assert problem_0004(2) == 9009
     assert problem_0004(3) == 906609
 
 
 def test_problem_0005():
+    assert problem_0005(10) == 2520
     assert problem_0005(20) == 232792560
 
 
 def test_problem_0006():
+    assert problem_0006(10) == 2640
     assert problem_0006(100) == 25164150
 
 
 def test_problem_0007():
+    assert problem_0007(6) == 13
     assert problem_0007(10001) == 104743
 
 
 def test_problem_0008():
+    assert problem_0008('''
+    73167176531330624919225119674426574742355349194934
+    96983520312774506326239578318016984801869478851843
+    85861560789112949495459501737958331952853208805511
+    12540698747158523863050715693290963295227443043557
+    66896648950445244523161731856403098711121722383113
+    62229893423380308135336276614282806444486645238749
+    30358907296290491560440772390713810515859307960866
+    70172427121883998797908792274921901699720888093776
+    65727333001053367881220235421809751254540594752243
+    52584907711670556013604839586446706324415722155397
+    53697817977846174064955149290862569321978468622482
+    83972241375657056057490261407972968652414535100474
+    82166370484403199890008895243450658541227588666881
+    16427171479924442928230863465674813919123162824586
+    17866458359124566529476545682848912883142607690042
+    24219022671055626321111109370544217506941658960408
+    07198403850962455444362981230987879927244284909188
+    84580156166097919133875499200524063689912560717606
+    05886116467109405077541002256983155200055935729725
+    71636269561882670428252483600823257530420752963450
+    ''', 4) == 5832
     assert problem_0008('''
     73167176531330624919225119674426574742355349194934
     96983520312774506326239578318016984801869478851843
@@ -84,6 +116,7 @@ def test_problem_0009():
 
 
 def test_problem_0010():
+    assert problem_0010(10) == 17
     assert problem_0010(2000000) == 142913828922
 
 
@@ -111,6 +144,7 @@ def test_problem_0011():
 
 
 def test_problem_0012():
+    assert problem_0012(5) == 28
     assert problem_0012(500) == 76576500
 
 
@@ -222,18 +256,25 @@ def test_problem_0014():
 
 
 def test_problem_0015():
+    assert problem_0015(2, 2) == 6
     assert problem_0015(20, 20) == 137846528820
 
 
 def test_problem_0016():
+    assert problem_0016(15) == 26
     assert problem_0016(1000) == 1366
 
 
 def test_problem_0017():
+    assert problem_0017(5) == 19
     assert problem_0017(1000) == 21124
 
 
 def test_problem_0018():
+    assert problem_0018('''3
+    7 4
+    2 4 6
+    8 5 9 3''') == 23
     assert problem_0018('''75
     95 64
     17 47 82
@@ -256,6 +297,7 @@ def test_problem_0019():
 
 
 def test_problem_0020():
+    assert problem_0020(10) == 27
     assert problem_0020(100) == 648
 
 
@@ -276,8 +318,28 @@ def test_problem_0024():
 
 
 def test_problem_0025():
+    assert problem_0025(3) == 12
     assert problem_0025(1000) == 4782
 
 
 def test_problem_0026():
     assert problem_0026(1000) == 983
+
+
+def test_problem_0027():
+    assert problem_0027(1000) == -59231
+
+
+def test_problem_0028():
+    assert problem_0028(5) == 101
+    assert problem_0028(1001) == 669171001
+
+
+def test_problem_0029():
+    assert problem_0029(5) == 15
+    assert problem_0029(100) == 9183
+
+
+def test_problem_0030():
+    assert problem_0030(4) == 19316
+    assert problem_0030(5) == 443839
