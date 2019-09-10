@@ -1,5 +1,7 @@
+from itertools import chain, count
 from math import sqrt
 from random import randrange, getrandbits
+from typing import Iterable
 
 
 def is_prime(number):
@@ -105,3 +107,20 @@ def get_probable_prime(num_bits):
         p = getrandbits(num_bits)
         if is_probable_prime(p):
             return p
+
+
+def primes() -> Iterable[int]:
+    """ An, admittedly not very efficient, way of generating all primes (without a known maximum) """
+    return chain([2], filter(is_prime, count(3, 2)))
+
+
+def primes_until(maximum: int) -> Iterable[int]:
+    # Sieve of Eratosthenes is much faster if you need all primes to a given number
+    candidates = [i for i in range(maximum + 1)]
+
+    for candidate in candidates:  # candidates list changes during iteration, changed elements are returned
+        if candidate > 1:
+            yield candidate
+            # Cross out the multiples of this prime
+            for i in range(2, maximum // candidate + 1):
+                candidates[i * candidate] = 0
