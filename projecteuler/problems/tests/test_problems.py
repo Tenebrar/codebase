@@ -28,6 +28,11 @@ from projecteuler.problems.problem_0027_quadratic_primes import problem_0027
 from projecteuler.problems.problem_0028_number_spiral_diagonals import problem_0028
 from projecteuler.problems.problem_0029_distinct_powers import problem_0029
 from projecteuler.problems.problem_0030_digit_fifth_powers import problem_0030
+from projecteuler.problems.problem_0031_coin_sums import problem_0031
+from projecteuler.problems.problem_0032_pandigital_products import problem_0032
+from projecteuler.problems.problem_0033_digit_cancelling_fractions import problem_0033
+from projecteuler.problems.problem_0034_digit_factorials import problem_0034
+from projecteuler.problems.problem_0035_circular_primes import problem_0035
 
 
 def test_problem_0001():
@@ -343,3 +348,24 @@ def test_problem_0029():
 def test_problem_0030():
     assert problem_0030(4) == 19316
     assert problem_0030(5) == 443839
+
+
+def test_problem_0031():
+    assert problem_0031(200) == 73682
+
+
+def test_problem_0032():
+    assert problem_0032() == 45228
+
+
+def test_problem_0033():
+    assert problem_0033() == 100
+
+
+def test_problem_0034():
+    assert problem_0034() == 40730
+
+
+def test_problem_0035():
+    assert problem_0035(100) == 13
+    assert problem_0035(1000000) == 55
