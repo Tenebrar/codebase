@@ -1,4 +1,6 @@
 from projecteuler.util.divisors import divisor_pairs
+from util.conditions.decorators import precondition
+from util.conditions.predicates import is_even
 
 # a + b + c = 1000
 # a**2 + b**2 = c**2
@@ -16,6 +18,7 @@ from projecteuler.util.divisors import divisor_pairs
 # (1000 - a)(1000 - b) = 500,000
 
 
+@precondition(0, is_even)  # All pythagorean triplets have an even sum
 def problem_0009(total: int) -> int:
     for x, y in divisor_pairs(total * total // 2):
         a = total - x

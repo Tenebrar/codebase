@@ -33,6 +33,13 @@ from projecteuler.problems.problem_0032_pandigital_products import problem_0032
 from projecteuler.problems.problem_0033_digit_cancelling_fractions import problem_0033
 from projecteuler.problems.problem_0034_digit_factorials import problem_0034
 from projecteuler.problems.problem_0035_circular_primes import problem_0035
+from projecteuler.problems.problem_0036_double_base_palindromes import problem_0036
+from projecteuler.problems.problem_0037_truncatable_primes import problem_0037
+from projecteuler.problems.problem_0038_pandigital_multiples import problem_0038
+from projecteuler.problems.problem_0039_integer_right_triangles import problem_0039
+from projecteuler.problems.problem_0040_champernowne_s_constant import problem_0040
+from projecteuler.problems.problem_0041_pandigital_prime import problem_0041
+from projecteuler.problems.problem_0042_coded_triangle_numbers import problem_0042
 
 
 def test_problem_0001():
@@ -369,3 +376,31 @@ def test_problem_0034():
 def test_problem_0035():
     assert problem_0035(100) == 13
     assert problem_0035(1000000) == 55
+
+
+def test_problem_0036():
+    assert problem_0036(1000000) == 872187
+
+
+def test_problem_0037():
+    assert problem_0037() == 748317
+
+
+def test_problem_0038():
+    assert problem_0038() == 932718654
+
+
+def test_problem_0039():
+    assert problem_0039(1000) == 840
+
+
+def test_problem_0040():
+    assert problem_0040([1, 10, 100, 1000, 10000, 100000, 1000000]) == 210
+
+
+def test_problem_0041():
+    assert problem_0041() == 7652413
+
+
+def test_problem_0042():
+    assert problem_0042('p042_words.txt') == 162
