@@ -40,6 +40,7 @@ from projecteuler.problems.problem_0039_integer_right_triangles import problem_0
 from projecteuler.problems.problem_0040_champernowne_s_constant import problem_0040
 from projecteuler.problems.problem_0041_pandigital_prime import problem_0041
 from projecteuler.problems.problem_0042_coded_triangle_numbers import problem_0042
+from projecteuler.problems.problem_0043_sub_string_divisibility import problem_0043
 
 
 def test_problem_0001():
@@ -404,3 +405,7 @@ def test_problem_0041():
 
 def test_problem_0042():
     assert problem_0042('p042_words.txt') == 162
+
+
+def test_problem_0043():
+    assert problem_0043() == 16695334890
