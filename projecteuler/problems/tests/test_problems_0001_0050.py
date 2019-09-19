@@ -1,46 +1,53 @@
-from projecteuler.problems.problem_0001_muliples_of_3_and_5 import problem_0001
-from projecteuler.problems.problem_0002_even_fibonacci_numbers import problem_0002
-from projecteuler.problems.problem_0003_largest_prime_factor import problem_0003
-from projecteuler.problems.problem_0004_largest_palindrome_product import problem_0004
-from projecteuler.problems.problem_0005_smallest_multiple import problem_0005
-from projecteuler.problems.problem_0006_sum_square_difference import problem_0006
-from projecteuler.problems.problem_0007_10001st_prime import problem_0007
-from projecteuler.problems.problem_0008_largest_product_in_a_series import problem_0008
-from projecteuler.problems.problem_0009_special_pythagorean_triplet import problem_0009
-from projecteuler.problems.problem_0010_summation_of_primes import problem_0010
-from projecteuler.problems.problem_0011_largest_product_in_a_grid import problem_0011
-from projecteuler.problems.problem_0012_highly_divisible_triangular_number import problem_0012
-from projecteuler.problems.problem_0013_large_sum import problem_0013
-from projecteuler.problems.problem_0014_longest_collatz_sequence import problem_0014
-from projecteuler.problems.problem_0015_lattice_paths import problem_0015
-from projecteuler.problems.problem_0016_power_digit_sum import problem_0016
-from projecteuler.problems.problem_0017_number_letter_counts import problem_0017
-from projecteuler.problems.problem_0018_maximum_path_sum import problem_0018
-from projecteuler.problems.problem_0019_counting_sundays import problem_0019
-from projecteuler.problems.problem_0020_factorial_digit_sum import problem_0020
-from projecteuler.problems.problem_0021_amicable_numbers import problem_0021
-from projecteuler.problems.problem_0022_names_scores import problem_0022
-from projecteuler.problems.problem_0023_non_abundant_sums import problem_0023
-from projecteuler.problems.problem_0024_lexicographic_permutations import problem_0024
-from projecteuler.problems.problem_0025_1000_digit_fibonacci_number import problem_0025
-from projecteuler.problems.problem_0026_reciprocal_cycles import problem_0026
-from projecteuler.problems.problem_0027_quadratic_primes import problem_0027
-from projecteuler.problems.problem_0028_number_spiral_diagonals import problem_0028
-from projecteuler.problems.problem_0029_distinct_powers import problem_0029
-from projecteuler.problems.problem_0030_digit_fifth_powers import problem_0030
-from projecteuler.problems.problem_0031_coin_sums import problem_0031
-from projecteuler.problems.problem_0032_pandigital_products import problem_0032
-from projecteuler.problems.problem_0033_digit_cancelling_fractions import problem_0033
-from projecteuler.problems.problem_0034_digit_factorials import problem_0034
-from projecteuler.problems.problem_0035_circular_primes import problem_0035
-from projecteuler.problems.problem_0036_double_base_palindromes import problem_0036
-from projecteuler.problems.problem_0037_truncatable_primes import problem_0037
-from projecteuler.problems.problem_0038_pandigital_multiples import problem_0038
-from projecteuler.problems.problem_0039_integer_right_triangles import problem_0039
-from projecteuler.problems.problem_0040_champernowne_s_constant import problem_0040
-from projecteuler.problems.problem_0041_pandigital_prime import problem_0041
-from projecteuler.problems.problem_0042_coded_triangle_numbers import problem_0042
-from projecteuler.problems.problem_0043_sub_string_divisibility import problem_0043
+from projecteuler.problems.problems_0001_0050.problem_0001_muliples_of_3_and_5 import problem_0001
+from projecteuler.problems.problems_0001_0050.problem_0002_even_fibonacci_numbers import problem_0002
+from projecteuler.problems.problems_0001_0050.problem_0003_largest_prime_factor import problem_0003
+from projecteuler.problems.problems_0001_0050.problem_0004_largest_palindrome_product import problem_0004
+from projecteuler.problems.problems_0001_0050.problem_0005_smallest_multiple import problem_0005
+from projecteuler.problems.problems_0001_0050.problem_0006_sum_square_difference import problem_0006
+from projecteuler.problems.problems_0001_0050.problem_0007_10001st_prime import problem_0007
+from projecteuler.problems.problems_0001_0050.problem_0008_largest_product_in_a_series import problem_0008
+from projecteuler.problems.problems_0001_0050.problem_0009_special_pythagorean_triplet import problem_0009
+from projecteuler.problems.problems_0001_0050.problem_0010_summation_of_primes import problem_0010
+from projecteuler.problems.problems_0001_0050.problem_0011_largest_product_in_a_grid import problem_0011
+from projecteuler.problems.problems_0001_0050.problem_0012_highly_divisible_triangular_number import problem_0012
+from projecteuler.problems.problems_0001_0050.problem_0013_large_sum import problem_0013
+from projecteuler.problems.problems_0001_0050.problem_0014_longest_collatz_sequence import problem_0014
+from projecteuler.problems.problems_0001_0050.problem_0015_lattice_paths import problem_0015
+from projecteuler.problems.problems_0001_0050.problem_0016_power_digit_sum import problem_0016
+from projecteuler.problems.problems_0001_0050.problem_0017_number_letter_counts import problem_0017
+from projecteuler.problems.problems_0001_0050.problem_0018_maximum_path_sum import problem_0018
+from projecteuler.problems.problems_0001_0050.problem_0019_counting_sundays import problem_0019
+from projecteuler.problems.problems_0001_0050.problem_0020_factorial_digit_sum import problem_0020
+from projecteuler.problems.problems_0001_0050.problem_0021_amicable_numbers import problem_0021
+from projecteuler.problems.problems_0001_0050.problem_0022_names_scores import problem_0022
+from projecteuler.problems.problems_0001_0050.problem_0023_non_abundant_sums import problem_0023
+from projecteuler.problems.problems_0001_0050.problem_0024_lexicographic_permutations import problem_0024
+from projecteuler.problems.problems_0001_0050.problem_0025_1000_digit_fibonacci_number import problem_0025
+from projecteuler.problems.problems_0001_0050.problem_0026_reciprocal_cycles import problem_0026
+from projecteuler.problems.problems_0001_0050.problem_0027_quadratic_primes import problem_0027
+from projecteuler.problems.problems_0001_0050.problem_0028_number_spiral_diagonals import problem_0028
+from projecteuler.problems.problems_0001_0050.problem_0029_distinct_powers import problem_0029
+from projecteuler.problems.problems_0001_0050.problem_0030_digit_fifth_powers import problem_0030
+from projecteuler.problems.problems_0001_0050.problem_0031_coin_sums import problem_0031
+from projecteuler.problems.problems_0001_0050.problem_0032_pandigital_products import problem_0032
+from projecteuler.problems.problems_0001_0050.problem_0033_digit_cancelling_fractions import problem_0033
+from projecteuler.problems.problems_0001_0050.problem_0034_digit_factorials import problem_0034
+from projecteuler.problems.problems_0001_0050.problem_0035_circular_primes import problem_0035
+from projecteuler.problems.problems_0001_0050.problem_0036_double_base_palindromes import problem_0036
+from projecteuler.problems.problems_0001_0050.problem_0037_truncatable_primes import problem_0037
+from projecteuler.problems.problems_0001_0050.problem_0038_pandigital_multiples import problem_0038
+from projecteuler.problems.problems_0001_0050.problem_0039_integer_right_triangles import problem_0039
+from projecteuler.problems.problems_0001_0050.problem_0040_champernowne_s_constant import problem_0040
+from projecteuler.problems.problems_0001_0050.problem_0041_pandigital_prime import problem_0041
+from projecteuler.problems.problems_0001_0050.problem_0042_coded_triangle_numbers import problem_0042
+from projecteuler.problems.problems_0001_0050.problem_0043_sub_string_divisibility import problem_0043
+from projecteuler.problems.problems_0001_0050.problem_0044_pentagon_numbers import problem_0044
+from projecteuler.problems.problems_0001_0050.problem_0045_triangular_pentagonal_and_hexagonal import problem_0045
+from projecteuler.problems.problems_0001_0050.problem_0046_goldbach_s_other_conjecture import problem_0046
+from projecteuler.problems.problems_0001_0050.problem_0047_distinct_primes_factors import problem_0047
+from projecteuler.problems.problems_0001_0050.problem_0048_self_powers import problem_0048
+from projecteuler.problems.problems_0001_0050.problem_0049_prime_permutations import problem_0049
+from projecteuler.problems.problems_0001_0050.problem_0050_consecutive_prime_sum import problem_0050
 
 
 def test_problem_0001():
@@ -409,3 +416,36 @@ def test_problem_0042():
 
 def test_problem_0043():
     assert problem_0043() == 16695334890
+
+
+def test_problem_0044():
+    assert problem_0044() == 5482660
+
+
+def test_problem_0045():
+    assert problem_0045() == 1533776805
+
+
+def test_problem_0046():
+    assert problem_0046() == 5777
+
+
+def test_problem_0047():
+    assert problem_0047(2) == 14
+    assert problem_0047(3) == 644
+    assert problem_0047(4) == 134043
+
+
+def test_problem_0048():
+    assert problem_0048(10) == '0405071317'
+    assert problem_0048(1000) == '9110846700'
+
+
+def test_problem_0049():
+    assert problem_0049() == 296962999629
+
+
+def test_problem_0050():
+    assert problem_0050(100) == 41
+    assert problem_0050(1000) == 953
+    assert problem_0050(1000000) == 997651

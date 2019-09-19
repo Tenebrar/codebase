@@ -61,7 +61,7 @@ def extract_power_of_two(number):
     while not number & 1:
         exponent += 1
         number >>= 1
-    return exponent, number
+    return exponent, number  # TODO check if extract_exponent_of_two_divisor can be used here
 
 
 def _is_composite(potential_witness, exponent, factor, potential_prime):
