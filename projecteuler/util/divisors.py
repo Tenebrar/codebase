@@ -1,6 +1,8 @@
-from itertools import count, chain
-from math import sqrt, log2
+from itertools import chain, count
+from math import log2, sqrt
 from typing import Iterable, Tuple
+
+from more_itertools import ilen
 
 from util.conditions.decorators import precondition
 from util.conditions.predicates import is_strict_positive
@@ -39,7 +41,7 @@ def divisors(num: int) -> Iterable[int]:
 
 def num_divisors(num: int) -> int:
     """ Returns the number of divisors of a number """
-    return sum(1 for _ in divisors(num))
+    return ilen(divisors(num))
 
 
 def extract_exponent_of_two_divisor(num: int) -> int:

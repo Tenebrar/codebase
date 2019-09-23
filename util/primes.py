@@ -57,11 +57,13 @@ def extract_power_of_two(number):
     :param number: The number to have a power of 2 extracted
     :return: a tuple containing the exponent and the remaining factor (which will be odd)
     """
+    # TODO check if extract_exponent_of_two_divisor can be used here (and if it would be faster)
+    # extract_exponent_of_two_divisor: int(log2(num & (~(num - 1))))
     exponent = 0
     while not number & 1:
         exponent += 1
         number >>= 1
-    return exponent, number  # TODO check if extract_exponent_of_two_divisor can be used here
+    return exponent, number
 
 
 def _is_composite(potential_witness, exponent, factor, potential_prime):
