@@ -1,6 +1,7 @@
 from projecteuler.problems.problems_0051_0100.problem_0051_prime_digit_replacements import problem_0051
 from projecteuler.problems.problems_0051_0100.problem_0052_permuted_multiples import problem_0052
 from projecteuler.problems.problems_0051_0100.problem_0053_combinatoric_selections import problem_0053
+from projecteuler.problems.problems_0051_0100.problem_0054_poker_hands import problem_0054
 
 
 def test_problem_0051():
@@ -15,3 +16,7 @@ def test_problem_0052():
 
 def test_problem_0053():
     assert problem_0053() == 4075
+
+
+def test_problem_0054():
+    assert problem_0054('p054_poker.txt') == 376
