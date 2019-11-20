@@ -2,8 +2,8 @@ from typing import List
 from zlib import crc32
 
 from sandbox.fileformats.file_formats import (
-    FileFormatException, ListFormat, Variable, BigEndianInt, FixedLengthValue, VariableLengthValue, FixedValue,
-    RepeatUntilEof, read_formatted_data
+    BigEndianInt, FileFormatException, FixedLengthValue, FixedValue, ListFormat, RepeatUntilEof, Variable,
+    VariableLengthValue, read_formatted_data
 )
 
 

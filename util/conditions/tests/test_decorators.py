@@ -113,3 +113,89 @@ def test_function_precondition_by_pos_negative_pos() -> None:
         @precondition(-1, is_strict_positive)
         def fun(num: int) -> int:
             return num
+
+
+def test_function_precondition_exception_factory_type() -> None:
+    @precondition('num', is_strict_positive, ValueError)
+    def fun(num: int) -> int:
+        return num
+
+    with raises(ValueError):
+        fun(num=-3)
+
+
+def test_function_precondition_exception_factory_lambda() -> None:
+    @precondition('num', is_strict_positive, lambda v: ValueError())
+    def fun(num: int) -> int:
+        return num
+
+    with raises(ValueError):
+        fun(num=-3)
+
+
+def test_function_precondition_exception_factory_incorrect_type() -> None:
+    with raises(MalformedDecoratorError):
+        @precondition('num', is_strict_positive, str)
+        def fun(num: int) -> int:
+            return num
+
+
+def test_function_no_value_precondition_exception_factory_type() -> None:
+    @no_value_precondition(lambda: False, ValueError)
+    def fun(num: int) -> int:
+        return num
+
+    with raises(ValueError):
+        fun(num=-3)
+
+
+def test_function_no_value_precondition_exception_factory_lambda() -> None:
+    @no_value_precondition(lambda: False, lambda: ValueError())
+    def fun(num: int) -> int:
+        return num
+
+    with raises(ValueError):
+        fun(num=-3)
+
+
+def test_function_no_value_precondition_exception_factory_incorrect_type() -> None:
+    with raises(MalformedDecoratorError):
+        @no_value_precondition(lambda: False, str)
+        def fun(num: int) -> int:
+            return num
+
+
+def test_function_multi_value_precondition_exception_factory_type() -> None:
+    def is_greater_than(a: int, b: int) -> bool:
+        return a > b
+
+    @multi_value_precondition([0, 1], is_greater_than, ValueError)
+    def fun(c: int, d: int) -> int:
+        return c - d
+
+    assert fun(5, 3) == 2
+    with raises(ValueError):
+        fun(3, 5)
+
+
+def test_function_multi_value_precondition_exception_factory_lambda() -> None:
+    def is_greater_than(a: int, b: int) -> bool:
+        return a > b
+
+    @multi_value_precondition([0, 1], is_greater_than, lambda d: ValueError())
+    def fun(c: int, d: int) -> int:
+        return c - d
+
+    assert fun(5, 3) == 2
+    with raises(ValueError):
+        fun(3, 5)
+
+
+def test_function_multi_value_precondition_exception_factory_incorrect_type() -> None:
+    def is_greater_than(a: int, b: int) -> bool:
+        return a > b
+
+    with raises(MalformedDecoratorError):
+        @multi_value_precondition([0, 1], is_greater_than, str)
+        def fun(c: int, d: int) -> int:
+            return c - d
