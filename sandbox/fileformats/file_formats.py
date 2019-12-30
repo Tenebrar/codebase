@@ -4,14 +4,14 @@ from typing import Generic, TypeVar, Dict, Any, List, Callable
 from sandbox.fileformats.file_utils import ByteStreamReader, read_file
 
 
-class FileFormatException(Exception):
+class FormatException(Exception):
     """ Exception indicating the read data is not the expected format. """
 
 
 X = TypeVar('X', covariant=True)
 
 
-class FileFormat(ABC, Generic[X]):
+class DataFormat(ABC, Generic[X]):
     """ Object that can read data and interpret it to make an instance of X """
 
     @abstractmethod
@@ -22,27 +22,27 @@ class FileFormat(ABC, Generic[X]):
         :param data: A ByteStreamReader
         :param parameters: A dict to hold parameters (starts empty, allows for communication between child formats)
         :return: An instance of X
-        :raises FileFormatException: if the data does not adhere to the right format
+        :raises FormatException: if the data does not adhere to the right format
         """
 
 
 Y = TypeVar('Y')
 
 
-def read_formatted_data(file_format: FileFormat[Y], filename: str) -> Y:
+def read_formatted_data(data: bytes, data_format: DataFormat[Y]) -> Y:
     """
-    Reads a file with a certain format
+    Reads byte data with a certain format
 
-    :param file_format: A FileFormat
-    :param filename: A filename
+    :param data: Bytes that form the data to be read
+    :param data_format: A DataFormat
     :return: An instance of Y
-    :raises FileFormatException: if the data does not adhere to the right format
+    :raises FormatException: if the data does not adhere to the right format
     """
-    stream = ByteStreamReader(read_file(filename))
-    return file_format.read(stream, {})
+    stream = ByteStreamReader(data)
+    return data_format.read(stream, {})
 
 
-class FixedLengthValue(FileFormat[bytes]):
+class FixedLengthValue(DataFormat[bytes]):
     def __init__(self, length: int) -> None:
         self.length = length
 
@@ -50,16 +50,19 @@ class FixedLengthValue(FileFormat[bytes]):
         return data.read(self.length)
 
 
-class BigEndianInt(FileFormat[int]):
+class BigEndianInt(DataFormat[int]):
+    def __init__(self, number_of_bytes=4):
+        self.number_of_bytes = number_of_bytes
+
     def read(self, data: ByteStreamReader, parameters: Dict[str, Any]) -> int:
-        return int.from_bytes(data.read(4), byteorder='big')
+        return int.from_bytes(data.read(self.number_of_bytes), byteorder='big')
 
 
 Z = TypeVar('Z')
 
 
-class Variable(FileFormat[Z]):
-    def __init__(self, variable_name: str, file_format: FileFormat[Z]) -> None:
+class Variable(DataFormat[Z]):
+    def __init__(self, variable_name: str, file_format: DataFormat[Z]) -> None:
         self.variable_name = variable_name
         self.file_format = file_format
 
@@ -69,7 +72,7 @@ class Variable(FileFormat[Z]):
         return result
 
 
-class VariableLengthValue(FileFormat[bytes]):
+class VariableLengthValue(DataFormat[bytes]):
     def __init__(self, variable_name: str) -> None:
         self.variable_name = variable_name
 
@@ -77,22 +80,22 @@ class VariableLengthValue(FileFormat[bytes]):
         return data.read(parameters[self.variable_name])
 
 
-class FixedValue(FileFormat[bytes]):
+class FixedValue(DataFormat[bytes]):
     def __init__(self, value: bytes) -> None:
         self.value = value
 
     def read(self, data: ByteStreamReader, parameters: Dict[str, Any]) -> bytes:
         result = data.read(len(self.value))
         if result != self.value:
-            raise FileFormatException('Expected {self.value}, but got {result}')
+            raise FormatException('Expected {self.value}, but got {result}')
         return result
 
 
 A = TypeVar('A')
 
 
-class RepeatUntilEof(FileFormat[List[A]]):
-    def __init__(self, child_format: FileFormat[A]):
+class RepeatUntilEof(DataFormat[List[A]]):
+    def __init__(self, child_format: DataFormat[A]):
         self.child_format = child_format
 
     def read(self, data: ByteStreamReader, parameters: Dict[str, Any]) -> List[A]:
@@ -105,8 +108,8 @@ class RepeatUntilEof(FileFormat[List[A]]):
 B = TypeVar('B')
 
 
-class ListFormat(FileFormat[B]):
-    def __init__(self, factory: Callable[..., B], child_format_list: List[FileFormat[Any]]) -> None:
+class ListFormat(DataFormat[B]):
+    def __init__(self, factory: Callable[..., B], child_format_list: List[DataFormat[Any]]) -> None:
         self.factory = factory
         self.child_format_list = child_format_list
 
