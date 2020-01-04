@@ -7,6 +7,7 @@ from projecteuler.problems.problems_0051_0100.problem_0056_powerful_digit_sum im
 from projecteuler.problems.problems_0051_0100.problem_0057_square_root_convergents import problem_0057
 from projecteuler.problems.problems_0051_0100.problem_0058_spiral_primes import problem_0058
 from projecteuler.problems.problems_0051_0100.problem_0059_xor_decryption import problem_0059
+from projecteuler.problems.problems_0051_0100.problem_0063_powerful_digit_counts import problem_0063
 
 
 def test_problem_0051():
@@ -45,3 +46,7 @@ def test_problem_0058():
 
 def test_problem_0059():
     assert problem_0059('p059_cipher.txt') == 129448
+
+
+def test_problem_0063():
+    assert problem_0063() == 49

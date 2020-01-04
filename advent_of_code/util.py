@@ -12,7 +12,7 @@ def input_file():
     util_directory = path.dirname(__file__)
 
     relative_path = path.relpath(calling_directory, util_directory)
-    filename = path.join('C:\\Users\\Peter\\Documents\\advent_of_code', relative_path, 'input.txt')
+    filename = path.join('/Users/peter/Downloads/aoc', f'{relative_path}.txt')
 
     with open(filename) as file:
         yield file

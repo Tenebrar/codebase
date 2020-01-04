@@ -1,23 +1,14 @@
 from datetime import datetime, timedelta
 from decimal import Decimal
-from typing import Any, Container, Type, Iterable, Callable
+from typing import Any, Callable, Container, Iterable, Type
 
 from pytest import mark, param
 
 from util.conditions.predicates import (
-    is_even, is_greater_than, is_in, is_negative, is_not_in, is_not_none, is_odd, is_positive, is_strict_negative,
-    is_strict_positive, is_type,
-    is_greater_than_or_equal,
-    is_less_than,
-    is_less_than_or_equal,
-    each,
-    is_after,
-    is_before,
-    is_not_implemented_yet,
-    is_greater_than_multi,
-    is_greater_than_or_equal_multi,
-    is_less_than_multi,
-    is_less_than_or_equal_multi
+    each, is_after, is_before, is_even, is_greater_than, is_greater_than_multi, is_greater_than_or_equal,
+    is_greater_than_or_equal_multi, is_in, is_less_than, is_less_than_multi, is_less_than_or_equal,
+    is_less_than_or_equal_multi, is_negative, is_not_implemented_yet, is_not_in, is_not_none, is_odd, is_positive,
+    is_strict_negative, is_strict_positive, is_type
 )
 
 
