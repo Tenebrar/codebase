@@ -1,0 +1,39 @@
+{% load pathfinder_filters %}
+
+<div class="description">
+    <div style="float: left;">
+        <div class="value" style="width: 220px;">{{ character.name|or_space }}</div><div class="subscript">Character Name</div>
+    </div>
+    <div style="float: left;">
+        <div class="value" style="width: 120px;">{{ character.alignment_readable|or_space }}</div><div class="subscript">Alignment</div>
+    </div>
+    <div style="float: left;">
+        <div class="value" style="width: 360px;">{{ character.player|or_space }}</div><div class="subscript">Player</div>
+    </div>
+    <div style="float: left;">
+        <div class="value" style="width: 360px;">{{ character.class_and_level|or_space }}</div><div class="subscript">Character Class and Level</div>
+    </div>
+
+    <table class="description-table" style="clear: both">
+        <tr>
+            <td colspan="2"><div class="value" style="width: 220px;">{{ character.name|or_space }}</div><div class="subscript">Character Name</div></td>
+            <td colspan="2"><div class="value" style="width: 120px;">{{ character.alignment_readable|or_space }}</div><div class="subscript">Alignment</div></td>
+            <td colspan="4"><div class="value" style="width: 360px;">{{ character.player|or_space }}</div><div class="subscript">Player</div></td>
+        </tr>
+        <tr>
+            <td colspan="4"><div class="value" style="width: 360px;">{{ character.class_and_level|or_space }}</div><div class="subscript">Character Class and Level</div></td>
+            <td colspan="2"><div class="value" style="width: 170px;">{{ character.deity|or_space }}</div><div class="subscript">Deity</div></td>
+            <td colspan="2"><div class="value" style="width: 170px;">{{ character.homeland|or_space }}</div><div class="subscript">Homeland</div></td>
+        </tr>
+        <tr>
+            <td><div class="value" style="width: 140px;">{{ character.race|or_space }}</div><div class="subscript">Race</div></td>
+            <td><div class="value" style="width: 60px;">{{ character.size_readable|or_space }}</div><div class="subscript">Size</div></td>
+            <td><div class="value" style="width: 50px;">{{ character.gender_readable|or_space }}</div><div class="subscript">Gender</div></td>
+            <td><div class="value" style="width: 50px;">{{ character.age|or_space }}</div><div class="subscript">Age</div></td>
+            <td><div class="value" style="width: 75px;">{{ character.height_readable|or_space }}</div><div class="subscript">Height</div></td>
+            <td><div class="value" style="width: 75px;">{{ character.weight_readable|or_space }}</div><div class="subscript">Weight</div></td>
+            <td><div class="value" style="width: 75px;">{{ character.hair|or_space }}</div><div class="subscript">Hair</div></td>
+            <td><div class="value" style="width: 75px;">{{ character.eyes|or_space }}</div><div class="subscript">Eyes</div></td>
+        </tr>
+    </table>
+</div>

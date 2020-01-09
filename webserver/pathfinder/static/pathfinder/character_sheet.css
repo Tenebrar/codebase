@@ -1,0 +1,55 @@
+body {
+    color: black;
+    background-color: white;
+    font-size: 1em;
+    width: 297mm /* A4 width in an attempt to keep the sheet printable */
+}
+
+.logo {
+    float: left;
+}
+
+.logo-image {
+    width: 300px;
+}
+
+.logo-text {
+    text-align: center;
+    font-size: 2em;
+}
+
+.description {
+    float: left;
+}
+
+.description-table {
+    padding: 6px;
+    border-spacing: 6px;
+}
+
+.value {
+    /* Simulate the look of a disabled input field */
+    border: 1px solid lightgrey;
+    font-size: 1em;
+    padding: 2px 3px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+input {
+    font-size: 1em;
+}
+
+.sheet-statlabel {
+    color: white;
+    background-color: black;
+    text-align: center;
+}
+
+.subscript {
+    font-size: 0.7em;
+}
+
+td {
+    vertical-align: top;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- Strict mode is set to make sure inheritance works properly for some visual elements -->
+
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'pathfinder/character_sheet.css' %}">
+        <link rel="shortcut icon" href="{% static 'pathfinder/images/favicon.ico' %}" type="image/x-icon">
+        <title>Pathfinder character sheet</title>
+    </head>
+    <body>
+        {% include "pathfinder/sheet_parts/logo.html" %}
+        {% include "pathfinder/sheet_parts/description.html" %}
+
+        <table style="clear: both;">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                {% include "pathfinder/sheet_parts/abilities.html" %}
+                            </td>
+                            <td>
+                                {% include "pathfinder/sheet_parts/hp.html" %}
+                                {% include "pathfinder/sheet_parts/initiative.html" %}
+                            </td>
+                        </tr>
+                    </table>
+                    {% include "pathfinder/sheet_parts/AC.html" %}
+                    {% include "pathfinder/sheet_parts/saves.html" %}
+                    {% include "pathfinder/sheet_parts/attack.html" %}
+                    {% include "pathfinder/sheet_parts/weapons.html" %}
+                </td>
+                <td>
+                    {% include "pathfinder/sheet_parts/speed.html" %}
+                    {% include "pathfinder/sheet_parts/skills.html" %}
+                    {% include "pathfinder/sheet_parts/languages.html" %}
+                </td>
+            </tr>
+        </table>
+        <!-- TODO find a way to add a pagebreak in printing if possible -->
+        <hr/>
+        <table>
+            <tr>
+                <td>
+                    {% include "pathfinder/sheet_parts/AC_items.html" %}
+                    <table>
+                        <tr>
+                            <td>
+                                {% include "pathfinder/sheet_parts/gear.html" %}
+                                {% include "pathfinder/sheet_parts/load.html" %}
+                                {% include "pathfinder/sheet_parts/money.html" %}
+                            </td>
+                            <td>
+                                {% include "pathfinder/sheet_parts/feats.html" %}
+                                {% include "pathfinder/sheet_parts/special_abilities.html" %}
+                                {% include "pathfinder/sheet_parts/experience.html" %}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    {% include "pathfinder/sheet_parts/spells.html" %}
+                    {% include "pathfinder/sheet_parts/spells_known.html" %}
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

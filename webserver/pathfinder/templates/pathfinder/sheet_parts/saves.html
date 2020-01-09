@@ -1,0 +1,35 @@
+<table>
+    <tr>
+        <th>Saving Throws</th>
+        <th>Total</th>
+        <td rowspan="4">
+            <textarea name="attr_statmod" style="height: 120px; width: 260px;" disabled="true" value="Immune: {{ character.immunities }} {{ character.save_modifiers }}">
+Immune: {{ character.immunities }}
+{{ character.save_modifiers }}
+            </textarea>
+            <br>
+            <div style="font-size: 0.5em;" valign="top">Modifiers</div>
+        </td>
+    </tr>
+    <tr>
+        <td class="sheet-statlabel" style="width: 60px;">
+            Fortitude<br>
+            <div style="font-size: 0.65em;">(Constitution)</div>
+        </td>
+        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.fortitude_save }}"></td>
+    </tr>
+    <tr>
+        <td class="sheet-statlabel" style="width: 60px;">
+            Reflex<br>
+            <div style="font-size: 0.65em;">(Dexterity)</div>
+        </td>
+        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.reflex_save }}"></td>
+    </tr>
+    <tr>
+        <td class="sheet-statlabel" style="width: 60px;">
+            Will<br>
+            <div style="font-size: 0.65em;">(Wisdom)</div>
+        </td>
+        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.will_save }}"></td>
+    </tr>
+</table>

@@ -1,13 +1,13 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 from django.db.models import F
-from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.http import require_GET, require_http_methods
 
-from webserver.polls.models import Question, Choice
+from webserver.polls.models import Choice, Question
 from webserver.util.view_decorators import template_view
 
 INDEX_SIZE = 5
