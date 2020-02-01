@@ -1,4 +1,6 @@
-<b>Languages</b><br>
-<fieldset class="repeating_languages">
-    <input type="text" style="width: 353px;" disabled="true" value="{{ character.languages_readable }}">
-</fieldset>
+{% load pathfinder_filters %}
+
+<div class="section languages">
+    <div>Languages:</div>
+    <div style="display: inline-block;" class="underlined value">{{ character.languages|or_space }}</div>
+</div>

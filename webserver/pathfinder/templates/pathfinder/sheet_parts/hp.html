@@ -1,16 +1,22 @@
-<table>
-    <tr>
-        <td class="sheet-statlabel" style="width: 70px;">
-            HP<br>
-            <div class="subscript">Hit Points</div>
-        </td>
-        <td>
-            <input class="sheet-inputbox" type="text" style="height: 24px; width: 70px;" disabled="true" value="{{ character.hit_points }}"><br>
-            <div style="font-size: 0.5em;">Total</div>
-        </td>
-        <td>
-            <input class="sheet-inputbox" type="text" style="height: 24px; width: 53px;" disabled="true" value="{{ character.damage_resistance|default:"/" }}"><br>
-            <div style="font-size: 0.5em;">DR</div>
-        </td>
-    </tr>
-</table>
+{% load pathfinder_filters %}
+
+<div class="section hit-points" style="display: inline-block;">
+    <subscripted-element class="inverted padded" subscript="HIT POINTS" subscript-style="width: 100%;">HP</subscripted-element>
+    <subscripted-element subscript="Total" subscripted-class="boxed number3 value">{{ character.hit_points|or_space }}</subscripted-element>
+</div>
+
+<div class="section damage-resistance" style="display: inline-block;">
+    <subscripted-element subscript="DR" subscripted-class="boxed number2 value">{{ character.damage_resistance|or_slash }}</subscripted-element>
+</div>
+
+<div class="section damage">
+    <div style="font-size: 0.7em; padding: 4px;">wounds/current hp</div>
+
+    <div class="boxed value" style="display: inline-block; width: 150px; height: 3em;">
+    </div>
+
+    <div style="font-size: 0.7em; padding: 4px;">nonlethal damage</div>
+
+    <div class="boxed value" style="display: inline-block; width: 150px;">
+    </div>
+</div>

@@ -1,1 +1,23 @@
-<div style="width: 250px;"><input type="text" style="width: 253px;" disabled="true" value="{{ character.experience }}"><br>Experience</div>
+{% load pathfinder_filters %}
+
+<div class="section experience">
+    <table>
+        <thead>
+            <tr>
+                <th class="half-borders" style="width: 260px; font-size: 1.5em;" rowspan="2">
+                    <div class="inverted inner-round2">Experience</div>
+                </th>
+                <th>&nbsp;</th>
+            </tr>
+            <tr>
+                <th class="inverted" style="border-left: 1px solid black;">next level</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="value" style="border-left: 1px solid black; border-bottom: 1px solid black;">{{ character.experience|or_space }}</td>
+                <td class="value" style="border: 1px solid black;">{{ character.next_level|or_space }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

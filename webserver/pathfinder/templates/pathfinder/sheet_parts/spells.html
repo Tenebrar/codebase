@@ -1,28 +1,98 @@
-<table cellpadding="10" cellspacing="0">
-    <tr>
-        <td colspan="3" style="font-size: 1.5em; width: 450px;">Spells</td>
-    </tr>
-</table>
-<table cellpadding="0" cellspacing="0">
-    <tr>
-        <td class="sheet-statlabel" style="width: 94px;">Spells Known</td>
-        <td class="sheet-statlabel" style="width: 94px;">Spell<br>Save DC</td>
-        <td class="sheet-statlabel" style="width: 94px;">Level</td>
-        <td class="sheet-statlabel" style="width: 94px;">Spells<br>Per Day</td>
-        <td class="sheet-statlabel" style="width: 94px;">Bonus Spells</td>
-    </tr>
-    <tr>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 45px;" disabled="true"></td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 45px;" disabled="true"></td>
-        <td>
-            <div class="sheet-inputbox" style="height: 24px; width: 45px;">0</div>
-        </td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 45px;" disabled="true"></td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 45px;" disabled="true"></td>
-    </tr>
-</table>
-<table cellpadding="10" cellspacing="0">
-    <tr>
-        <td style="font-size: 0.64em;"><input class="sheet-inputbox" type="text" style="height: 34px; width: 450px;" disabled="true"><br>Conditional Modifiers</td>
-    </tr>
-</table>
+{% load pathfinder_filters %}
+
+<div class="section spells">
+    <div style="text-align: center;">
+        <div class="inverted inner-round" style="display: inline-block;">Spells</div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Spells known</th>
+                <th>Spell save DC</th>
+                <th>Level</th>
+                <th>Spell per day</th>
+                <th>Bonus spells</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><div class="boxed number2 value">{{ character.level0_spells_known|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level0_spell_save_dc|or_slash }}</div></td>
+                <td>0</td>
+                <td><div class="boxed number2 value">{{ character.level0_spells_per_day|or_slash }}</div></td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td><div class="boxed number2 value">{{ character.level1_spells_known|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level1_spell_save_dc|or_slash }}</div></td>
+                <td>1st</td>
+                <td><div class="boxed number2 value">{{ character.level1_spells_per_day|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level1_bonus_spells|or_slash }}</div></td>
+            </tr>
+            <tr>
+                <td><div class="boxed number2 value">{{ character.level2_spells_known|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level2_spell_save_dc|or_slash }}</div></td>
+                <td>2nd</td>
+                <td><div class="boxed number2 value">{{ character.level2_spells_per_day|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level2_bonus_spells|or_slash }}</div></td>
+            </tr>
+            <tr>
+                <td><div class="boxed number2 value">{{ character.level3_spells_known|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level3_spell_save_dc|or_slash }}</div></td>
+                <td>3rd</td>
+                <td><div class="boxed number2 value">{{ character.level3_spells_per_day|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level3_bonus_spells|or_slash }}</div></td>
+            </tr>
+            <tr>
+                <td><div class="boxed number2 value">{{ character.level4_spells_known|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level4_spell_save_dc|or_slash }}</div></td>
+                <td>4th</td>
+                <td><div class="boxed number2 value">{{ character.level4_spells_per_day|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level4_bonus_spells|or_slash }}</div></td>
+            </tr>
+            <tr>
+                <td><div class="boxed number2 value">{{ character.level5_spells_known|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level5_spell_save_dc|or_slash }}</div></td>
+                <td>5th</td>
+                <td><div class="boxed number2 value">{{ character.level5_spells_per_day|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level5_bonus_spells|or_slash }}</div></td>
+            </tr>
+            <tr>
+                <td><div class="boxed number2 value">{{ character.level6_spells_known|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level6_spell_save_dc|or_slash }}</div></td>
+                <td>6th</td>
+                <td><div class="boxed number2 value">{{ character.level6_spells_per_day|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level6_bonus_spells|or_slash }}</div></td>
+            </tr>
+            <tr>
+                <td><div class="boxed number2 value">{{ character.level7_spells_known|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level7_spell_save_dc|or_slash }}</div></td>
+                <td>7th</td>
+                <td><div class="boxed number2 value">{{ character.level7_spells_per_day|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level7_bonus_spells|or_slash }}</div></td>
+            </tr>
+            <tr>
+                <td><div class="boxed number2 value">{{ character.level8_spells_known|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level8_spell_save_dc|or_slash }}</div></td>
+                <td>8th</td>
+                <td><div class="boxed number2 value">{{ character.level8_spells_per_day|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level8_bonus_spells|or_slash }}</div></td>
+            </tr>
+            <tr>
+                <td><div class="boxed number2 value">{{ character.level9_spells_known|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level9_spell_save_dc|or_slash }}</div></td>
+                <td>9th</td>
+                <td><div class="boxed number2 value">{{ character.level9_spells_per_day|or_slash }}</div></td>
+                <td><div class="boxed number2 value">{{ character.level9_bonus_spells|or_slash }}</div></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <subscripted-element subscript="Conditional Modifiers" style="margin-top: 0" subscripted-style="width: 450px; height: 3em;" subscript-style="text-align: center;" subscripted-class="boxed value">&nbsp;</subscripted-element>
+
+    <div>
+        <div style="text-align: center;">Domains/Specialty school</div>
+        <div class="underlined value" style="display: inline-block;">{{ character.specialty_school|or_space }}</div>
+    </div>
+</div>

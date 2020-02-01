@@ -1,21 +1,27 @@
-<table>
-    <tr>
-        <td style="width: 38px;" class="sheet-statlabel">
-            Load<br>
-            <div style="font-size: 0.65em;">light</div>
-        </td>
-        <td valign="top"><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.light_load }}"><br></td>
-        <td style="width: 70px; height: 24px;" class="sheet-statlabel">
-            Load<br>
-            <div style="font-size: 0.65em;">medium</div>
-        </td>
-        <td valign="top"><input class="sheet-inputbox" type="text" style="height: 24px; width: 50px;" disabled="true" value="{{ character.medium_load }}"></td>
-        <td style="width: 90px;" class="sheet-statlabel">
-            Load<br>
-            <div style="font-size: 0.65em;">heavy</div>
-        </td>
-        <td valign="top"><input class="sheet-inputbox" type="text" style="height: 24px; width: 50px;" disabled="true" value="{{ character.heavy_load }}"></td>
-    </tr>
-</table>
-<input class="sheet-inputbox" type="text" style="height: 24px; width: 400px;" disabled="true"><br>
-<div style="font-size: 0.5em;">Modifiers</div>
+{% load pathfinder_filters %}
+
+<div class="section load">
+    <table style="font-size:0.7em;" cellpadding="5">
+        <tr>
+            <td style="width: 60px;">Light Load</td>
+            <td class="boxed number2 value">{{ character.light_load|or_space }}</td>
+
+            <td style="width: 60px;">Lift Over Head</td>
+            <td class="boxed number2 value">{{ character.lift_over_head|or_space }}</td>
+        </tr>
+        <tr>
+            <td style="width: 60px;">Medium Load</td>
+            <td class="boxed number2 value">{{ character.medium_load|or_space }}</td>
+
+            <td style="width: 60px;">Lift Off Ground</td>
+            <td class="boxed number2 value">{{ character.lift_off_ground|or_space }}</td>
+        </tr>
+        <tr>
+            <td style="width: 60px;">Heavy Load</td>
+            <td class="boxed number2 value">{{ character.heavy_load|or_space }}</td>
+
+            <td style="width: 60px;">Drag Or Push</td>
+            <td class="boxed number2 value">{{ character.drag_or_push|or_space }}</td>
+        </tr>
+    </table>
+</div>

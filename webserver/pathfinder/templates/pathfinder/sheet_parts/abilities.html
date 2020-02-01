@@ -1,37 +1,66 @@
-<table>
-    <tr>
-        <th>Ability Name</th>
-        <th>Ability<br>Score</th>
-        <th>Ability<br>Modifier</th>
-    </tr>
-    <tr>
-        <td class="sheet-statlabel">STR<div class="subscript">Strength</div></td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.strength }}"></td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.strength_modifier }}"></td>
-    </tr>
-    <tr>
-        <td class="sheet-statlabel">DEX<div style="font-size: 0.65em;">Dexterity</div></td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.dexterity }}"></td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.dexterity_modifier }}"></td>
-    </tr>
-    <tr>
-        <td class="sheet-statlabel">CON<div style="font-size: 0.65em;">Constitution</div></td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.constitution }}"></td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.constitution_modifier }}"></td>
-    </tr>
-    <tr>
-        <td class="sheet-statlabel">INT<div style="font-size: 0.65em;">Intelligence</div></td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.intelligence }}"></td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.intelligence_modifier }}"></td>
-    </tr>
-    <tr>
-        <td class="sheet-statlabel">WIS<div style="font-size: 0.65em;">Wisdom</div></td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.wisdom }}"></td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.wisdom_modifier }}"></td>
-    </tr>
-    <tr>
-        <td class="sheet-statlabel">CHA<div style="font-size: 0.65em;">Charisma</div></td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.charisma }}"></td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.charisma_modifier }}"></td>
-    </tr>
-</table>
+{% load pathfinder_filters %}
+
+<div class="section abilities">
+    <table>
+        <thead>
+            <tr>
+                <th class="no-width" style="text-align: center;">Ability Name</th>
+                <th class="no-width" style="text-align: center;">Ability Score</th>
+                <th class="no-width" style="text-align: center;">Ability Modifier</th>
+                <th class="no-width" style="text-align: center;">Temp Adjustment</th>
+                <th class="no-width" style="text-align: center;">Temp Modifier</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="width: 24%;"></td>
+                <td style="width: 19%;"></td>
+                <td style="width: 19%;"></td>
+                <td style="width: 19%;"></td>
+                <td style="width: 19%;"></td>
+            </tr>
+            <tr>
+                <td><subscripted-element class="inverted" style="width: 100%;" subscript-style="width: 100%;" subscript="STRENGTH">STR</subscripted-element></td>
+                <td><div class="boxed number2 value">{{ character.strength|or_space }}</div></td>
+                <td><div class="boxed number2 value">{{ character.strength_modifier|or_space }}</div></td>
+                <td><div class="boxed number2 value"></div></td>
+                <td><div class="boxed number2 value"></div></td>
+            </tr>
+            <tr>
+                <td><subscripted-element class="inverted" style="width: 100%;" subscript-style="width: 100%;" subscript="DEXTERITY">DEX</subscripted-element></td>
+                <td><div class="boxed number2 value">{{ character.dexterity|or_space }}</div></td>
+                <td><div class="boxed number2 value">{{ character.dexterity_modifier|or_space }}</div></td>
+                <td><div class="boxed number2 value"></div></td>
+                <td><div class="boxed number2 value"></div></td>
+            </tr>
+            <tr>
+                <td><subscripted-element class="inverted" style="width: 100%;" subscript-style="width: 100%;" subscript="CONSTITUTION">CON</subscripted-element></td>
+                <td><div class="boxed number2 value">{{ character.constitution|or_space }}</div></td>
+                <td><div class="boxed number2 value">{{ character.constitution_modifier|or_space }}</div></td>
+                <td><div class="boxed number2 value"></div></td>
+                <td><div class="boxed number2 value"></div></td>
+            </tr>
+            <tr>
+                <td><subscripted-element class="inverted" style="width: 100%;" subscript-style="width: 100%;" subscript="INTELLIGENCE">INT</subscripted-element></td>
+                <td><div class="boxed number2 value">{{ character.intelligence|or_space }}</div></td>
+                <td><div class="boxed number2 value">{{ character.intelligence_modifier|or_space }}</div></td>
+                <td><div class="boxed number2 value"></div></td>
+                <td><div class="boxed number2 value"></div></td>
+            </tr>
+            <tr>
+                <td><subscripted-element class="inverted" style="width: 100%;" subscript-style="width: 100%;" subscript="WISDOM">WIS</subscripted-element></td>
+                <td><div class="boxed number2 value">{{ character.wisdom|or_space }}</div></td>
+                <td><div class="boxed number2 value">{{ character.wisdom_modifier|or_space }}</div></td>
+                <td><div class="boxed number2 value"></div></td>
+                <td><div class="boxed number2 value"></div></td>
+            </tr>
+            <tr>
+                <td><subscripted-element class="inverted" style="width: 100%;" subscript-style="width: 100%;" subscript="CHARISMA">CHA</subscripted-element></td>
+                <td><div class="boxed number2 value">{{ character.charisma|or_space }}</div></td>
+                <td><div class="boxed number2 value">{{ character.charisma_modifier|or_space }}</div></td>
+                <td><div class="boxed number2 value"></div></td>
+                <td><div class="boxed number2 value"></div></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

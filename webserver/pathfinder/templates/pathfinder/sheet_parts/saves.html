@@ -1,35 +1,68 @@
-<table>
-    <tr>
-        <th>Saving Throws</th>
-        <th>Total</th>
-        <td rowspan="4">
-            <textarea name="attr_statmod" style="height: 120px; width: 260px;" disabled="true" value="Immune: {{ character.immunities }} {{ character.save_modifiers }}">
-Immune: {{ character.immunities }}
-{{ character.save_modifiers }}
-            </textarea>
-            <br>
-            <div style="font-size: 0.5em;" valign="top">Modifiers</div>
-        </td>
-    </tr>
-    <tr>
-        <td class="sheet-statlabel" style="width: 60px;">
-            Fortitude<br>
-            <div style="font-size: 0.65em;">(Constitution)</div>
-        </td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.fortitude_save }}"></td>
-    </tr>
-    <tr>
-        <td class="sheet-statlabel" style="width: 60px;">
-            Reflex<br>
-            <div style="font-size: 0.65em;">(Dexterity)</div>
-        </td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.reflex_save }}"></td>
-    </tr>
-    <tr>
-        <td class="sheet-statlabel" style="width: 60px;">
-            Will<br>
-            <div style="font-size: 0.65em;">(Wisdom)</div>
-        </td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.will_save }}"></td>
-    </tr>
-</table>
+{% load pathfinder_filters %}
+
+<div class="section saves">
+    <table style="float: left;">
+        <thead>
+            <tr>
+                <th class="no-width">Saving Throws</th>
+                <th class="no-width">Total</th>
+                <th></th>
+                <th class="no-width">Base Save</th>
+                <th></th>
+                <th class="no-width">Ability Modifier</th>
+                <th></th>
+                <th class="no-width">Magic Modifier</th>
+                <th></th>
+                <th class="no-width">Misc Modifier</th>
+                <th></th>
+                <th class="no-width">Temporary Modifier</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><subscripted-element style="width: 100%;" subscript-style="width: 100%;" subscript="(CONSTITUTION)" class="inverted">FORTITUDE</subscripted-element></td>
+                <td><div class="boxed number2 value">{{ character.fortitude_save|or_space }}</div></td>
+                <td>=</td>
+                <td><div class="boxed number2 value">&nbsp;</div></td>
+                <td>+</td>
+                <td><div class="boxed number2 value">&nbsp;</div></td>
+                <td>+</td>
+                <td><div class="boxed number2 value">&nbsp;</div></td>
+                <td>+</td>
+                <td><div class="boxed number2 value">&nbsp;</div></td>
+                <td>+</td>
+                <td><div class="boxed number2 value">&nbsp;</div></td>
+            </tr>
+            <tr>
+                <td><subscripted-element style="width: 100%;" subscript-style="width: 100%;" subscript="(DEXTERITY)" class="inverted">REFLEX</subscripted-element></td>
+                <td><div class="boxed number2 value">{{ character.reflex_save|or_space }}</div></td>
+                <td>=</td>
+                <td><div class="boxed number2 value">&nbsp;</div></td>
+                <td>+</td>
+                <td><div class="boxed number2 value">&nbsp;</div></td>
+                <td>+</td>
+                <td><div class="boxed number2 value">&nbsp;</div></td>
+                <td>+</td>
+                <td><div class="boxed number2 value">&nbsp;</div></td>
+                <td>+</td>
+                <td><div class="boxed number2 value">&nbsp;</div></td>
+            </tr>
+            <tr>
+                <td><subscripted-element style="width: 100%;" subscript-style="width: 100%;" subscript="(WISDOM)" class="inverted">WILL</subscripted-element></td>
+                <td><div class="boxed number2 value">{{ character.will_save|or_space }}</div></td>
+                <td>=</td>
+                <td><div class="boxed number2 value">&nbsp;</div></td>
+                <td>+</td>
+                <td><div class="boxed number2 value">&nbsp;</div></td>
+                <td>+</td>
+                <td><div class="boxed number2 value">&nbsp;</div></td>
+                <td>+</td>
+                <td><div class="boxed number2 value">&nbsp;</div></td>
+                <td>+</td>
+                <td><div class="boxed number2 value">&nbsp;</div></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <subscripted-element subscript="Modifiers" style="margin-top: 0" subscripted-style="width: 150px; height: 6em;" subscript-style="text-align: center;" subscripted-class="boxed value">&nbsp;</subscripted-element>
+</div>

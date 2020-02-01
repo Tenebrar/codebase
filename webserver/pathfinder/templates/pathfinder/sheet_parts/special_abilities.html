@@ -1,15 +1,10 @@
-<table cellpadding="10" cellspacing="0">
-    <tr>
-        <td style="font-size: 1.5em; width: 190px;">Special abilities</td>
-    </tr>
-</table>
-<fieldset class="repeating_feats">
-    <table cellpadding="0" cellspacing="0">
-        <tr>
-            <td class="sheet-statlabel" style="font-size: 1em; width: 210px;">Special ability</td>
-        </tr>
-        <tr>
-            <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 210px;" disabled="true"></td>
-        </tr>
-    </table>
-</fieldset>
+{% load pathfinder_filters %}
+
+<div class="section special-abilities" style="display: inline-block;">
+    <div style="text-align: center;">
+        <div class="inverted inner-round" style="display: inline-block;">Special abilities</div>
+    </div>
+    {% for ability in character.special_abilities|exact_length:12 %}
+        <div class="underlined value" style="display: inline-block; width: 100%;">{{ ability }}</div><br>
+    {% endfor %}
+</div>

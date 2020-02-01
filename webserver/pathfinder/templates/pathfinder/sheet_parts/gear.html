@@ -1,15 +1,35 @@
-<table cellpadding="10" cellspacing="0">
-    <tr>
-        <td style="font-size: 1.5em; width: 230px;">Gear</td>
-    </tr>
-</table>
-<fieldset class="repeating_gear">
-    <table cellpadding="0" cellspacing="0">
-        <tr>
-            <td class="sheet-statlabel" style="font-size: 1em; width: 200px;">Item Name</td>
-        </tr>
-        <tr>
-            <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 200px;" disabled="true"></td>
-        </tr>
+{% load pathfinder_filters %}
+
+<div class="section gear">
+    <table>
+        <thead>
+            <tr>
+                <th class="half-borders" style="width: 260px; font-size: 1.5em;" rowspan="2" colspan="2">
+                    <div class="inverted inner-round">Gear</div>
+                </th>
+            </tr>
+            <tr>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+            <tr>
+                <th style="border-left: 1px solid black; border-bottom: 1px solid black; border-right: 1px solid black;">item</th>
+                <th style="border-left: 1px solid black; border-bottom: 1px solid black; border-right: 1px solid black;">wt.</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in character.items|exact_length:30 %}
+                <tr>
+                    <td style="border: 1px solid black;">{{ item.name|or_space }}</td>
+                    <td style="border: 1px solid black;">{{ item.weight|or_space }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="inverted" style="text-align: right; border: 1px solid black;">Totals</td>
+                <td style="border: 1px solid black;"></td>
+            </tr>
+        </tfoot>
     </table>
-</fieldset>
+</div>

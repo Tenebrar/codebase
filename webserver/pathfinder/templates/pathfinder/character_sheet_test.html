@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+{% load static pathfinder_filters %}
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'pathfinder/character_sheet_test.css' %}">
+        <link rel="shortcut icon" href="{% static 'pathfinder/images/favicon.ico' %}" type="image/x-icon">
+        <title>Pathfinder character sheet</title>
+        <script src="{% static 'pathfinder/js/main_test.js' %}" defer></script>
+    </head>
+    <body>
+        This is a Test of the css and javascript.
+        <br>
+        This is a <subscripted-element name="a b c d e f g h i">Test</subscripted-element> of the css and javascript.
+        <br>
+        Let's find out what happens below this element.
+
+        <p>
+
+        This is a Test for when the subscript is longer than the text.
+        <br>
+        This is a <subscripted-element name="Really long subscript">Test</subscripted-element> for when the subscript is longer than the text.
+        <br>
+        This is a <subscripted-element name="Really long subscript" class="boxed">Test</subscripted-element> for when the subscript is longer than the text.
+
+        <table>
+            <tbody>
+                <tr>
+                    <td class="inverted"><subscripted-element name="Test">Test</subscripted-element></td>
+                    <td>of how it works in a table.</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

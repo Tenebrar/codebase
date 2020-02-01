@@ -1,5 +1,36 @@
-<b>Money</b>
-<div style="width: 350px;"><input type="text" style="width: 353px;" disabled="true" value="{{ character.copper }}"><br>CP</div>
-<div style="width: 350px;"><input type="text" style="width: 353px;" disabled="true" value="{{ character.silver }}"><br>SP</div>
-<div style="width: 350px;"><input type="text" style="width: 353px;" disabled="true" value="{{ character.gold }}"><br>GP</div>
-<div style="width: 350px;"><input type="text" style="width: 353px;" disabled="true" value="{{ character.platinum }}"><br>PP</div>
+{% load pathfinder_filters %}
+
+<div class="section money">
+    <table>
+        <thead>
+            <tr>
+                <th class="half-borders" style="width: 260px; font-size: 1.5em;" rowspan="2" colspan="2">
+                    <div class="inverted inner-round">Money</div>
+                </th>
+            </tr>
+            <tr>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="no-width" style="border-left: 1px solid black;">cp</td>
+                <td style="border-right: 1px solid black;">{{ character.copper|or_space }}</td>
+            </tr>
+            <tr>
+                <td style="border-left: 1px solid black;">sp</td>
+                <td style="border-right: 1px solid black;">{{ character.silver|or_space }}</td>
+            </tr>
+            <tr>
+                <td style="border-left: 1px solid black;">gp</td>
+                <td style="border-right: 1px solid black;">{{ character.gold|or_space }}</td>
+            </tr>
+            <tr>
+                <td style="border-left: 1px solid black; border-bottom: 1px solid black;">pp</td>
+                <td style="border-right: 1px solid black; border-bottom: 1px solid black;">{{ character.platinum|or_space }}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+    </table>
+</div>

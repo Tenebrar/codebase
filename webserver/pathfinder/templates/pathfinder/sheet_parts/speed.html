@@ -1,30 +1,34 @@
-<table>
-    <tr>
-        <td class="sheet-statlabel" style="width: 70px;">
-            SPEED<br>
-            <div style="font-size: 0.65em;">Land</div>
-        </td>
-        <td>
-            <input class="sheet-inputbox" type="text" style="height: 24px; width: 95px;" disabled="true" value="{{ character.base_speed }}"><br>
-            <div style="font-size: 0.5em;">Base speed</div>
-        </td>
-        <td>
-            <input class="sheet-inputbox" type="text" style="height: 24px; width: 85px;" disabled="true" value="{{ character.speed_with_armor }}"><br>
-            <div style="font-size: 0.5em;">With Armor</div>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <div>
-                <input class="sheet-inputbox" type="text" style="height: 24px; width: 110px;" disabled="true" value="{{ character.fly_speed|default:"/" }} {{ character.fly_maneuverability }}">&nbsp;&nbsp;<input class="sheet-inputbox" type="text" style="height: 24px; width: 50px;" disabled="true" value="{{ character.swim_speed|default:"/" }}"><br>
-                <div style="font-size: 0.5em;">Fly&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Maneuverability&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Swim</div>
-            </div>
-        </td>
-        <td >
-            <div>
-                <input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.climb_speed|default:"/" }}">&nbsp;<input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.burrow_speed|default:"/" }}"><br>
-                <div style="font-size: 0.5em;">Climb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Burrow</div>
-            </div>
-        </td>
-    </tr>
-</table>
+{% load pathfinder_filters %}
+
+<div class="section speed">
+    <div style="float: left;">
+        <subscripted-element class="inverted padded" subscript="land">SPEED</subscripted-element>
+        <subscripted-element subscript="Base speed" subscript-style="text-align: center" subscripted-class="boxed value" style="width: 100px;">
+            <subscripted-element style="width: 45%;" subscript="FT." subscript-style="text-align: right; position: relative; top: -0.6em;">{{ character.base_speed_feet|or_space }}</subscripted-element>
+            <subscripted-element style="width: 45%;" subscript="SQ" subscript-style="text-align: right; position: relative; top: -0.6em;">{{ character.base_speed_squares|or_space }}</subscripted-element>
+        </subscripted-element>
+        <subscripted-element subscript="With armor" subscript-style="text-align: center" subscripted-class="boxed value" style="width: 100px;">
+            <subscripted-element style="width: 45%;" subscript="FT." subscript-style="text-align: right; position: relative; top: -0.6em;">{{ character.base_speed_with_armor_feet|or_space }}</subscripted-element>
+            <subscripted-element style="width: 45%;" subscript="SQ" subscript-style="text-align: right; position: relative; top: -0.6em;">{{ character.base_speed_with_armor_squares|or_space }}</subscripted-element>
+        </subscripted-element>
+
+        <br>
+
+        <subscripted-element subscript="Fly&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Maneuverability" subscript-style="text-align: right" subscripted-class="boxed value" style="width: 100px;">
+            <subscripted-element style="width: 45%;" subscript="FT." subscript-style="text-align: right; position: relative; top: -0.6em;">{{ character.fly_speed|or_slash }}</subscripted-element>
+            <subscripted-element style="width: 45%;" subscript=" " subscript-style="text-align: right; position: relative; top: -0.6em;">{{ character.fly_maneuverability|or_slash }}</subscripted-element>
+        </subscripted-element>
+
+        <subscripted-element subscript="Swim" subscript-style="text-align: center" subscripted-class="boxed number2 value">
+            <subscripted-element style="width: 100%;" subscript="FT." subscript-style="text-align: right; position: relative; top: -0.6em;">{{ character.swim_speed_feet|or_slash }}</subscripted-element>
+        </subscripted-element>
+        <subscripted-element subscript="Climb" subscript-style="text-align: center" subscripted-class="boxed number2 value">
+            <subscripted-element style="width: 100%;" subscript="FT." subscript-style="text-align: right; position: relative; top: -0.6em;">{{ character.climb_speed_feet|or_slash }}</subscripted-element>
+        </subscripted-element>
+        <subscripted-element subscript="Fly" subscript-style="text-align: center" subscripted-class="boxed number2 value">
+            <subscripted-element style="width: 100%;" subscript="FT." subscript-style="text-align: right; position: relative; top: -0.6em;">{{ character.burrow_speed_feet|or_slash }}</subscripted-element>
+        </subscripted-element>
+    </div>
+
+    <subscripted-element subscript="Temp Modifiers" style="margin-top: 0" subscripted-style="width: 150px; height: 6em;" subscript-style="text-align: center;" subscripted-class="boxed value">&nbsp;</subscripted-element>
+</div>

@@ -1,6 +1,83 @@
-<b>Spells</b><br>
-Level 0
-<br>
-<fieldset class="repeating_spellslvl0">
-    <input type="text" style="width: 353px;" disabled="true">
-</fieldset>
+{% load pathfinder_filters %}
+
+<div class="section spells-known" style="display: inline-block;">
+    <div>
+        <div style="display: inline-block; width: 2em;">0</div>
+        {% for i in 9|times %}
+            <input type="checkbox" disabled="true">
+        {% endfor %}
+    </div>
+    <div class="underlined value" style="display: inline-block;">{{ character.level0_spells_known|or_space }}</div>
+
+    <div>
+        <div style="display: inline-block; width: 2em;">1st</div>
+        {% for i in 9|times %}
+            <input type="checkbox" disabled="true">
+        {% endfor %}
+    </div>
+    <div class="underlined value" style="display: inline-block;">{{ character.level1_spells_known|or_space }}</div>
+
+    <div>
+        <div style="display: inline-block; width: 2em;">2nd</div>
+        {% for i in 9|times %}
+            <input type="checkbox" disabled="true">
+        {% endfor %}
+    </div>
+    <div class="underlined value" style="display: inline-block;">{{ character.level2_spells_known|or_space }}</div>
+
+    <div>
+        <div style="display: inline-block; width: 2em;">3rd</div>
+        {% for i in 9|times %}
+            <input type="checkbox" disabled="true">
+        {% endfor %}
+    </div>
+    <div class="underlined value" style="display: inline-block;">{{ character.level3_spells_known|or_space }}</div>
+
+    <div>
+        <div style="display: inline-block; width: 2em;">4th</div>
+        {% for i in 9|times %}
+            <input type="checkbox" disabled="true">
+        {% endfor %}
+    </div>
+    <div class="underlined value" style="display: inline-block;">{{ character.level4_spells_known|or_space }}</div>
+
+    <div>
+        <div style="display: inline-block; width: 2em;">5th</div>
+        {% for i in 9|times %}
+            <input type="checkbox" disabled="true">
+        {% endfor %}
+    </div>
+    <div class="underlined value" style="display: inline-block;">{{ character.level5_spells_known|or_space }}</div>
+
+    <div>
+        <div style="display: inline-block; width: 2em;">6th</div>
+        {% for i in 9|times %}
+            <input type="checkbox" disabled="true">
+        {% endfor %}
+    </div>
+    <div class="underlined value" style="display: inline-block;">{{ character.level6_spells_known|or_space }}</div>
+
+    <div>
+        <div style="display: inline-block; width: 2em;">7th</div>
+        {% for i in 9|times %}
+            <input type="checkbox" disabled="true">
+        {% endfor %}
+    </div>
+    <div class="underlined value" style="display: inline-block;">{{ character.level7_spells_known|or_space }}</div>
+
+    <div>
+        <div style="display: inline-block; width: 2em;">8th</div>
+        {% for i in 9|times %}
+            <input type="checkbox" disabled="true">
+        {% endfor %}
+    </div>
+    <div class="underlined value" style="display: inline-block;">{{ character.level8_spells_known|or_space }}</div>
+
+    <div>
+        <div style="display: inline-block; width: 2em;">9th</div>
+        {% for i in 9|times %}
+            <input type="checkbox" disabled="true">
+        {% endfor %}
+    </div>
+    <div class="underlined value" style="display: inline-block;">{{ character.level9_spells_known|or_space }}</div>
+</div>

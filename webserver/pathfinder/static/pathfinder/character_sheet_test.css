@@ -1,0 +1,30 @@
+body {
+    color: black;
+    background-color: white;
+    font-size: 2em;
+    font-family: "American Typewriter";
+    font-variant: small-caps;
+
+    width: 297mm; /* A4 width in an attempt to keep the sheet printable */
+}
+
+.subscripted {
+}
+
+.subscript {
+    font-size: 0.5em;
+}
+
+.boxed {
+    /* Simulate the look of a disabled input field */
+    border: 1px solid lightgrey;
+    padding: 2px 5px;
+    font-family: "Arial";
+    font-variant: normal;
+}
+
+.inverted {
+    color: white;
+    background-color: black;
+    text-align: center;
+}

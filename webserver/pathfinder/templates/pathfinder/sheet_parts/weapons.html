@@ -1,59 +1,127 @@
-{% for attack in character.attacks %}
-    <fieldset class="repeating_weapons">
-        <table>
-            <tr>
-                <td colspan="3" class="sheet-statlabel" style="font-size: 1.5em; width: 260px;">Weapon</td>
-                <td class="sheet-statlabel" style="width: 110px;">Attack Bonus</td>
-                <td class="sheet-statlabel" style="width: 100px;">Critical</td>
-            </tr>
-            <tr>
-                <td colspan="3"><input class="sheet-inputbox" type="text" style="height: 24px; width: 260px;" disabled="true" value="{{ attack.name }}"></td>
-                <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 110px;" disabled="true" value="{{ attack.attack_bonus }}"></td>
-                <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 100px;" disabled="true" value="{{ attack.critical }}"></td>
-            </tr>
-            <tr>
-                <td class="sheet-statlabel" style="width: 80px;">Type</td>
-                <td class="sheet-statlabel" style="width: 90px;">Range</td>
-                <td class="sheet-statlabel" style="width: 90px;">Ammunition</td>
-                <td colspan="2" class="sheet-statlabel" style="width: 210px;">Damage</td>
-            </tr>
-            <tr>
-                <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 80px;" disabled="true" value="{{ attack.damage_type }}"></td>
-                <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 90px;" disabled="true" value="{{ attack.range|default:"/" }}"></td>
-                <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 90px;" disabled="true" value="{{ attack.ammunition|default:"/" }}"></td>
-                <td colspan="2"><input class="sheet-inputbox" type="text" style="height: 24px; width: 210px;" disabled="true" value="{{ attack.damage }}"></td>
-            </tr>
-        </table>
-        {% if attack.note %}{{ attack.note }}{% endif %}
-    </fieldset>
-{% endfor %}
-{% for attack in character.full_attacks %}
-    <fieldset class="repeating_weapons">
-        <table>
-            <tr>
-                <td colspan="3" class="sheet-statlabel" style="font-size: 1.5em; width: 260px;">Weapon</td>
-                <td class="sheet-statlabel" style="width: 110px;">Attack Bonus</td>
-                <td class="sheet-statlabel" style="width: 100px;">Critical</td>
-            </tr>
-            <tr>
-                <td colspan="3"><input class="sheet-inputbox" type="text" style="height: 24px; width: 260px;" disabled="true" value="{{ attack.name }}"></td>
-                <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 110px;" disabled="true" value="{{ attack.attack_bonus }}"></td>
-                <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 100px;" disabled="true" value="{{ attack.critical }}"></td>
-            </tr>
-            <tr>
-                <td class="sheet-statlabel" style="width: 80px;">Type</td>
-                <td class="sheet-statlabel" style="width: 90px;">Range</td>
-                <td class="sheet-statlabel" style="width: 90px;">Ammunition</td>
-                <td colspan="2" class="sheet-statlabel" style="width: 210px;">Damage</td>
-            </tr>
-            <tr>
-                <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 80px;" disabled="true" value="{{ attack.damage_type }}"></td>
-                <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 90px;" disabled="true" value="{{ attack.range|default:"/" }}"></td>
-                <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 90px;" disabled="true" value="{{ attack.ammunition|default:"/" }}"></td>
-                <td colspan="2"><input class="sheet-inputbox" type="text" style="height: 24px; width: 210px;" disabled="true" value="{{ attack.damage }}"></td>
-            </tr>
-        </table>
-        {% if attack.note %}{{ attack.note }}{% endif %}
-    </fieldset>
-{% endfor %}
-{% if character.attacks_notes %}{{ character.attacks_notes }}{% endif %}
+{% load pathfinder_filters %}
+
+<div class="section weapons">
+    <table>
+        <tr>
+            <th class="half-borders" style="max-width: 260px; font-size: 1.5em;" rowspan="2" colspan="3">
+                <div class="inverted inner-round2">Weapon</div>
+            </th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr>
+            <th class="inverted" style="width: 110px; border-left: 1px solid black;">Attack Bonus</th>
+            <th class="inverted" style="width: 100px; border-right: 1px solid black;">Critical</th>
+        </tr>
+        <tr>
+            <td colspan="3" class="value" style="width: 260px; border-left: 1px solid black;">{{ character.attack1.name|or_space }}</td>
+            <td class="value" style="width: 110px; border: 1px solid black;">{{ character.attack1.attack_bonus|or_space }}</td>
+            <td class="value" style="width: 100px; border: 1px solid black;">{{ character.attack1.critical|or_space }}</td>
+        </tr>
+        <tr>
+            <th class="inverted" style="width: 80px;">Type</th>
+            <th class="inverted" style="width: 90px;">Range</th>
+            <th class="inverted" style="width: 90px;">Ammunition</th>
+            <th colspan="2" class="inverted" style="width: 210px; border-right: 1px solid black;">Damage</th>
+        </tr>
+        <tr>
+            <td class="value" style="width: 80px; border: 1px solid black;">{{ character.attack1.damage_type|or_space }}</td>
+            <td class="value" style="width: 90px; border: 1px solid black;">{{ character.attack1.range|or_slash }}</td>
+            <td class="value" style="width: 90px; border: 1px solid black;">{{ character.attack1.ammunition|or_slash }}</td>
+            <td colspan="2" class="value" style="width: 210px; border: 1px solid black;">{{ character.attack1.damage|or_space }}</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <th class="half-borders" style="max-width: 260px; font-size: 1.5em;" rowspan="2" colspan="3">
+                <div class="inverted inner-round2">Weapon</div>
+            </th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr>
+            <th class="inverted" style="width: 110px; border-left: 1px solid black;">Attack Bonus</th>
+            <th class="inverted" style="width: 100px; border-right: 1px solid black;">Critical</th>
+        </tr>
+        <tr>
+            <td colspan="3" class="value" style="width: 260px; border-left: 1px solid black;">{{ character.attack2.name|or_space }}</td>
+            <td class="value" style="width: 110px; border: 1px solid black;">{{ character.attack2.attack_bonus|or_space }}</td>
+            <td class="value" style="width: 100px; border: 1px solid black;">{{ character.attack2.critical|or_space }}</td>
+        </tr>
+        <tr>
+            <th class="inverted" style="width: 80px;">Type</th>
+            <th class="inverted" style="width: 90px;">Range</th>
+            <th class="inverted" style="width: 90px;">Ammunition</th>
+            <th colspan="2" class="inverted" style="width: 210px; border-right: 1px solid black;">Damage</th>
+        </tr>
+        <tr>
+            <td class="value" style="width: 80px; border: 1px solid black;">{{ character.attack2.damage_type|or_space }}</td>
+            <td class="value" style="width: 90px; border: 1px solid black;">{{ character.attack2.range|or_slash }}</td>
+            <td class="value" style="width: 90px; border: 1px solid black;">{{ character.attack2.ammunition|or_slash }}</td>
+            <td colspan="2" class="value" style="width: 210px; border: 1px solid black;">{{ character.attack2.damage|or_space }}</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <th class="half-borders" style="max-width: 260px; font-size: 1.5em;" rowspan="2" colspan="3">
+                <div class="inverted inner-round2">Weapon</div>
+            </th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr>
+            <th class="inverted" style="width: 110px; border-left: 1px solid black;">Attack Bonus</th>
+            <th class="inverted" style="width: 100px; border-right: 1px solid black;">Critical</th>
+        </tr>
+        <tr>
+            <td colspan="3" class="value" style="width: 260px; border-left: 1px solid black;">{{ character.attack3.name|or_space }}</td>
+            <td class="value" style="width: 110px; border: 1px solid black;">{{ character.attack3.attack_bonus|or_space }}</td>
+            <td class="value" style="width: 100px; border: 1px solid black;">{{ character.attack3.critical|or_space }}</td>
+        </tr>
+        <tr>
+            <th class="inverted" style="width: 80px;">Type</th>
+            <th class="inverted" style="width: 90px;">Range</th>
+            <th class="inverted" style="width: 90px;">Ammunition</th>
+            <th colspan="2" class="inverted" style="width: 210px; border-right: 1px solid black;">Damage</th>
+        </tr>
+        <tr>
+            <td class="value" style="width: 80px; border: 1px solid black;">{{ character.attack3.damage_type|or_space }}</td>
+            <td class="value" style="width: 90px; border: 1px solid black;">{{ character.attack3.range|or_slash }}</td>
+            <td class="value" style="width: 90px; border: 1px solid black;">{{ character.attack3.ammunition|or_slash }}</td>
+            <td colspan="2" class="value" style="width: 210px; border: 1px solid black;">{{ character.attack3.damage|or_space }}</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <th class="half-borders" style="max-width: 260px; font-size: 1.5em;" rowspan="2" colspan="3">
+                <div class="inverted inner-round2">Weapon</div>
+            </th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr>
+            <th class="inverted" style="width: 110px; border-left: 1px solid black;">Attack Bonus</th>
+            <th class="inverted" style="width: 100px; border-right: 1px solid black;">Critical</th>
+        </tr>
+        <tr>
+            <td colspan="3" class="value" style="width: 260px; border-left: 1px solid black;">{{ character.attack4.name|or_space }}</td>
+            <td class="value" style="width: 110px; border: 1px solid black;">{{ character.attack4.attack_bonus|or_space }}</td>
+            <td class="value" style="width: 100px; border: 1px solid black;">{{ character.attack4.critical|or_space }}</td>
+        </tr>
+        <tr>
+            <th class="inverted" style="width: 80px;">Type</th>
+            <th class="inverted" style="width: 90px;">Range</th>
+            <th class="inverted" style="width: 90px;">Ammunition</th>
+            <th colspan="2" class="inverted" style="width: 210px; border-right: 1px solid black;">Damage</th>
+        </tr>
+        <tr>
+            <td class="value" style="width: 80px; border: 1px solid black;">{{ character.attack4.damage_type|or_space }}</td>
+            <td class="value" style="width: 90px; border: 1px solid black;">{{ character.attack4.range|or_slash }}</td>
+            <td class="value" style="width: 90px; border: 1px solid black;">{{ character.attack4.ammunition|or_slash }}</td>
+            <td colspan="2" class="value" style="width: 210px; border: 1px solid black;">{{ character.attack4.damage|or_space }}</td>
+        </tr>
+    </table>
+</div>

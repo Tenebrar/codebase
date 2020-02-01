@@ -1,34 +1,30 @@
-<table>
-    <tr>
-        <td style="width: 38px;" class="sheet-statlabel">
-            AC<br>
-            <div style="font-size: 0.65em;">Armor Class</div>
-        </td>
-        <td>
-            <input class="sheet-inputbox" type="text" style="height: 24px; width: 40px;" disabled="true" value="{{ character.armor_class }}"><br>
-            <div style="font-size: 0.5em;">Total</div><br>
-        </td>
-        <td style="width: 70px; height: 24px;" class="sheet-statlabel">
-            TOUCH<br>
-            <div style="font-size: 0.65em;">Touch Armor Class</div>
-        </td>
-        <td valign="top">
-            <input class="sheet-inputbox" type="text" style="height: 24px; width: 50px;" disabled="true" value="{{ character.touch_armor_class }}">
-        </td>
-        <td style="width: 90px;" class="sheet-statlabel">
-            FLAT-FOOTED<br>
-            <div style="font-size: 0.65em;">Armor Class</div>
-        </td>
-        <td valign="top">
-            <input class="sheet-inputbox" type="text" style="height: 24px; width: 50px;" disabled="true" value="{{ character.flatfooted_armor_class }}">
-        </td>
-    </tr>
-</table>
-{% if character.armor_class_modifiers %}
-    <input class="sheet-inputbox" type="text" style="height: 24px; width: 400px;" disabled="true" value="{{ character.armor_class_modifiers }}"><br>
-    <div style="font-size: 0.5em;">Modifiers</div>
-{% endif %}
-{% if character.armor_class_notes %}
-    <input class="sheet-inputbox" type="text" style="height: 24px; width: 400px;" disabled="true" value="{{ character.armor_class_notes }}"><br>
-    <div style="font-size: 0.5em;">Notes</div>
-{% endif %}
+{% load pathfinder_filters %}
+
+<div class="section armor-class">
+    <subscripted-element class="inverted padded" subscript-style="width: 100%;" subscript="ARMOR CLASS">AC</subscripted-element>
+    <subscripted-element subscript="Total" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.armor_class|or_space }}</subscripted-element>
+    = 10 +
+    <subscripted-element subscript="armor bonus" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.armor_bonus|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="shield bonus" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.shield_bonus|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="dex modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.dexterity_modifier|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="size modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.size_modifier|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="natural armor" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.natural_armor|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="deflection modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.deflection_modifier|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="misc modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.misc_ac_modifier|or_space }}</subscripted-element>
+
+    <br>
+
+    <subscripted-element class="inverted padded" subscript-style="width: 100%;" subscript="ARMOR CLASS">TOUCH</subscripted-element>
+    <div class="boxed number2 value" style="position: relative; top: 0.25em;">{{ character.touch_armor_class|or_space }}</div>
+
+    <subscripted-element class="inverted padded" subscript="ARMOR CLASS">FLAT-FOOTED</subscripted-element>
+    <div class="boxed number2 value" style="position: relative; top: 0.25em;">{{ character.flat_footed_armor_class|or_space }}</div>
+
+    <subscripted-element subscript="Modifiers" subscripted-style="width: 150px;" subscript-style="text-align: center;" subscripted-class="boxed value">&nbsp;</subscripted-element>
+</div>

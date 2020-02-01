@@ -1,24 +1,42 @@
-{#{% load charsheet_tags %}#}
+{% load pathfinder_filters %}
 
-<table >
-    <tr>
-        <td colspan="9" class="sheet-statlabel" style="width: 350px;">SKILLS</td>
-    </tr>
-    <tr>
-        <th style="font-size: 0.6em; text-align: left">Skill Names</th>
-        <th style="font-size: 0.6em;">Total<br>Bonus</th>
-        <th style="font-size: 0.6em;">Trained</th>
-    </tr>
-    {% for skill in skills %}
-        <tr>
-            <td class="sheet-skillsbox">{{ skill.name }} {% if skill.trained_only %}*{% endif %}</td>
-            {#<td><input type="text" style="width: 30px;" disabled="true" value="{% skill character skill %}"></td>#}
-            {#{% trained character skill as tr %}#}
-            <td><input type="checkbox" disabled="true"{% if tr %} checked{% endif %}></td>
-        </tr>
-    {% endfor %}
-</table>
-<b>Conditional Modifiers</b><br>
-<fieldset class="repeating_conditional_modifiers">
-    <input type="text" style="width: 353px;" disabled="true">
-</fieldset>
+<div class="section skills">
+    <table >
+        <thead>
+            <tr>
+                <th colspan="9" class="inverted inner-round" style="width: 350px; font-size: 1em;">SKILLS</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th class="no-width" style="font-size: 0.6em; text-align: left">Skill Names</th>
+                <th class="no-width" style="font-size: 0.6em;">Total Bonus</th>
+                <th></th>
+                <th class="no-width" style="font-size: 0.6em;">Ability Mod.</th>
+                <th></th>
+                <th class="no-width" style="font-size: 0.6em;">Ranks</th>
+                <th></th>
+                <th class="no-width" style="font-size: 0.6em;">Misc. Mod.</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for skill in character.skills|exact_length:39 %}
+                <tr>
+                    <td><input type="checkbox" disabled="true"{% if skill.class_skill %} checked{% endif %}></td>
+                    <td>{{ skill.name }}</td>
+                    <td class="underlined value">{{ skill.total }}</td>
+                    <td>={{ skill.attribute_name }}</td>
+                    <td class="underlined value">{{ skill.attribute_modifier }}</td>
+                    <td>+</td>
+                    <td class="underlined value">{{ skill.ranks }}</td>
+                    <td>+</td>
+                    <td class="underlined value">{{ skill.modifiers }}</td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div><input type="checkbox" disabled="true" checked> Class Skill * Trained Only</div>
+
+    <div>Conditional Modifiers:</div>
+    <div style="display: inline-block;" class="underlined value">{{ character.conditional_skill_modifiers|or_space }}</div>
+</div>

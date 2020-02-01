@@ -1,33 +1,39 @@
-<!-- Base attack and spell resistance -->
-<table>
-    <tr>
-        <td class="sheet-statlabel" style="width: 200px;">Base Attack Bonus (BAB)</td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 80px;" disabled="true" value="{{ character.base_attack_bonus }}"></td>
-        <td class="sheet-statlabel" style="width: 110px; font-size: 0.65em;">Spell<br>Resistance</td>
-        <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 60px;" disabled="true" value="{{ character.spell_resistance|default:"/" }}"></td>
-    </tr>
-</table>
+{% load pathfinder_filters %}
 
-<!-- CMB and CMD -->
-<table>
-    <tr>
-        <td class="sheet-statlabel" style="width: 80px;">CMB</td>
-        <td>
-            <input class="sheet-inputbox" type="text" style="height: 24px; width: 60px;" disabled="true" value="{{ character.combat_maneuver_bonus }}"><br>
-            <div style="font-size: 0.5em;">Total<br>&nbsp;</div>
-        </td>
-        <td class="sheet-statlabel" style="width: 80px;">CMD</td>
-        <td>
-            <input class="sheet-inputbox" type="text" style="height: 24px; width: 60px;" disabled="true" value="{{ character.combat_maneuver_defense }}"><br>
-            <div style="font-size: 0.5em;">Total<br>&nbsp;</div>
-        </td>
-    </tr>
-    <!-- Not if there aren't any
-    <tr>
-        <td colspan="4">
-            <input class="sheet-inputbox" type="text" style="height: 24px; width: 416px;" disabled="true"> <br>
-            <div style="font-size: 0.5em;">Modifiers</div>
-        </td>
-    </tr>
-    -->
-</table>
+<div class="section base-attack" style="display: inline-block">
+    <div class="inverted inner-round" style="display: inline-block;">Base Attack Bonus</div>
+    <div class="boxed number2 value">{{ character.base_attack_bonus|or_space }}</div>
+</div>
+
+<div class="section spell-resistance" style="display: inline-block">
+    <subscripted-element subscript="resistance" class="inverted padded" style="text-align: center;" subscript-style="font-size: 1em; width: 100%;">Spell</subscripted-element>
+    <div class="boxed number2 value">{{ character.spell_resistance|or_slash }}</div>
+</div>
+
+<div class="section combat-maneuver">
+    <div class="inverted inner-round" style="display: inline-block;">CMB</div>
+    <subscripted-element subscript="Total" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.combat_maneuver_bonus|or_space }}</subscripted-element>
+    =
+    <subscripted-element subscript="Base attack bonus" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.base_attack_bonus|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="Strength modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.strength_modifier|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="Size modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.size_modifier|or_space }}</subscripted-element>
+
+    <subscripted-element subscript="Modifiers" style="margin-top: 0" subscripted-style="width: 150px;" subscript-style="text-align: center;" subscripted-class="boxed value">&nbsp;</subscripted-element>
+
+
+    <br>
+    <div class="inverted inner-round" style="display: inline-block;">CMD</div>
+    <subscripted-element subscript="Total" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.combat_maneuver_defense|or_space }}</subscripted-element>
+    =
+    <subscripted-element subscript="Base attack bonus" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.base_attack_bonus|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="Strength modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.strength_modifier|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="Dexterity modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.dexterity_modifier|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="Size modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.size_modifier|or_space }}</subscripted-element>
+    +
+    10
+</div>

@@ -13,3 +13,11 @@ def character_sheet(*, character_id: int) -> Dict[str, Any]:
     # character = get_object_or_404(Character, pk=character_id)
 
     return {'character': Character()}
+
+
+@require_GET
+@template_view('pathfinder/character_sheet_test.html')
+def character_sheet_test(*, character_id: int) -> Dict[str, Any]:
+    # character = get_object_or_404(Character, pk=character_id)
+
+    return {'character': Character()}

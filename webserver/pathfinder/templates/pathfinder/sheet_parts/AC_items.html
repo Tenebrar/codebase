@@ -1,22 +1,85 @@
-<fieldset class="repeating_acitems">
-    <table cellpadding="0" cellspacing="0">
-        <tr>
-            <td class="sheet-statlabel" style="font-size: 1em; width: 122px;">AC Items</td>
-            <td class="sheet-statlabel" style="font-size: 0.65em; width: 58px;">Bonus</td>
-            <td class="sheet-statlabel" style="font-size: 0.65em; width: 58px;">Type</td>
-            <td class="sheet-statlabel" style="font-size: 0.65em; width: 58px;">Check Penalty</td>
-            <td class="sheet-statlabel" style="font-size: 0.65em; width: 58px;">Spell Failure</td>
-            <td class="sheet-statlabel" style="font-size: 0.65em; width: 58px;">Weight</td>
-            <td class="sheet-statlabel" style="font-size: 0.65em; width: 58px;">Properties</td>
-        </tr>
-        <tr>
-            <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 122px;" disabled="true"></td>
-            <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 58px;" disabled="true"></td>
-            <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 58px;" disabled="true"></td>
-            <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 58px;" disabled="true"></td>
-            <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 58px;" disabled="true"></td>
-            <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 58px;" disabled="true"></td>
-            <td><input class="sheet-inputbox" type="text" style="height: 24px; width: 58px;" disabled="true"></td>
-        </tr>
+{% load pathfinder_filters %}
+
+<div class="section ac-items">
+    <table>
+        <thead>
+            <tr>
+                <th class="half-borders" style="width: 260px; font-size: 1.5em;" rowspan="2">
+                    <div class="inverted inner-round2">AC items</div>
+                </th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+            <tr>
+                <th class="inverted" style="border-left: 1px solid black;">Bonus</th>
+                <th class="inverted">Type</th>
+                <th class="inverted">Check Penalty</th>
+                <th class="inverted">Spell Failure</th>
+                <th class="inverted">Weight</th>
+                <th class="inverted" style="border-right: 1px solid black;">Properties</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="value" style="text-align: left; border-left: 1px solid black; border-bottom: 1px solid black;">Full plate</td>
+                <td class="value" style="border: 1px solid black;">9</td>
+                <td class="value" style="border: 1px solid black;">Heavy</td>
+                <td class="value" style="border: 1px solid black;">-6</td>
+                <td class="value" style="border: 1px solid black;">35%</td>
+                <td class="value" style="border: 1px solid black;">100lbs.</td>
+                <td class="value" style="border: 1px solid black;">None</td>
+            </tr>
+            <tr>
+                <td class="value" style="text-align: left; border-left: 1px solid black; border-bottom: 1px solid black;">Full plate</td>
+                <td class="value" style="border: 1px solid black;">9</td>
+                <td class="value" style="border: 1px solid black;">Heavy</td>
+                <td class="value" style="border: 1px solid black;">-6</td>
+                <td class="value" style="border: 1px solid black;">35%</td>
+                <td class="value" style="border: 1px solid black;">100lbs.</td>
+                <td class="value" style="border: 1px solid black;">None</td>
+            </tr>
+            <tr>
+                <td class="value" style="text-align: left; border-left: 1px solid black; border-bottom: 1px solid black;">Full plate</td>
+                <td class="value" style="border: 1px solid black;">9</td>
+                <td class="value" style="border: 1px solid black;">Heavy</td>
+                <td class="value" style="border: 1px solid black;">-6</td>
+                <td class="value" style="border: 1px solid black;">35%</td>
+                <td class="value" style="border: 1px solid black;">100lbs.</td>
+                <td class="value" style="border: 1px solid black;">None</td>
+            </tr>
+            <tr>
+                <td class="value" style="text-align: left; border-left: 1px solid black; border-bottom: 1px solid black;">Full plate</td>
+                <td class="value" style="border: 1px solid black;">9</td>
+                <td class="value" style="border: 1px solid black;">Heavy</td>
+                <td class="value" style="border: 1px solid black;">-6</td>
+                <td class="value" style="border: 1px solid black;">35%</td>
+                <td class="value" style="border: 1px solid black;">100lbs.</td>
+                <td class="value" style="border: 1px solid black;">None</td>
+            </tr>
+            <tr>
+                <td class="value" style="text-align: left; border-left: 1px solid black; border-bottom: 1px solid black;">Full plate</td>
+                <td class="value" style="border: 1px solid black;">9</td>
+                <td class="value" style="border: 1px solid black;">Heavy</td>
+                <td class="value" style="border: 1px solid black;">-6</td>
+                <td class="value" style="border: 1px solid black;">35%</td>
+                <td class="value" style="border: 1px solid black;">100lbs.</td>
+                <td class="value" style="border: 1px solid black;">None</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="inverted" style="text-align: right">Totals</td>
+                <td style="border: 1px solid black;"></td>
+                <td style="border: 1px solid black;"></td>
+                <td style="border: 1px solid black;"></td>
+                <td style="border: 1px solid black;"></td>
+                <td style="border: 1px solid black;"></td>
+                <td style="border: 1px solid black;"></td>
+            </tr>
+        </tfoot>
     </table>
-</fieldset>
+</div>
