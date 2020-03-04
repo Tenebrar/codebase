@@ -1,0 +1,5 @@
+{% load pathfinder_filters %}
+
+<div class="section damage-resistance" style="display: flex;">
+    <subscripted-element subscript="DR" subscripted-class="boxed number2 value" style="flex: 1; padding: 0 5px;">{{ character.damage_resistance|or_slash }}</subscripted-element>
+</div>

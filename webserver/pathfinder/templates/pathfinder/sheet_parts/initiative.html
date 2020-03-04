@@ -2,9 +2,9 @@
 
 <div class="section initiative">
     <subscripted-element class="inverted padded" subscript="MODIFIER">INITIATIVE</subscripted-element>
-    <subscripted-element subscript="Total" subscripted-class="boxed number2 value">{{ character.initiative|or_space }}</subscripted-element>
+    <subscripted-element subscript="Total" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.initiative|or_space }}</subscripted-element>
     =
-    <subscripted-element subscript="dex modifier" subscripted-class="boxed number2 value">{{ character.dexterity_modifier|or_space }}</subscripted-element>
+    <subscripted-element subscript="dex modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.dexterity_modifier|or_space }}</subscripted-element>
     +
-    <subscripted-element subscript="misc modifier" subscripted-class="boxed number2 value">{{ character.misc_initiative_modifier|or_space }}</subscripted-element>
+    <subscripted-element subscript="misc modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.misc_initiative_modifier|or_space }}</subscripted-element>
 </div>

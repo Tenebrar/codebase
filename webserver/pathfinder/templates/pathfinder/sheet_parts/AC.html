@@ -1,30 +1,35 @@
 {% load pathfinder_filters %}
 
 <div class="section armor-class">
-    <subscripted-element class="inverted padded" subscript-style="width: 100%;" subscript="ARMOR CLASS">AC</subscripted-element>
-    <subscripted-element subscript="Total" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.armor_class|or_space }}</subscripted-element>
-    = 10 +
-    <subscripted-element subscript="armor bonus" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.armor_bonus|or_space }}</subscripted-element>
-    +
-    <subscripted-element subscript="shield bonus" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.shield_bonus|or_space }}</subscripted-element>
-    +
-    <subscripted-element subscript="dex modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.dexterity_modifier|or_space }}</subscripted-element>
-    +
-    <subscripted-element subscript="size modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.size_modifier|or_space }}</subscripted-element>
-    +
-    <subscripted-element subscript="natural armor" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.natural_armor|or_space }}</subscripted-element>
-    +
-    <subscripted-element subscript="deflection modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.deflection_modifier|or_space }}</subscripted-element>
-    +
-    <subscripted-element subscript="misc modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.misc_ac_modifier|or_space }}</subscripted-element>
-
-    <br>
-
-    <subscripted-element class="inverted padded" subscript-style="width: 100%;" subscript="ARMOR CLASS">TOUCH</subscripted-element>
-    <div class="boxed number2 value" style="position: relative; top: 0.25em;">{{ character.touch_armor_class|or_space }}</div>
-
-    <subscripted-element class="inverted padded" subscript="ARMOR CLASS">FLAT-FOOTED</subscripted-element>
-    <div class="boxed number2 value" style="position: relative; top: 0.25em;">{{ character.flat_footed_armor_class|or_space }}</div>
-
-    <subscripted-element subscript="Modifiers" subscripted-style="width: 150px;" subscript-style="text-align: center;" subscripted-class="boxed value">&nbsp;</subscripted-element>
+    <div>
+        <subscripted-element class="inverted padded" subscript-style="width: 100%;" subscript="ARMOR CLASS">AC</subscripted-element>
+        <subscripted-element subscript="Total" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.armor_class|or_space }}</subscripted-element>
+        = 10 +
+        <subscripted-element subscript="armor bonus" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.armor_bonus|or_space }}</subscripted-element>
+        +
+        <subscripted-element subscript="shield bonus" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.shield_bonus|or_space }}</subscripted-element>
+        +
+        <subscripted-element subscript="dex modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.dexterity_modifier|or_space }}</subscripted-element>
+        +
+        <subscripted-element subscript="size modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.size_modifier|or_space }}</subscripted-element>
+        +
+        <subscripted-element subscript="natural armor" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.natural_armor|or_space }}</subscripted-element>
+        +
+        <subscripted-element subscript="deflection modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.deflection_modifier|or_space }}</subscripted-element>
+        +
+        <subscripted-element subscript="misc modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.misc_ac_modifier|or_space }}</subscripted-element>
+    </div>
+    <div style="display: flex;">
+        <div style="display: inline-block;">
+            <subscripted-element class="inverted padded" subscript-style="width: 100%;" subscript="ARMOR CLASS">TOUCH</subscripted-element>
+            <div class="boxed number2 value" style="position: relative; top: 0.25em;">{{ character.touch_armor_class|or_space }}</div>
+        </div>
+        <div style="display: inline-block;">
+            <subscripted-element class="inverted padded" subscript="ARMOR CLASS">FLAT-FOOTED</subscripted-element>
+            <div class="boxed number2 value" style="position: relative; top: 0.25em;">{{ character.flat_footed_armor_class|or_space }}</div>
+        </div>
+        <div style="display: inline-block;">
+            <subscripted-element subscript="Modifiers" subscripted-style="width: 150px;" subscript-style="text-align: center;" subscripted-class="boxed value">&nbsp;</subscripted-element>
+        </div>
+    </div>
 </div>

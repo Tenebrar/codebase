@@ -1,0 +1,6 @@
+{% load pathfinder_filters %}
+
+<div class="section spell-resistance" style="display: inline-block">
+    <subscripted-element subscript="resistance" class="inverted padded" style="text-align: center;" subscript-style="font-size: 1em; width: 100%;">Spell</subscripted-element>
+    <div class="boxed number2 value">{{ character.spell_resistance|or_slash }}</div>
+</div>

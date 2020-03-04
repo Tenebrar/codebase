@@ -11,34 +11,58 @@
         <script src="{% static 'pathfinder/js/main.js' %}" defer></script>
     </head>
     <body>
+        {% include "pathfinder/sheet_parts/logo.html" %}
+        {% include "pathfinder/sheet_parts/description.html" %}
+
         <div style="display: flex;">
-            {% include "pathfinder/sheet_parts/logo.html" %}
-            {% include "pathfinder/sheet_parts/description.html" %}
-        </div>
+            <div style="flex: 1;">
+                <div style="display: flex;">
+                    <div style="flex: 1;">
+                        {% include "pathfinder/sheet_parts/abilities.html" %}
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="display: flex; flex-direction: column; height: 100%">
+                            <div style="flex: 1;">
+                                <div style="display: flex;">
+                                    <div style="flex: 2;">
+                                        {% include "pathfinder/sheet_parts/hp.html" %}
+                                    </div>
+                                    <div style="flex: 1;">
+                                        {% include "pathfinder/sheet_parts/damage-resistance.html" %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="flex: 1;">
+                                {% include "pathfinder/sheet_parts/damage.html" %}
+                            </div>
+                            <div style="flex: 1;">
+                                {% include "pathfinder/sheet_parts/initiative.html" %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <div style="float: left">
-            <div style="float: left">
-                {% include "pathfinder/sheet_parts/abilities.html" %}
+                {% include "pathfinder/sheet_parts/AC.html" %}
+                {% include "pathfinder/sheet_parts/saves.html" %}
+                
+                <div style="display: flex;">
+                    <div style="flex: 2;">
+                        {% include "pathfinder/sheet_parts/attack.html" %}
+                    </div>
+                    <div style="flex: 1;">
+                        {% include "pathfinder/sheet_parts/spell-resistance.html" %}
+                    </div>
+                </div>
+                
+                {% include "pathfinder/sheet_parts/combat-maneuvers.html" %}
+                {% include "pathfinder/sheet_parts/weapons.html" %}
             </div>
-            {% include "pathfinder/sheet_parts/hp.html" %}
-            <br>
-            {% include "pathfinder/sheet_parts/initiative.html" %}
 
-            <div style="clear: both;"></div>
-
-            {% include "pathfinder/sheet_parts/AC.html" %}
-            <br>
-            {% include "pathfinder/sheet_parts/saves.html" %}
-            <br>
-            {% include "pathfinder/sheet_parts/attack.html" %}
-
-            {% include "pathfinder/sheet_parts/weapons.html" %}
-        </div>
-
-        <div style="display: inline-block;">
-            {% include "pathfinder/sheet_parts/speed.html" %}
-            {% include "pathfinder/sheet_parts/skills.html" %}
-            {% include "pathfinder/sheet_parts/languages.html" %}
+            <div style="flex: 1;">
+                {% include "pathfinder/sheet_parts/speed.html" %}
+                {% include "pathfinder/sheet_parts/skills.html" %}
+                {% include "pathfinder/sheet_parts/languages.html" %}
+            </div>
         </div>
 
         <div class="page-footer"></div>

@@ -10,9 +10,14 @@ body {
     border: 1px solid lightgrey;
 }
 
+/* only here for debugging, so I can see how each section looks */
+.section {
+    border: 1px solid darkblue;
+}
+
 .logo {
     width: 300px;
-    flex: none;
+    float: left;
 
     text-align: center;
     font-size: 2em;
@@ -21,10 +26,6 @@ body {
 
     padding-right: 10px;
     padding-bottom: 10px;
-}
-
-.description {
-    flex-grow: 1;
 }
 
 .description subscripted-element {
@@ -38,6 +39,12 @@ body {
 
 .description .subscripted {
     white-space: nowrap;
+}
+
+.description:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .boxed {
@@ -64,7 +71,7 @@ body {
     /* Number of expected digits: 2 */
     text-align: center;
     display: inline-block;
-    width: 40px;
+    min-width: 25px;
 }
 
 .number3 {
@@ -94,7 +101,7 @@ body {
         radial-gradient(circle at bottom left, white 0.5em, transparent 0.5em),
         radial-gradient(circle at top right, white 0.5em, transparent 0.5em),
         radial-gradient(circle at bottom right, white 0.5em, transparent 0.5em);
-    padding: 0 10px;
+    padding: 0 1em;
 }
 
 .inner-round2 {
@@ -131,6 +138,7 @@ body {
 table {
     table-layout: fixed;
     border-collapse: collapse;
+    border: 1px solid red;
 }
 
 th {

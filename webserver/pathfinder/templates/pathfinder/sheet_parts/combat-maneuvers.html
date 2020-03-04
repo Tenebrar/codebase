@@ -1,0 +1,29 @@
+{% load pathfinder_filters %}
+
+<div class="section combat-maneuver">
+    <div class="inverted inner-round" style="display: inline-block;">CMB</div>
+    <subscripted-element subscript="Total" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.combat_maneuver_bonus|or_space }}</subscripted-element>
+    =
+    <subscripted-element subscript="Base attack bonus" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.base_attack_bonus|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="Strength modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.strength_modifier|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="Size modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.size_modifier|or_space }}</subscripted-element>
+
+    <subscripted-element subscript="Modifiers" style="margin-top: 0" subscripted-style="width: 150px;" subscript-style="text-align: center;" subscripted-class="boxed value">&nbsp;</subscripted-element>
+
+
+    <br>
+    <div class="inverted inner-round" style="display: inline-block;">CMD</div>
+    <subscripted-element subscript="Total" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.combat_maneuver_defense|or_space }}</subscripted-element>
+    =
+    <subscripted-element subscript="Base attack bonus" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.base_attack_bonus|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="Strength modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.strength_modifier|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="Dexterity modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.dexterity_modifier|or_space }}</subscripted-element>
+    +
+    <subscripted-element subscript="Size modifier" subscript-style="text-align: center;" subscripted-class="boxed number2 value">{{ character.size_modifier|or_space }}</subscripted-element>
+    +
+    10
+</div>
