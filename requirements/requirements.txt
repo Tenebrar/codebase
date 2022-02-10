@@ -4,7 +4,7 @@
 #  - Put an empty line and comment line above each requirement, with the dependencies directly underneath
 
 # Django
-Django==2.2.4
+Django==2.2.27
 pytz==2019.1
 sqlparse==0.3.0
 
