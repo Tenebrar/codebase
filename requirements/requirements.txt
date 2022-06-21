@@ -9,4 +9,4 @@ pytz==2019.1
 sqlparse==0.3.0
 
 # Scientific calculations
-numpy==1.16.4
+numpy==1.22.0
